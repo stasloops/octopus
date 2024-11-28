@@ -1,12 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
+  // basePath: '/login',
+  transpilePackages: ['@mui/x-charts'],
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
-      use: [{ loader: '@svgr/webpack', options: { icon: true } }]
+      issuer: { and: [/\.(js|ts)x?$/] },
+      use: ["@svgr/webpack"]
     })
     return config
-  },
-};
+  }
+}
 
-export default nextConfig;
+module.exports = nextConfig
