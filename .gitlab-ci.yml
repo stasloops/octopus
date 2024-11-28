@@ -6,7 +6,7 @@ build-dev-job:       # This job runs in the build stage, which runs first.
   tags:
     - ord
   only:
-    - develop
+    - master
   script:
     - cp $ENV_FILE .env
     - docker compose up -d --build
