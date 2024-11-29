@@ -1,0 +1,12 @@
+stages:          # List of stages for jobs, and their order of execution
+  - build
+
+build-dev-job:       # This job runs in the build stage, which runs first.
+  stage: build
+  tags:
+    - ord
+  only:
+    - master
+  script:
+    - cp $ENV_FILE .env
+    - docker compose up -d --build
