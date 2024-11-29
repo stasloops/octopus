@@ -8,7 +8,7 @@ export const Page = async () => {
   return (
     <>
       <Typography>Домашняя страница</Typography>
-      <Typography>{`ord_token: ${ord_token}`}</Typography>
+      <Typography>{`ord_token: ${JSON.stringify(ord_token)}`}</Typography>
     </>
   );
 };
