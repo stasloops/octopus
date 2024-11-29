@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
+  // output: 'standalone',
   // basePath: '/login',
   transpilePackages: ['@mui/x-charts'],
   webpack(config) {
