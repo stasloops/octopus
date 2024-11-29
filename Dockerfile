@@ -15,7 +15,6 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 COPY .env.prod.sample .env
-RUN npx prisma migrate deploy
 RUN npm run build
 
 ENV NODE_ENV=production
