@@ -1,4 +1,6 @@
+import { verifySessionCustom } from "@/src/shared/lib/session-custom";
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { ReactNode } from "react";
 
 export const metadata: Metadata = {
@@ -10,8 +12,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-  // const session = await verifySessionCustom();
-  // if (!session) redirect("/login");
+  const session = await verifySessionCustom();
+  if (!session) redirect("/login");
 
   return <>{children}</>;
 }
