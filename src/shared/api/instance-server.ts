@@ -8,6 +8,10 @@ export const httpServer = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_URL_API}`,
 });
 
+export const httpLocalServer = axios.create({
+  baseURL: `${process.env.NEXT_PUBLIC_URL_TEST_API}`,
+});
+
 httpServer.interceptors.request.use(async (config) => {
   const session = await verifySessionCustom();
   if (!session) return config;

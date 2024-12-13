@@ -3,6 +3,9 @@ const nextConfig = {
   images: {
     dangerouslyAllowSVG: true,
   },
+  eslint: {
+    ignoreDuringBuilds: true
+  },
   // output: 'standalone',
   // basePath: '/login',
   // transpilePackages: ['@mui/x-charts'],

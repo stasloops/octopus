@@ -1,7 +1,9 @@
+"use client";
+
 import { LinearProgress, Stack } from "@mui/material";
 import { FC } from "react";
 
-export const Page: FC = async () => {
+export const Page: FC = () => {
   return (
     <>
       <Stack

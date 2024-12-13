@@ -7,6 +7,10 @@ export const http = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_URL_API}`,
 });
 
+export const httpLocal = axios.create({
+  baseURL: `${process.env.NEXT_PUBLIC_URL_TEST_API}`,
+});
+
 http.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (!config.headers.Authorization && token)

@@ -1,13 +1,18 @@
 import { enqueueSnackbar } from "notistack";
-import { useQuery } from "react-query";
-import { httpGetBlogger } from "./http-get-blogger";
+import { useMutation } from "react-query";
+import { limitCount } from "../modal/const";
+import { httpGetBlogger, IGetBloggerSchema } from "./http-get-blogger";
 
-export const useBlogger = () => {
-  const props = useQuery({
-    queryKey: [`getBlogger`],
-    queryFn: () => httpGetBlogger({}),
-    onError: (error: Error) => {
-      enqueueSnackbar("Ошибка загрузки данных", { variant: "error" });
+export const useGetBloggerMutate = () => {
+  const props = useMutation({
+    mutationFn: (value: IGetBloggerSchema[`payload`]) =>
+      httpGetBlogger({ limit: limitCount, ...value }),
+    onSuccess: (data, variables) => {
+      if (!data) return;
+      if (data.data.length < limitCount) data.meta.end = true;
+    },
+    onError: (error: any) => {
+      enqueueSnackbar("Ошибка сервера", { variant: "error" });
     },
   });
   return props;

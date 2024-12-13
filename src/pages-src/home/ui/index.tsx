@@ -1,25 +1,44 @@
+"use client";
+
+import Loading from "@/src/pages-src/loading";
 import { Layout } from "@/src/widgets/layout";
-import { FC } from "react";
-import { httpServerGetBlogger } from "../api/http-get-blogger";
+import { LayoutHeight } from "@/src/widgets/layout/model/const";
+import { Box } from "@mui/material";
+import { FC, useCallback, useEffect } from "react";
+import { useGetBloggerMutate } from "../api/use-blogger";
+import { useBloggerTableStore } from "../modal/store";
 import { TableElement } from "./table";
-import { TextResultElement } from "./text-result";
 
 interface PageProps {
   search: string;
 }
 
-export const Page: FC<PageProps> = async ({ search }) => {
-  const bloggers = await httpServerGetBlogger({
-    offset: 0,
-    limit: 20,
-    search,
-  });
+export const Page: FC<PageProps> = ({ search }) => {
+  const { mutateAsync, isLoading, data } = useGetBloggerMutate();
+  const setBloggerTable = useBloggerTableStore((state) => state.setValue);
+
+  const startMutate = useCallback(async () => {
+    const res = await mutateAsync({ search: search });
+    setBloggerTable(res);
+  }, [setBloggerTable, mutateAsync, search]);
+
+  useEffect(() => {
+    startMutate();
+  }, [search]);
 
   return (
     <>
-      <Layout />
-      <TextResultElement />
-      <TableElement bloggerTable={bloggers} />
+      {!!data && !isLoading && (
+        <>
+          <Layout />
+          <Box
+            style={{ height: `calc(100vh - ${LayoutHeight}px)`, width: "100%" }}
+          >
+            <TableElement />
+          </Box>
+        </>
+      )}
+      {(!data || !!isLoading) && <Loading />}
     </>
   );
 };
