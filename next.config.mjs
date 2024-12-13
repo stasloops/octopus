@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    dangerouslyAllowSVG: true,
+  },
   // output: 'standalone',
   // basePath: '/login',
   // transpilePackages: ['@mui/x-charts'],

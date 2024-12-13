@@ -1,10 +1,8 @@
 import App from "@/src/app-src";
+import { fontFamily } from "@/src/shared/lib/theme/font";
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
 import { ReactNode } from "react";
 import "./globals.css";
-
-const roboto = Roboto({ subsets: ["cyrillic", "latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "Заголовок",
@@ -18,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={roboto.className}>
+      <body className={fontFamily.className}>
         <App>{children}</App>
       </body>
     </html>

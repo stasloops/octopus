@@ -1,11 +1,30 @@
-import { createTheme } from "@mui/material";
-import { Roboto } from "next/font/google";
+import { createTheme, PaletteColor } from "@mui/material";
+import { fontFamily } from "./font";
 
-const roboto = Roboto({ subsets: ["cyrillic", "latin"], weight: "400" });
+declare module "@mui/material/styles" {
+  interface Palette {
+    white: PaletteColor;
+  }
+  interface PaletteOptions {
+    white: PaletteColor;
+  }
+}
 
+declare module "@mui/material/Button" {
+  interface ButtonPropsColorOverrides {
+    white: true;
+  }
+}
+declare module "@mui/material/SvgIcon" {
+  interface SvgIconPropsColorOverrides {
+    white: true;
+  }
+}
+
+const { palette } = createTheme();
 export const theme = createTheme({
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    fontFamily: fontFamily.style.fontFamily,
   },
   components: {
     MuiButton: {
@@ -22,8 +41,13 @@ export const theme = createTheme({
       default: `#fff`,
     },
     primary: {
-      main: `#383838`,
+      main: `#2B69D5`,
     },
+    white: palette.augmentColor({
+      color: {
+        main: "#fff",
+      },
+    }),
     // background: { default: "#ececec" }
   },
 });
