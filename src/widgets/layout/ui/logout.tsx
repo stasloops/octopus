@@ -15,9 +15,8 @@ export const LogOutButton: FC = () => {
   return (
     <Button
       variant="text"
-      color="inherit"
+      color="white"
       onClick={onClick}
-      fullWidth
       startIcon={<LogoutOutlinedIcon />}
       sx={{ justifyContent: `start` }}
     >

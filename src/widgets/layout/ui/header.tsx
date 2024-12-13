@@ -2,6 +2,7 @@ import { Box, Stack } from "@mui/material";
 import Link from "next/link";
 import { FC } from "react";
 import { LayoutHeight } from "../model/const";
+import { LogOutButton } from "./logout";
 import { SearchInput } from "./search-input";
 
 interface HeaderProps {}
@@ -65,7 +66,7 @@ export const Header: FC<HeaderProps> = () => {
           <Box>
             <SearchInput />
           </Box>
-          <Box sx={{ width: 0 }}></Box>
+          <LogOutButton />
         </Stack>
       </Box>
     </Box>

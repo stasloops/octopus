@@ -3,18 +3,16 @@ import "server-only";
 import { cookies } from "next/headers";
 import { decrypt } from ".";
 
+interface ISession {
+  token: string;
+}
+
 export const verifySessionCustom = async () => {
   const cookie = cookies().get("session")?.value;
-  const session = await decrypt(cookie);
-
-  if (session?.userId === undefined) {
-    return null;
-  }
+  const session = (await decrypt(cookie)) as ISession | undefined;
+  if (session?.token === undefined) return null;
 
   return {
-    isAuth: true,
-    user: {
-      id: session.userId as number,
-    },
+    token: session.token,
   };
 };

@@ -1,6 +1,7 @@
 import "server-only";
 
 import { SignJWT, jwtVerify } from "jose";
+import moment from "moment";
 import { cookies } from "next/headers";
 
 interface SessionPayload {
@@ -29,10 +30,15 @@ export async function decrypt(session: string | undefined = "") {
   }
 }
 
-export async function createSessionCustom(params: { userId: number }) {
-  const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+export async function createSessionCustom(params: {
+  token: string;
+  expiresAtServer?: string;
+}) {
+  const expiresAt = !!params.expiresAtServer
+    ? moment(params.expiresAtServer).toDate()
+    : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
   const session = await encrypt({
-    userId: params.userId,
+    token: params.token,
     expiresAt,
   });
 

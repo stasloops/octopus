@@ -8,18 +8,14 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useRouter } from "next/navigation";
-import { enqueueSnackbar } from "notistack";
 import { FC } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useMutation } from "react-query";
-import { login } from "../api";
+import { useLogin } from "../api/use-login";
 import { FormSchema, IForm } from "../model/form";
 
 interface FormElementProps {}
 
 export const FormElement: FC<FormElementProps> = ({}) => {
-  const router = useRouter();
   const { control, reset, handleSubmit, watch } = useForm<IForm>({
     mode: "onChange",
     defaultValues: {
@@ -29,22 +25,7 @@ export const FormElement: FC<FormElementProps> = ({}) => {
     resolver: zodResolver(FormSchema),
   });
 
-  const { mutate, isLoading, error } = useMutation({
-    mutationKey: `login`,
-    mutationFn: (data: IForm) => login(data).then(),
-    onSuccess: (data, variables) => {
-      if (!data) return;
-      if (!!data?.error) {
-        enqueueSnackbar(data.error, { variant: "error" });
-        return;
-      }
-      enqueueSnackbar("Добро пожаловать!", { variant: "success" });
-      router.push(`/`);
-    },
-    onError: (error: Error, variables) => {
-      enqueueSnackbar("Ошибка сервера", { variant: "error" });
-    },
-  });
+  const { mutate, isLoading, error } = useLogin();
 
   const onSubmit = (data: IForm) => {
     mutate(data);

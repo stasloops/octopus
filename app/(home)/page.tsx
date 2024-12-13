@@ -10,9 +10,9 @@ const PageServer = async ({
   const session = await verifySessionCustom();
   if (!session) redirect("/login");
 
-  // const search = (await searchParams).search;
+  const search = (await searchParams).search;
 
-  return <Page />;
+  return <Page search={search} />;
 };
 
 export default PageServer;
