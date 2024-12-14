@@ -1,30 +1,36 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "command": "npm run dev",
-            "name": "Клиент Dev",
-            "request": "launch",
-            "type": "node-terminal"
-        },
-        {
-            "name": "Next.js: debug client-side",
-            "type": "chrome",
-            "request": "launch",
-            "url": "http://localhost:3000",
-            "runtimeExecutable": "C:/Users/Андрей/AppData/Local/Yandex/YandexBrowser/Application/browser.exe" // сюда вставить путь к браузеру
-        },
-        {
-            "command": "npm run lint",
-            "name": "lint",
-            "request": "launch",
-            "type": "node-terminal"
-        },
-        {
-            "command": "npm run build",
-            "name": "build",
-            "request": "launch",
-            "type": "node-terminal"
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "command": "npm run dev",
+      "name": "Клиент Dev",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "name": "Next.js: debug client-side",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "runtimeExecutable": "C:/Users/Андрей/AppData/Local/Yandex/YandexBrowser/Application/browser.exe" // сюда вставить путь к браузеру
+    },
+    {
+      "command": "npm run lint",
+      "name": "lint",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "npm run build",
+      "name": "build",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "npm run start",
+      "name": "start",
+      "request": "launch",
+      "type": "node-terminal"
+    }
+  ]
 }
