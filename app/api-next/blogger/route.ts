@@ -1,4 +1,4 @@
-import { dataTableBlogger } from "@/app/api/_const/data-table";
+import { dataTableBlogger } from "@/app/api-next/_const/data-table";
 import { verifySessionCustom } from "@/src/shared/lib/session-custom";
 import { sleep } from "@/src/shared/lib/sleep";
 import { NextRequest, NextResponse } from "next/server";
