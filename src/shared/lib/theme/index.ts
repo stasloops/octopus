@@ -27,9 +27,22 @@ export const theme = createTheme({
     fontFamily: fontFamily.style.fontFamily,
   },
   components: {
+    MuiModal: {
+      defaultProps: {
+        disableAutoFocus: true,
+      },
+    },
+    MuiButtonBase: {
+      defaultProps: {
+        style: {
+          textTransform: "none",
+        },
+      },
+    },
     MuiButton: {
       defaultProps: {
-        sx: {
+        style: {
+          // borderRadius: `100px`,
           textTransform: "none",
         },
       },

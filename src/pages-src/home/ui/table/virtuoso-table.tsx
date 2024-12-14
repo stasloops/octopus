@@ -10,15 +10,22 @@ import {
 import { forwardRef } from "react";
 import { TableComponents } from "react-virtuoso";
 import { IBlogger } from "../../api/http-get-blogger";
+import { TextResultElement } from "./text-result";
 
 export const VirtuosoTableComponents: TableComponents<IBlogger> = {
   Scroller: forwardRef<HTMLDivElement>((props, ref) => (
-    <TableContainer {...props} ref={ref} sx={{ height: `100%` }} />
+    <TableContainer
+      id="Scroller"
+      {...props}
+      ref={ref}
+      sx={{ height: `100%` }}
+    />
   )),
   Table: (props) => {
     const context = (props?.context || {}) as any;
     return (
       <>
+        <TextResultElement />
         <Table
           {...props}
           sx={{
@@ -49,7 +56,7 @@ export const VirtuosoTableComponents: TableComponents<IBlogger> = {
   TableHead: forwardRef<HTMLTableSectionElement>((props, ref) => (
     <TableHead {...props} ref={ref} />
   )),
-  TableRow,
+  TableRow: TableRow,
   TableBody: forwardRef<HTMLTableSectionElement>((props, ref) => (
     <TableBody {...props} ref={ref} />
   )),

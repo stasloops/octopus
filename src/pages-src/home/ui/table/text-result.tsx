@@ -18,6 +18,7 @@ export const TextResultElement: FC<TextResultElement> = ({}) => {
         sx={{
           pt: `15px`,
           pb: `10px`,
+          px: `40px`,
           width: `100%`,
         }}
       >

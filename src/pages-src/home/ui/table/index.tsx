@@ -20,23 +20,31 @@ export const TableElement: FC<TableElementProps> = ({}) => {
 
   const { mutateAsync } = useGetBloggerMutate();
 
+  const hasMore = useMemo(() => {
+    if (!bloggerTable) return false;
+    return !!bloggerTable.meta.end ? false : true;
+  }, [bloggerTable]);
+
   const loadMore = useCallback(async () => {
     if (!bloggerTable) return;
+    if (!hasMore) return;
+
     const res = await mutateAsync({
       search: search || undefined,
       offset: bloggerTable.data.length,
     });
 
+    const box = document.getElementById("Scroller") as HTMLElement | null;
+    if (box) {
+      box?.scroll(0, box?.scrollTop - 5);
+    }
+
+    // window.scroll(500, 0);
     setBloggerTable({
       data: [...bloggerTable.data, ...res.data],
       meta: res.meta,
     });
-  }, [bloggerTable, setBloggerTable, mutateAsync, search]);
-
-  const hasMore = useMemo(() => {
-    if (!bloggerTable) return false;
-    return !!bloggerTable.meta.end ? false : true;
-  }, [bloggerTable]);
+  }, [bloggerTable, setBloggerTable, mutateAsync, search, hasMore]);
 
   return (
     <>
