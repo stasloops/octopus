@@ -20,7 +20,7 @@ export function createRandomBlogger(index: number): IBlogger {
 
     platform: [`vk`],
 
-    subscribers: fakerRU.number.int({ min: 200, max: 5000 }),
+    subscribers: fakerRU.number.int({ min: 200, max: 10000000 }),
     status: fakerRU.helpers.arrayElement(["open", "close", "archive"]),
     country: fakerRU.location.country(),
     city: fakerRU.location.city(),
