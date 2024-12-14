@@ -1,16 +1,16 @@
-// Это симуляция запроса на бек, тут ничего не меняй!!!
-
 import { dataTableBlogger } from "@/app/api/_const/data-table";
+import { verifySessionCustom } from "@/src/shared/lib/session-custom";
 import { sleep } from "@/src/shared/lib/sleep";
 import { NextRequest, NextResponse } from "next/server";
 
-type Params = {
-  limit?: number;
-  offset?: number;
-  search?: string;
-};
-
 export async function GET(request: NextRequest, context: any) {
+  const session = await verifySessionCustom();
+  if (!session)
+    return NextResponse.json(
+      { error: "Нужна авторизация!!!" },
+      { status: 401 }
+    );
+
   const searchParams = request.nextUrl.searchParams;
 
   const limit = Number(searchParams.get(`limit`)) || 20;
