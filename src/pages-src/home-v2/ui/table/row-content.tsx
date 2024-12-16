@@ -28,17 +28,11 @@ export function rowContent(_index: number, row: IBlogger) {
   if (!row) return null;
 
   const status = statusList.find((elList) => elList.key == row.status);
-  const platform = platformList.find(
-    (elList) => elList.key == row.platform_code
-  );
   return (
     <>
       <TableCell sx={{ height: `74px` }}>
-        {/* <Link href={row.avatar} target="_blank" rel="noopener noreferrer">
+        <Link href={row.avatar} target="_blank" rel="noopener noreferrer">
           <Avatar alt={row.name} src={row.avatar} />
-        </Link> */}
-        <Link href={row.url} target="_blank" rel="noopener noreferrer">
-          <Avatar></Avatar>
         </Link>
       </TableCell>
       <TableCell>
@@ -50,8 +44,10 @@ export function rowContent(_index: number, row: IBlogger) {
             alignItems: "flex-start",
           }}
         >
-          {row.title && (
-            <Typography sx={{ ...Text1SX }}>{`${row.title}`}</Typography>
+          {(row.firstName || row.lastName) && (
+            <Typography
+              sx={{ ...Text1SX }}
+            >{`${row.firstName} ${row.lastName}`}</Typography>
           )}
           <Stack
             direction="row"
@@ -61,38 +57,46 @@ export function rowContent(_index: number, row: IBlogger) {
               alignItems: "center",
             }}
           >
-            {!!platform && (
-              <Link href={row.url} target="_blank" rel="noopener noreferrer">
-                <Box
-                  sx={{
-                    overflow: `hidden`,
-                    borderRadius: `10px`,
-                    width: `18px`,
-                    height: `18px`,
-                  }}
+            {row.platform.map((el, index) => {
+              const platform = platformList.find((elList) => elList.key == el);
+              if (!platform) return null;
+              return (
+                <Link
+                  key={index}
+                  href={row.avatar}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <img
-                    src={platform.src}
-                    alt="platform"
-                    style={{
-                      objectFit: `contain`,
+                  <Box
+                    sx={{
+                      overflow: `hidden`,
+                      borderRadius: `10px`,
                       width: `18px`,
                       height: `18px`,
-                      // pointerEvents: `none`,
                     }}
-                  />
-                </Box>
-              </Link>
-            )}
-            {row.subscribers !== undefined && row.subscribers !== null && (
-              <SubscribersElement value={row.subscribers} />
-            )}
+                  >
+                    <img
+                      src={platform.src}
+                      alt="platform"
+                      style={{
+                        objectFit: `contain`,
+                        width: `18px`,
+                        height: `18px`,
+                        // pointerEvents: `none`,
+                      }}
+                    />
+                  </Box>
+                </Link>
+              );
+            })}
+
+            <SubscribersElement value={row.subscribers} />
           </Stack>
         </Stack>
       </TableCell>
       <TableCell>
         <Link
-          href={row.url}
+          href={row.avatar}
           style={{ color: `inherit`, textDecoration: `inherit` }}
           target="_blank"
           rel="noopener noreferrer"
@@ -112,7 +116,7 @@ export function rowContent(_index: number, row: IBlogger) {
                 background: `#D9E3F3`,
                 display: `inline-block`,
               }}
-            >{`@${row.url}`}</Typography>
+            >{`@${row.name}`}</Typography>
           </Box>
         </Link>
       </TableCell>
@@ -120,10 +124,10 @@ export function rowContent(_index: number, row: IBlogger) {
         {status && <Typography sx={{ ...Text2SX }}>{status.label}</Typography>}
       </TableCell>
       <TableCell>
-        {/* <Typography sx={{ ...Text2SX }}>{row.country}</Typography> */}
+        <Typography sx={{ ...Text2SX }}>{row.country}</Typography>
       </TableCell>
       <TableCell>
-        {/* <Typography sx={{ ...Text2SX }}>{row.city}</Typography> */}
+        <Typography sx={{ ...Text2SX }}>{row.city}</Typography>
       </TableCell>
       <TableCell>
         <Button
