@@ -1,6 +1,6 @@
 import "server-only";
 
-import { IBlogger } from "@/src/pages-src/home/api/http-get-blogger";
+import { IBlogger } from "@/src/pages-src/home-v2/api/http-get-blogger";
 import { fakerRU } from "@faker-js/faker";
 
 declare global {
