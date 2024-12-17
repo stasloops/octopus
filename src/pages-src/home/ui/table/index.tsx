@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { FC, useCallback, useMemo } from "react";
 import { TableVirtuoso } from "react-virtuoso";
 import { useGetBloggerMutate } from "../../api/use-blogger";
-import { useBloggerTableStore } from "../../modal/store";
+import { useBloggerTableStore } from "../../model/store";
 import { fixedHeaderContent } from "./header";
 import { rowContent } from "./row-content";
 import { VirtuosoTableComponents } from "./virtuoso-table";

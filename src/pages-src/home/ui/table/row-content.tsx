@@ -12,7 +12,7 @@ import {
 import { Theme } from "@mui/system";
 import Link from "next/link";
 import { IBlogger } from "../../api/http-get-blogger";
-import { platformList } from "../../modal/const";
+import { platformList } from "../../model/const";
 import { SubscribersElement } from "./subscribers-number";
 
 const Text1SX: SxProps<Theme> = {
@@ -36,15 +36,29 @@ export function rowContent(_index: number, row: IBlogger) {
   );
   return (
     <>
-      <TableCell sx={{ height: `74px` }}>
-        {/* <Link href={row.avatar} target="_blank" rel="noopener noreferrer">
-          <Avatar alt={row.name} src={row.avatar} />
-        </Link> */}
+      <TableCell
+        sx={{
+          height: `74px`,
+          display: {
+            xs: `none`,
+            md: `table-cell`,
+            lg: `table-cell`,
+          },
+        }}
+      >
         <Link href={row.url} target="_blank" rel="noopener noreferrer">
           <Avatar></Avatar>
         </Link>
       </TableCell>
-      <TableCell>
+      <TableCell
+        sx={{
+          display: {
+            xs: `none`,
+            md: `table-cell`,
+            lg: `table-cell`,
+          },
+        }}
+      >
         <Stack
           direction="column"
           spacing={`4px`}
@@ -97,7 +111,15 @@ export function rowContent(_index: number, row: IBlogger) {
           </Stack>
         </Stack>
       </TableCell>
-      <TableCell>
+      <TableCell
+        sx={{
+          display: {
+            xs: `none`,
+            md: `table-cell`,
+            lg: `table-cell`,
+          },
+        }}
+      >
         <Link
           href={row.url}
           style={{ color: `inherit`, textDecoration: `inherit` }}
@@ -122,10 +144,25 @@ export function rowContent(_index: number, row: IBlogger) {
           </Box>
         </Link>
       </TableCell>
-
-      <TableCell>{`${row.er.toFixed(1)}%`}</TableCell>
-
-      <TableCell align="right">
+      <TableCell
+        sx={{
+          display: {
+            xs: `none`,
+            md: `table-cell`,
+            lg: `table-cell`,
+          },
+        }}
+      >{`${row.er.toFixed(1)}%`}</TableCell>
+      <TableCell
+        sx={{
+          display: {
+            xs: `none`,
+            md: `table-cell`,
+            lg: `table-cell`,
+          },
+        }}
+        align="right"
+      >
         <Button
           variant="contained"
           color="primary"
@@ -134,6 +171,108 @@ export function rowContent(_index: number, row: IBlogger) {
         >
           Отчет
         </Button>
+      </TableCell>
+      <TableCell
+        sx={{
+          display: {
+            xs: `table-cell`,
+            md: `none`,
+            lg: `none`,
+          },
+          height: `180px`,
+        }}
+      >
+        <Stack spacing={2}>
+          <Stack direction="row" spacing={2}>
+            <Link href={row.url} target="_blank" rel="noopener noreferrer">
+              <Avatar></Avatar>
+            </Link>
+            <Stack
+              direction="column"
+              spacing={`4px`}
+              sx={{
+                justifyContent: "center",
+                alignItems: "flex-start",
+                width: `100%`,
+              }}
+            >
+              <Box
+                sx={{
+                  position: `relative`,
+                  width: `100%`,
+                  height: `15px`,
+                }}
+              >
+                <Box
+                  sx={{
+                    position: `absolute`,
+                    width: `100%`,
+                  }}
+                >
+                  {row.title && (
+                    <Tooltip title={row.title}>
+                      <Typography
+                        sx={{ ...Text1SX, maxWidth: `100%` }}
+                      >{`${row.title}`}</Typography>
+                    </Tooltip>
+                  )}
+                </Box>
+              </Box>
+              <Stack
+                direction="row"
+                spacing={`5px`}
+                sx={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                {!!platform && (
+                  <Link
+                    href={row.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Box
+                      sx={{
+                        overflow: `hidden`,
+                        borderRadius: `10px`,
+                        width: `18px`,
+                        height: `18px`,
+                      }}
+                    >
+                      <img
+                        src={platform.src}
+                        alt="platform"
+                        style={{
+                          objectFit: `contain`,
+                          width: `18px`,
+                          height: `18px`,
+                          // pointerEvents: `none`,
+                        }}
+                      />
+                    </Box>
+                  </Link>
+                )}
+                {row.subscribers !== undefined && row.subscribers !== null && (
+                  <SubscribersElement value={row.subscribers} />
+                )}
+              </Stack>
+            </Stack>
+          </Stack>
+          <Stack spacing={1}>
+            {row.er && <Typography>{`ER: ${row.er.toFixed(1)}%`}</Typography>}
+          </Stack>
+          <Box>
+            <Button
+              variant="contained"
+              color="primary"
+              endIcon={<ArrowForwardIcon />}
+              sx={{ borderRadius: `20px` }}
+            >
+              Отчет
+            </Button>
+          </Box>
+        </Stack>
       </TableCell>
     </>
   );

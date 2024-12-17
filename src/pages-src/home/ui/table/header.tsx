@@ -11,6 +11,11 @@ export function fixedHeaderContent() {
       <TableRow
         sx={{
           background: `#fff`,
+          display: {
+            xs: `none`,
+            md: `table-row`,
+            lg: `table-row`,
+          },
         }}
       >
         <TableCell sx={{ ...TableCellSX, width: `70px` }}>Аватар</TableCell>

@@ -2,7 +2,7 @@ import { Box, Stack } from "@mui/material";
 import Link from "next/link";
 import { FC, ReactNode } from "react";
 import { LayoutHeight } from "../model/const";
-import { LogOutButton } from "./logout";
+import { MenuButton } from "./menu-button";
 
 interface HeaderProps {
   headerChildren?: ReactNode;
@@ -38,7 +38,7 @@ export const Header: FC<HeaderProps> = ({ headerChildren }) => {
           zIndex: -1,
         }}
       />
-      <Box sx={{ width: `100%`, px: `40px` }}>
+      <Box sx={{ width: `100%`, px: `20px` }}>
         <Stack
           direction="row"
           spacing={2}
@@ -50,22 +50,39 @@ export const Header: FC<HeaderProps> = ({ headerChildren }) => {
             zIndex: 3,
           }}
         >
-          <Box sx={{ width: 0 }}>
+          <Stack
+            direction="row"
+            spacing={1}
+            sx={{
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <MenuButton />
             <Link href={`/`}>
               <img
                 src={`./logo-orda-white.svg`}
                 alt="logo-orda"
                 style={{
                   objectFit: `contain`,
-                  width: `200px`,
+                  width: `130px`,
                   height: `50px`,
                   // pointerEvents: `none`,
                 }}
               />
             </Link>
-          </Box>
-          <Box>{headerChildren}</Box>
-          <LogOutButton />
+          </Stack>
+          <Stack
+            direction="row"
+            spacing={6}
+            sx={{
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Box>{headerChildren}</Box>
+            {/* <LogOutButton /> */}
+          </Stack>
         </Stack>
       </Box>
     </Box>

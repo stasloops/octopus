@@ -1,6 +1,6 @@
 import { enqueueSnackbar } from "notistack";
 import { useMutation } from "react-query";
-import { limitCount } from "../modal/const";
+import { limitCount } from "../model/const";
 import { httpGetBlogger, IGetBloggerSchema } from "./http-get-blogger";
 
 export const useGetBloggerMutate = () => {

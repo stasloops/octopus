@@ -11,7 +11,8 @@ import {
   Theme,
 } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
+import { useSearchStore } from "../model/store";
 
 const InputSX: SxProps<Theme> | any = {
   color: `#FFFFFF`,
@@ -31,7 +32,9 @@ export const SearchInput: FC<SearchInputProps> = () => {
   const search = searchParams.get("search");
   const router = useRouter();
 
-  const [text, setText] = useState<string>(``);
+  const text = useSearchStore((state) => state.value);
+  const setText = useSearchStore((state) => state.setValue);
+
   const onChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
   };
@@ -73,6 +76,7 @@ export const SearchInput: FC<SearchInputProps> = () => {
         sx={{
           justifyContent: "center",
           alignItems: "center",
+          display: { xs: `none`, md: `flex`, lg: `flex` },
         }}
         onKeyDown={handleKeyPress as any}
       >
