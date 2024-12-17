@@ -3,7 +3,7 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import { FC } from "react";
-import { useBloggerTableStore } from "../../model/store";
+import { useBloggerTableStore } from "../model/store";
 
 interface TextResultElement {}
 

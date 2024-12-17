@@ -35,6 +35,7 @@ export const Page: FC<PageProps> = ({ search }) => {
           <Box
             style={{ height: `calc(100vh - ${LayoutHeight}px)`, width: "100%" }}
           >
+            {/* <TextResultElement /> */}
             <TableElement />
           </Box>
         </>
