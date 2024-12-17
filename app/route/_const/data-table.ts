@@ -1,15 +1,14 @@
 import "server-only";
 
-import { IBlogger } from "@/src/pages-src/home-v2/api/http-get-blogger";
 import { fakerRU } from "@faker-js/faker";
 
 declare global {
   // allow global `var` declarations
   // eslint-disable-next-line no-var
-  var dataTableBlogger: IBlogger[];
+  var dataTableBlogger: any[];
 }
 
-export function createRandomBlogger(index: number): IBlogger {
+export function createRandomBlogger(index: number): any {
   return {
     id: index,
     name: fakerRU.internet.username(),
@@ -24,11 +23,12 @@ export function createRandomBlogger(index: number): IBlogger {
     status: fakerRU.helpers.arrayElement(["open", "close", "archive"]),
     country: fakerRU.location.country(),
     city: fakerRU.location.city(),
+    er: fakerRU.number.float({ min: 0.1, max: 1.9 }),
   };
 }
 
 const generateManyBlogger = () => {
-  const array: IBlogger[] = [];
+  const array: any[] = [];
   for (let index = 0; index < 100; index++) {
     array.push(createRandomBlogger(index));
   }
