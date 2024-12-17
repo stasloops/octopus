@@ -58,7 +58,7 @@ export const FilterElement: FC = () => {
             <Grid2 xs={12} md={6} lg={4}>
               <TextField
                 fullWidth
-                label="География аудитории"
+                label="Местоположение"
                 variant="outlined"
                 size="small"
               />
@@ -66,7 +66,7 @@ export const FilterElement: FC = () => {
             <Grid2 xs={12} md={6} lg={4}>
               <TextField
                 fullWidth
-                label="Упоминания бренда"
+                label="Кол-во просмотров (VK Video)"
                 variant="outlined"
                 size="small"
               />
@@ -90,7 +90,7 @@ export const FilterElement: FC = () => {
             <Grid2 xs={12} md={6} lg={4}>
               <TextField
                 fullWidth
-                label="Рекламодатели"
+                label="Средний охват в сообществах"
                 variant="outlined"
                 size="small"
               />
@@ -98,7 +98,7 @@ export const FilterElement: FC = () => {
             <Grid2 xs={12} md={6} lg={4}>
               <TextField
                 fullWidth
-                label="Кол-во подписок"
+                label="Тематика сообщества"
                 variant="outlined"
                 size="small"
               />
@@ -106,31 +106,7 @@ export const FilterElement: FC = () => {
             <Grid2 xs={12} md={6} lg={4}>
               <TextField
                 fullWidth
-                label="Кол-во постов (в блоге за весь период)"
-                variant="outlined"
-                size="small"
-              />
-            </Grid2>
-            <Grid2 xs={12} md={6} lg={4}>
-              <TextField
-                fullWidth
-                label="Подтверждённый аккаунт"
-                variant="outlined"
-                size="small"
-              />
-            </Grid2>
-            <Grid2 xs={12} md={6} lg={4}>
-              <TextField
-                fullWidth
-                label="Местоположение"
-                variant="outlined"
-                size="small"
-              />
-            </Grid2>
-            <Grid2 xs={12} md={6} lg={4}>
-              <TextField
-                fullWidth
-                label="Теги постов"
+                label="Кол-во просмотров в клипах"
                 variant="outlined"
                 size="small"
               />

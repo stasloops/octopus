@@ -1,6 +1,6 @@
 "use client";
 
-import { HeaderHome } from "@/src/features/header-home";
+import { HeaderTop } from "@/src/features/header-top";
 import Loading from "@/src/pages-src/loading";
 import { Layout } from "@/src/widgets/layout";
 import { Box, Typography } from "@mui/material";
@@ -31,12 +31,12 @@ export const Page: FC<PageProps> = ({ search }) => {
     <>
       {!!data && !isLoading && (
         <>
-          <Layout headerChildren={<HeaderHome />} />
+          <Layout headerChildren={<HeaderTop />} />
           <Box>
             <Typography
               variant="h6"
               sx={{ px: `40px`, pt: `15px` }}
-            >{`Поиск по блоггерам`}</Typography>
+            >{`Поиск по топ блоггерам`}</Typography>
             <TextResultElement />
             <TableElement />
           </Box>
