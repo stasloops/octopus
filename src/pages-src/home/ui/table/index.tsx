@@ -1,5 +1,6 @@
 "use client";
 
+import { Box } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import { FC, useCallback, useMemo } from "react";
 import { TableVirtuoso } from "react-virtuoso";
@@ -48,17 +49,28 @@ export const TableElement: FC<TableElementProps> = ({}) => {
 
   return (
     <>
-      <TableVirtuoso
-        allowFullScreen
-        data={bloggerTable?.data || []}
-        components={VirtuosoTableComponents}
-        fixedHeaderContent={fixedHeaderContent}
-        itemContent={rowContent}
-        endReached={loadMore}
-        context={{
-          hasMore,
+      <Box
+        sx={{
+          "& .ReactVirtualized__Table__headerRow": {
+            position: `sticky`,
+            insetBlockStart: 0,
+            zIndex: 1,
+          },
         }}
-      />
+      >
+        <TableVirtuoso
+          useWindowScroll
+          allowFullScreen
+          data={bloggerTable?.data || []}
+          components={VirtuosoTableComponents}
+          fixedHeaderContent={fixedHeaderContent}
+          itemContent={rowContent}
+          endReached={loadMore}
+          context={{
+            hasMore,
+          }}
+        />
+      </Box>
     </>
   );
 };

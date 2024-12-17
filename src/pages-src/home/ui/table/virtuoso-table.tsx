@@ -17,7 +17,8 @@ export const VirtuosoTableComponents: TableComponents<IBlogger> = {
       id="Scroller"
       {...props}
       ref={ref}
-      sx={{ height: `100%` }}
+      sx={{ height: `100%`, overflowX: "initial" }}
+      // style={{ overflowX: "initial" }}
     />
   )),
   Table: (props) => {
@@ -25,6 +26,7 @@ export const VirtuosoTableComponents: TableComponents<IBlogger> = {
     return (
       <>
         <Table
+          stickyHeader
           {...props}
           sx={{
             borderCollapse: "separate",
@@ -33,7 +35,6 @@ export const VirtuosoTableComponents: TableComponents<IBlogger> = {
             "& .MuiTableCell-head": { borderTop: `none` },
           }}
           size="small"
-          stickyHeader
         />
         {!!context.hasMore && (
           <Stack

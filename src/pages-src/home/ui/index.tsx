@@ -9,6 +9,7 @@ import { FC, useCallback, useEffect } from "react";
 import { useGetBloggerMutate } from "../api/use-blogger";
 import { useBloggerTableStore } from "../model/store";
 import { TableElement } from "./table";
+import { TextResultElement } from "./text-result";
 
 interface PageProps {
   search: string;
@@ -35,7 +36,7 @@ export const Page: FC<PageProps> = ({ search }) => {
           <Box
             style={{ height: `calc(100vh - ${LayoutHeight}px)`, width: "100%" }}
           >
-            {/* <TextResultElement /> */}
+            <TextResultElement />
             <TableElement />
           </Box>
         </>

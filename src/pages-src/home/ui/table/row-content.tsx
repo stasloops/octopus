@@ -38,11 +38,7 @@ export function rowContent(_index: number, row: IBlogger) {
     <>
       <TableCell
         sx={{
-          height: {
-            xs: `180px`,
-            md: `74px`,
-            lg: `74px`,
-          },
+          height: `74px`,
           display: {
             xs: `none`,
             md: `table-cell`,
@@ -178,11 +174,7 @@ export function rowContent(_index: number, row: IBlogger) {
       </TableCell>
       <TableCell
         sx={{
-          height: {
-            xs: `180px`,
-            md: `74px`,
-            lg: `74px`,
-          },
+          height: `180px`,
           display: {
             xs: `table-cell`,
             md: `none`,

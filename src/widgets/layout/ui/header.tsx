@@ -12,11 +12,11 @@ export const Header: FC<HeaderProps> = ({ headerChildren }) => {
   return (
     <Box
       sx={{
-        position: `absolute`,
+        position: `sticky`,
         top: 0,
         right: 0,
         left: 0,
-        zIndex: 2,
+        zIndex: 3,
         height: `${LayoutHeight}px`,
         background: `#2B3A8B`,
         overflow: `hidden`,

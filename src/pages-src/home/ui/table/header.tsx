@@ -1,3 +1,4 @@
+import { LayoutHeight } from "@/src/widgets/layout/model/const";
 import { SxProps, TableCell, TableRow, Theme } from "@mui/material";
 
 const TableCellSX: SxProps<Theme> = {
@@ -10,6 +11,8 @@ export function fixedHeaderContent() {
     <>
       <TableRow
         sx={{
+          position: `sticky`,
+          top: `${LayoutHeight}px`,
           background: `#fff`,
           display: {
             xs: `none`,
