@@ -1,4 +1,12 @@
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Chip,
+  Stack,
+  TextField,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC } from "react";
 import { SearchInput } from "./search-input";
@@ -15,7 +23,24 @@ export const FilterElement: FC = () => {
     >
       <Stack spacing={2}>
         <Box>
-          <Typography variant="h6">Фильтр</Typography>
+          <Stack
+            direction="row"
+            spacing={2}
+            sx={{
+              justifyContent: "start",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="h6">Фильтр</Typography>
+            <Tooltip title={`В Фильтрах пока работает только "поиск"`}>
+              <Chip
+                color="error"
+                size="small"
+                label="Альфа"
+                variant="outlined"
+              />
+            </Tooltip>
+          </Stack>
         </Box>
         <Box>
           <SearchInput />

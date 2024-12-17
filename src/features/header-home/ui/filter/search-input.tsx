@@ -24,6 +24,7 @@ export const SearchInput: FC<SearchInputProps> = () => {
     <>
       <TextField
         label="Поиск"
+        placeholder="Поиск"
         variant="outlined"
         onChange={onChangeText}
         value={text}
