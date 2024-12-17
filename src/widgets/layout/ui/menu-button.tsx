@@ -1,16 +1,11 @@
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { theme } from "@/src/shared/lib/theme";
 import MenuIcon from "@mui/icons-material/Menu";
-import {
-    IconButton,
-    ListItemIcon,
-    Menu,
-    MenuItem,
-    Typography,
-} from "@mui/material";
+import { IconButton, Menu, MenuItem } from "@mui/material";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FC, useState } from "react";
 import { IPage, pageList } from "../model/const";
+import { LogOutButton } from "./logout";
 
 export const MenuButton: FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -40,6 +35,7 @@ export const MenuButton: FC = () => {
         {pageList.map((el, index) => (
           <PageItem key={index} item={el} />
         ))}
+        <LogOutButton />
       </Menu>
     </>
   );
@@ -52,11 +48,12 @@ interface PageItemProps {
 const PageItem: FC<PageItemProps> = ({ item }) => {
   const pathname = usePathname();
   return (
-    <MenuItem component={Link} href={item.key}>
-      <ListItemIcon>
-        {pathname == item.key && <ArrowForwardIosIcon fontSize="small" />}
-      </ListItemIcon>
-      <Typography variant="inherit"> {item.label}</Typography>
+    <MenuItem
+      component={Link}
+      href={item.key}
+      sx={{ ...(pathname == item.key && { background: theme.palette.grey[300]}) }}
+    >
+      {item.label}
     </MenuItem>
   );
 };
