@@ -3,7 +3,6 @@
 import { HeaderHome } from "@/src/features/header-home";
 import Loading from "@/src/pages-src/loading";
 import { Layout } from "@/src/widgets/layout";
-import { LayoutHeight } from "@/src/widgets/layout/model/const";
 import { Box } from "@mui/material";
 import { FC, useCallback, useEffect } from "react";
 import { useGetBloggerMutate } from "../api/use-blogger";
@@ -33,9 +32,7 @@ export const Page: FC<PageProps> = ({ search }) => {
       {!!data && !isLoading && (
         <>
           <Layout headerChildren={<HeaderHome />} />
-          <Box
-            style={{ height: `calc(100vh - ${LayoutHeight}px)`, width: "100%" }}
-          >
+          <Box>
             <TextResultElement />
             <TableElement />
           </Box>
