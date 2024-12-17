@@ -1,13 +1,14 @@
 import { Box, Stack } from "@mui/material";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { LayoutHeight } from "../model/const";
 import { LogOutButton } from "./logout";
-import { SearchInput } from "./search-input";
 
-interface HeaderProps {}
+interface HeaderProps {
+  headerChildren?: ReactNode;
+}
 
-export const Header: FC<HeaderProps> = () => {
+export const Header: FC<HeaderProps> = ({ headerChildren }) => {
   return (
     <Box
       sx={{
@@ -63,9 +64,7 @@ export const Header: FC<HeaderProps> = () => {
               />
             </Link>
           </Box>
-          <Box>
-            <SearchInput />
-          </Box>
+          <Box>{headerChildren}</Box>
           <LogOutButton />
         </Stack>
       </Box>

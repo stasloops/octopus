@@ -6,7 +6,7 @@ import { httpGetBlogger, IGetBloggerSchema } from "./http-get-blogger";
 export const useGetBloggerMutate = () => {
   const props = useMutation({
     mutationFn: (value: IGetBloggerSchema[`payload`]) =>
-      httpGetBlogger({ limit: limitCount, ...value }),
+      httpGetBlogger({ limit: limitCount, ...value, sort: `-subscribers` }),
     onSuccess: (data, variables) => {
       if (!data) return;
       if (data.data.length < limitCount) data.meta.end = true;

@@ -1,6 +1,5 @@
 import { dataTableBlogger } from "@/app/route/_const/data-table";
 import { verifySessionCustom } from "@/src/shared/lib/session-custom";
-import { sleep } from "@/src/shared/lib/sleep";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest, context: any) {
@@ -30,6 +29,6 @@ export async function GET(request: NextRequest, context: any) {
     data: data.slice(offset, offset + limit),
     meta: { limit: limit, offset: offset, total: data.length },
   });
-  await sleep(1000);
+  // await sleep(1000);
   return response;
 }

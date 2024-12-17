@@ -46,7 +46,7 @@ export const SearchInput: FC<SearchInputProps> = () => {
 
   const onSearch = () => {
     router.push(
-      `/?${new URLSearchParams({
+      `/home-v2?${new URLSearchParams({
         ...(!!text ? { search: String(text) } : {}),
       })}`
     );

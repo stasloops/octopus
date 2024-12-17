@@ -7,6 +7,7 @@ import { Box } from "@mui/material";
 import { FC, useCallback, useEffect } from "react";
 import { useGetBloggerMutate } from "../api/use-blogger";
 import { useBloggerTableStore } from "../modal/store";
+import { SearchInput } from "./search-input";
 import { TableElement } from "./table";
 
 interface PageProps {
@@ -30,7 +31,7 @@ export const Page: FC<PageProps> = ({ search }) => {
     <>
       {!!data && !isLoading && (
         <>
-          <Layout />
+          <Layout headerChildren={<SearchInput />} />
           <Box
             style={{ height: `calc(100vh - ${LayoutHeight}px)`, width: "100%" }}
           >

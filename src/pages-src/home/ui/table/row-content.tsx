@@ -6,17 +6,21 @@ import {
   Stack,
   SxProps,
   TableCell,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { Theme } from "@mui/system";
 import Link from "next/link";
 import { IBlogger } from "../../api/http-get-blogger";
-import { platformList, statusList } from "../../modal/const";
+import { platformList } from "../../modal/const";
 import { SubscribersElement } from "./subscribers-number";
 
 const Text1SX: SxProps<Theme> = {
   fontWeight: 600,
   fontSize: `13px`,
+  textOverflow: `ellipsis`,
+  overflow: `hidden`,
+  whiteSpace: `nowrap`,
 };
 const Text2SX: SxProps<Theme> = {
   fontWeight: 400,
@@ -27,7 +31,6 @@ const Text2SX: SxProps<Theme> = {
 export function rowContent(_index: number, row: IBlogger) {
   if (!row) return null;
 
-  const status = statusList.find((elList) => elList.key == row.status);
   const platform = platformList.find(
     (elList) => elList.key == row.platform_code
   );
@@ -51,7 +54,11 @@ export function rowContent(_index: number, row: IBlogger) {
           }}
         >
           {row.title && (
-            <Typography sx={{ ...Text1SX }}>{`${row.title}`}</Typography>
+            <Tooltip title={row.title}>
+              <Typography
+                sx={{ ...Text1SX, maxWidth: `100%` }}
+              >{`${row.title}`}</Typography>
+            </Tooltip>
           )}
           <Stack
             direction="row"
@@ -98,34 +105,27 @@ export function rowContent(_index: number, row: IBlogger) {
           rel="noopener noreferrer"
         >
           <Box>
-            <Typography
-              sx={{
-                textOverflow: `ellipsis`,
-                overflow: `hidden`,
-                whiteSpace: `nowrap`,
-                maxWidth: `145px`,
+            <Tooltip title={`@${row.id_}`}>
+              <Typography
+                sx={{
+                  maxWidth: `145px`,
 
-                color: `#2B69D5`,
-                ...Text1SX,
-                padding: `8px 10px 10px 10px`,
-                borderRadius: `30px`,
-                background: `#D9E3F3`,
-                display: `inline-block`,
-              }}
-            >{`@${row.url}`}</Typography>
+                  color: `#2B69D5`,
+                  ...Text1SX,
+                  padding: `8px 10px 10px 10px`,
+                  borderRadius: `30px`,
+                  background: `#D9E3F3`,
+                  display: `inline-block`,
+                }}
+              >{`@${row.id_}`}</Typography>
+            </Tooltip>
           </Box>
         </Link>
       </TableCell>
-      <TableCell>
-        {status && <Typography sx={{ ...Text2SX }}>{status.label}</Typography>}
-      </TableCell>
-      <TableCell>
-        {/* <Typography sx={{ ...Text2SX }}>{row.country}</Typography> */}
-      </TableCell>
-      <TableCell>
-        {/* <Typography sx={{ ...Text2SX }}>{row.city}</Typography> */}
-      </TableCell>
-      <TableCell>
+
+      <TableCell>{`${row.er.toFixed(1)}%`}</TableCell>
+
+      <TableCell align="right">
         <Button
           variant="contained"
           color="primary"
