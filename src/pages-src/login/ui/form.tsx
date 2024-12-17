@@ -3,9 +3,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Button,
+  Chip,
   LinearProgress,
   Stack,
   TextField,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { FC } from "react";
@@ -34,7 +36,19 @@ export const FormElement: FC<FormElementProps> = ({}) => {
   return (
     <>
       <Stack spacing={2}>
-        <Typography variant="h6">Авторизация</Typography>
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h6">Авторизация</Typography>
+          <Tooltip title="Этой страницы не будет">
+            <Chip color="error" size="small" label="Альфа" variant="outlined" />
+          </Tooltip>
+        </Stack>
         <Controller
           name={"email"}
           control={control}
