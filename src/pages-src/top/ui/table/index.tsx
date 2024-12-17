@@ -56,6 +56,7 @@ export const TableElement: FC<TableElementProps> = ({}) => {
             insetBlockStart: 0,
             zIndex: 1,
           },
+          pt: `10px`,
         }}
       >
         <TableVirtuoso

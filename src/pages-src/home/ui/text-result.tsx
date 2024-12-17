@@ -12,29 +12,28 @@ export const TextResultElement: FC<TextResultElement> = ({}) => {
   const bloggerTable = useBloggerTableStore((state) => state.value);
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
-  const serchAll = searchParams.size;
+  const serchSize = searchParams.size;
 
   return (
     <>
-      <Box
-        sx={{
-          pt: `15px`,
-          pb: `10px`,
-          px: `40px`,
-          width: `100%`,
-        }}
-      >
-        <Stack
-          direction="row"
-          spacing={2}
+      {!!serchSize && (
+        <Box
           sx={{
-            justifyContent: "space-between",
-            alignItems: "center",
-            height: `36px`,
+            pt: `15px`,
+            px: `40px`,
+            width: `100%`,
           }}
         >
-          <Box>
-            {!!serchAll && (
+          <Stack
+            direction="row"
+            spacing={2}
+            sx={{
+              justifyContent: "space-between",
+              alignItems: "center",
+              height: `36px`,
+            }}
+          >
+            <Box>
               <Typography
                 sx={{
                   fontSize: `#222657`,
@@ -44,13 +43,13 @@ export const TextResultElement: FC<TextResultElement> = ({}) => {
               >{`По запросу${!!search ? ` "${search}"` : ``} найдено ${
                 bloggerTable?.meta.total
               } блогеров`}</Typography>
-            )}
-          </Box>
-          <Box>
-            {!!serchAll && <Button endIcon={<DownloadIcon />}>Скачать</Button>}
-          </Box>
-        </Stack>
-      </Box>
+            </Box>
+            <Box>
+              <Button endIcon={<DownloadIcon />}>Скачать</Button>
+            </Box>
+          </Stack>
+        </Box>
+      )}
     </>
   );
 };
