@@ -32,11 +32,11 @@ export const FilterElement: FC = () => {
             }}
           >
             <Typography variant="h6">Фильтр</Typography>
-            <Tooltip title={`Не работает`}>
+            <Tooltip title={`В разработке`}>
               <Chip
                 color="error"
                 size="small"
-                label="Альфа"
+                label="В разработке"
                 variant="outlined"
               />
             </Tooltip>

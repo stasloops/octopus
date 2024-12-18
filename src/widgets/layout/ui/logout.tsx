@@ -23,7 +23,7 @@ export const LogOutButton: FC = () => {
       >
         <Typography variant="inherit">Выход</Typography>
         <Tooltip title="Этой кнопки не будет">
-          <Chip color="error" size="small" label="Альфа" variant="outlined" />
+          <Chip color="error" size="small" label="Временно" variant="outlined" />
         </Tooltip>
       </Stack>
     </MenuItem>

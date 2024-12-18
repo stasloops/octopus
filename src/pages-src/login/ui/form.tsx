@@ -46,7 +46,7 @@ export const FormElement: FC<FormElementProps> = ({}) => {
         >
           <Typography variant="h6">Авторизация</Typography>
           <Tooltip title="Этой страницы не будет">
-            <Chip color="error" size="small" label="Альфа" variant="outlined" />
+            <Chip color="error" size="small" label="Временно" variant="outlined" />
           </Tooltip>
         </Stack>
         <Controller
