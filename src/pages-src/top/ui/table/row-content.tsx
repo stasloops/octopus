@@ -163,14 +163,16 @@ export function rowContent(_index: number, row: IBlogger) {
         }}
         align="right"
       >
-        <Button
-          variant="contained"
-          color="primary"
-          endIcon={<ArrowForwardIcon />}
-          sx={{ borderRadius: `20px` }}
-        >
-          Отчет
-        </Button>
+        <Link href={`/blogger/vk/${row.id}`}>
+          <Button
+            variant="contained"
+            color="primary"
+            endIcon={<ArrowForwardIcon />}
+            sx={{ borderRadius: `20px` }}
+          >
+            Отчет
+          </Button>
+        </Link>
       </TableCell>
       <TableCell
         sx={{
@@ -263,14 +265,16 @@ export function rowContent(_index: number, row: IBlogger) {
             {row.er && <Typography>{`ER: ${row.er.toFixed(1)}%`}</Typography>}
           </Stack>
           <Box>
-            <Button
-              variant="contained"
-              color="primary"
-              endIcon={<ArrowForwardIcon />}
-              sx={{ borderRadius: `20px` }}
-            >
-              Отчет
-            </Button>
+            <Link href={`/blogger/vk/${row.id}`}>
+              <Button
+                variant="contained"
+                color="primary"
+                endIcon={<ArrowForwardIcon />}
+                sx={{ borderRadius: `20px` }}
+              >
+                Отчет
+              </Button>
+            </Link>
           </Box>
         </Stack>
       </TableCell>

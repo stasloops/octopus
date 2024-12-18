@@ -20,7 +20,7 @@ export const Page: FC = () => {
         }}
       >
         <img
-          src={`./logo-orda.svg`}
+          src={`/logo-orda.svg`}
           alt="logo-orda"
           style={{
             objectFit: `contain`,

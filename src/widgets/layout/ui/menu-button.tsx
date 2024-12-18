@@ -1,3 +1,5 @@
+"use client";
+
 import { theme } from "@/src/shared/lib/theme";
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton, Menu, MenuItem } from "@mui/material";
@@ -51,7 +53,9 @@ const PageItem: FC<PageItemProps> = ({ item }) => {
     <MenuItem
       component={Link}
       href={item.key}
-      sx={{ ...(pathname == item.key && { background: theme.palette.grey[300]}) }}
+      sx={{
+        ...(pathname == item.key && { background: theme.palette.grey[300] }),
+      }}
     >
       {item.label}
     </MenuItem>

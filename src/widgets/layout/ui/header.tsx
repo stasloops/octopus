@@ -23,7 +23,7 @@ export const Header: FC<HeaderProps> = ({ headerChildren }) => {
       }}
     >
       <img
-        src={`./gradient.png`}
+        src={`/gradient.png`}
         alt="gradient"
         style={{
           objectFit: `fill`,
@@ -61,7 +61,7 @@ export const Header: FC<HeaderProps> = ({ headerChildren }) => {
             <MenuButton />
             <Link href={`/`}>
               <img
-                src={`./logo-orda-white.svg`}
+                src={`/logo-orda-white.svg`}
                 alt="logo-orda"
                 style={{
                   objectFit: `contain`,
