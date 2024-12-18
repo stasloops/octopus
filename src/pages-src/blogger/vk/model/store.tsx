@@ -1,12 +1,12 @@
 import { create } from "zustand";
 import { IBlogger } from "../api/http-get-blogger";
 
-interface IBloggerTableStore {
+interface IBloggerStore {
   value: IBlogger | null;
   setValue: (value: IBlogger | null) => void;
 }
 
-export const useBloggerTableStore = create<IBloggerTableStore>()((set) => ({
+export const useBloggerStore = create<IBloggerStore>()((set) => ({
   value: null,
   setValue: (value) => set(() => ({ value })),
 }));

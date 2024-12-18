@@ -3,7 +3,7 @@ const suffixes: string[] = ["", "ТЫС", "МЛН", "МЛР", "ТРЛ"];
 export function numberShortenCharacrer(
   value: number,
   comma: number = 1
-): { value: string; characrer: boolean } {
+): { value: string; characrer: boolean; origin: number } {
   let suffixNum: number = Math.floor((`${value}`.length - 1) / 3);
   let shortValue: number | string = parseFloat(
     (suffixNum != 0 ? value / Math.pow(1000, suffixNum) : value).toPrecision()
@@ -19,5 +19,6 @@ export function numberShortenCharacrer(
       suffixes[suffixNum] != `` ? ` ${suffixes[suffixNum]}` : ``
     }`,
     characrer: suffixNum > 0,
+    origin: value,
   };
 }

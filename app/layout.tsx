@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description: "Болванка для сайта",
 };
 
+// Font files can be colocated inside of `app`
+
 export default function RootLayout({
   children,
 }: Readonly<{
