@@ -2,11 +2,13 @@
 
 import Loading from "@/src/pages-src/loading";
 import { Layout } from "@/src/widgets/layout";
-import { Box, Typography } from "@mui/material";
+import { Box, Chip, Stack, Tooltip, Typography } from "@mui/material";
 import { FC, useCallback, useEffect } from "react";
 import { useGetBloggerMutate } from "../api/use-blogger";
 import { useBloggerStore } from "../model/store";
+import { Charts } from "./charts";
 import { HeaderDetal } from "./header-detal";
+import { StateGroup } from "./state-group";
 
 interface PageProps {
   idBlogger: number;
@@ -33,11 +35,29 @@ export const Page: FC<PageProps> = ({ idBlogger }) => {
         <>
           <Layout />
           <Box>
-            <Typography
-              variant="h6"
-              sx={{ px: `40px`, pt: `15px` }}
-            >{`Аналитика аккаунта`}</Typography>
+            <Stack
+              direction="row"
+              spacing={2}
+              sx={{
+                justifyContent: "start",
+                alignItems: "center",
+                px: `40px`,
+                pt: `15px`,
+              }}
+            >
+              <Typography variant="h6">{`Аналитика аккаунта`}</Typography>
+              <Tooltip title="Все данные с красной подписью или обводкой - сгенерированы (не настоящие)">
+                <Chip
+                  color="error"
+                  size="small"
+                  label="Альфа"
+                  variant="outlined"
+                />
+              </Tooltip>
+            </Stack>
             <HeaderDetal />
+            <StateGroup />
+            <Charts />
           </Box>
         </>
       )}
