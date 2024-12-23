@@ -41,7 +41,7 @@ export const TypeContent: FC = () => {
               <MoreVertIcon />
             </IconButton>
             <Stack spacing={2} height={`100%`}>
-              <Typography variant="h6" color={theme.palette.error.main}>
+              <Typography variant="h6" color={theme.palette.error.main} pr={2}>
                 Тип контента
               </Typography>
               <Box

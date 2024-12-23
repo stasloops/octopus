@@ -2,6 +2,7 @@ import { Box, Stack } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC } from "react";
 import { GenderAge } from "./gender-age";
+import { TagClip } from "./tag-clip";
 import { TypeContent } from "./type-content";
 
 export const Charts: FC = () => {
@@ -12,6 +13,7 @@ export const Charts: FC = () => {
           <Grid2 container spacing={`20px`}>
             <TypeContent />
             <GenderAge />
+            <TagClip />
           </Grid2>
         </Box>
       </Stack>
