@@ -1,3 +1,5 @@
+import { theme } from "@/src/shared/lib/theme";
+import { fakerRU } from "@faker-js/faker";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
   Box,
@@ -12,23 +14,36 @@ import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC, useEffect, useMemo, useRef, useState } from "react";
 import { useGetBloggerMutateStats } from "../../api/use-blogger-stats";
 
+type TTag = { [tag: string]: number };
+
+const genFakeData = (): TTag => {
+  const value: TTag = {};
+  const count = fakerRU.number.int({ min: 3, max: 300 });
+  for (let index = 0; index < count; index++) {
+    const tag = fakerRU.word.noun();
+    if (value[tag] !== undefined) continue;
+    value[tag] = fakerRU.number.int({ min: 1, max: 1000 });
+  }
+  return value;
+};
+
 interface IDataChart {
   value: number;
   label: string;
 }
 
-export const TagClip: FC = () => {
+// Использаволось для теста
+
+export const TagVideo: FC = () => {
   const { data: bloggerStats } = useGetBloggerMutateStats();
+  const [fakerData] = useState(genFakeData());
   const [scroll, setScroll] = useState<boolean>(false);
   const [isMany, setIsMany] = useState<boolean>(false);
 
   const dataChart: IDataChart[] | null = useMemo(() => {
-    if (!bloggerStats) return null;
-    if (bloggerStats.clips_tags === undefined) return null;
-    if (Object.keys(bloggerStats.clips_tags).length == 0) return null;
     const value: IDataChart[] = [];
-    for (const key in bloggerStats.clips_tags) {
-      const element = bloggerStats.clips_tags[key];
+    for (const key in fakerData) {
+      const element = fakerData[key];
       value.push({ value: element, label: key });
     }
     return value;
@@ -62,7 +77,7 @@ export const TagClip: FC = () => {
               <MoreVertIcon />
             </IconButton>
             <Stack spacing={2} height={`100%`}>
-              <Typography variant="h6" pr={2}>
+              <Typography variant="h6" color={theme.palette.error.main} pr={2}>
                 {`Теги под клипами (короткие ролики)`}
               </Typography>
               <Box

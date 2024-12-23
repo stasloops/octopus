@@ -1,11 +1,14 @@
-import { IBlogger } from "@/src/shared/api/blogger/model";
 import { http } from "@/src/shared/api/instance";
 
 export interface IGetBloggerSchema {
   payload: {
     id: number;
   };
-  response: IBlogger;
+  response: {
+    clips_tags: { [tag: string]: number } | undefined;
+    videos_tags: { [tag: string]: number } | undefined;
+    posts_tags: { [tag: string]: number } | undefined;
+  };
 }
 
 export const httpGetBloggerStats = (payload: IGetBloggerSchema["payload"]) =>

@@ -17,18 +17,18 @@ interface IDataChart {
   label: string;
 }
 
-export const TagClip: FC = () => {
+export const TagVideo: FC = () => {
   const { data: bloggerStats } = useGetBloggerMutateStats();
   const [scroll, setScroll] = useState<boolean>(false);
   const [isMany, setIsMany] = useState<boolean>(false);
 
   const dataChart: IDataChart[] | null = useMemo(() => {
     if (!bloggerStats) return null;
-    if (bloggerStats.clips_tags === undefined) return null;
-    if (Object.keys(bloggerStats.clips_tags).length == 0) return null;
+    if (bloggerStats.videos_tags === undefined) return null;
+    if (Object.keys(bloggerStats.videos_tags).length == 0) return null;
     const value: IDataChart[] = [];
-    for (const key in bloggerStats.clips_tags) {
-      const element = bloggerStats.clips_tags[key];
+    for (const key in bloggerStats.videos_tags) {
+      const element = bloggerStats.videos_tags[key];
       value.push({ value: element, label: key });
     }
     return value;
@@ -63,7 +63,7 @@ export const TagClip: FC = () => {
             </IconButton>
             <Stack spacing={2} height={`100%`}>
               <Typography variant="h6" pr={2}>
-                {`Теги под клипами (короткие ролики)`}
+                {`Теги под видео`}
               </Typography>
               <Box
                 ref={refBox1}
