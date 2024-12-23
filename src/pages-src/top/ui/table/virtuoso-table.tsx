@@ -1,3 +1,4 @@
+import { IBlogger } from "@/src/shared/api/blogger/model";
 import {
   CircularProgress,
   Stack,
@@ -9,7 +10,6 @@ import {
 } from "@mui/material";
 import { forwardRef } from "react";
 import { TableComponents } from "react-virtuoso";
-import { IBlogger } from "../../api/http-get-blogger";
 
 export const VirtuosoTableComponents: TableComponents<IBlogger> = {
   Scroller: forwardRef<HTMLDivElement>((props, ref) => (

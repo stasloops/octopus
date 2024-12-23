@@ -1,26 +1,6 @@
+import { IBlogger } from "@/src/shared/api/blogger/model";
 import { http } from "@/src/shared/api/instance";
 import { httpServer } from "@/src/shared/api/instance-server";
-
-export interface IBlogger {
-  id_: string;
-  platform_code: string;
-  login: null;
-  title: string;
-  description: string;
-  gender: null;
-  years: null;
-  status: null;
-  location: null;
-  is_confirmed: boolean;
-  subscribers: number;
-  er: number;
-  posts: number;
-  attributes: null;
-  id: number;
-  url: string;
-  blogger: null;
-  platform: null;
-}
 
 export interface IGetBloggerSchema {
   payload?: {

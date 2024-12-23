@@ -5,21 +5,21 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import {
-    Box,
-    ButtonBase,
-    Collapse,
-    Paper,
-    Stack,
-    Tooltip,
-    Typography,
+  Box,
+  ButtonBase,
+  Collapse,
+  Paper,
+  Stack,
+  Tooltip,
+  Typography,
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC, useMemo, useState } from "react";
-import { useBloggerStore } from "../../model/store";
+import { useGetBloggerMutate } from "../../api/use-blogger";
 import { StatElement } from "./stat";
 
 export const Other: FC = () => {
-  const blogger = useBloggerStore((state) => state.value);
+  const { data: blogger } = useGetBloggerMutate();
   const [open, setOpen] = useState<boolean>(false);
 
   const onChangeOpen = () => {
@@ -42,7 +42,7 @@ export const Other: FC = () => {
 
   if (!blogger) return null;
   return (
-    <Paper elevation={3}>
+    <Paper>
       <ButtonBase onClick={onChangeOpen} sx={{ width: `100%` }}>
         <Stack
           direction="row"
@@ -54,7 +54,7 @@ export const Other: FC = () => {
             width: `100%`,
           }}
         >
-          <Typography variant="h6">КОРОТКИЕ ВИДЕО</Typography>
+          <Typography variant="h6">ПРОЧЕЕ</Typography>
           {!open && <ArrowDropDownIcon />}
           {!!open && <ArrowDropUpIcon />}
         </Stack>

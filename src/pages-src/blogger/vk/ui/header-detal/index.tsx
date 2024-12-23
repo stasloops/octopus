@@ -7,11 +7,11 @@ import { Avatar, Box, Paper, Stack, Tooltip, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import Link from "next/link";
 import { FC, useMemo } from "react";
-import { useBloggerStore } from "../../model/store";
+import { useGetBloggerMutate } from "../../api/use-blogger";
 import { StatElement } from "./stat";
 
 export const HeaderDetal: FC = () => {
-  const blogger = useBloggerStore((state) => state.value);
+  const { data: blogger } = useGetBloggerMutate();
   const subscribers = useMemo(
     () =>
       blogger?.subscribers !== undefined && blogger?.subscribers !== null
@@ -36,10 +36,14 @@ export const HeaderDetal: FC = () => {
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
-  const precentUnsubscribe = useMemo(() => {
-    const value = fakerRU.number.float({ min: 0.01, max: 100.0 });
-    return { value: value.toFixed(2) };
-  }, [blogger]);
+  const precentUnsubscribe = useMemo(
+    () =>
+      blogger?.unsubscribe_perc !== undefined &&
+      blogger?.unsubscribe_perc !== null
+        ? { value: blogger.unsubscribe_perc.toFixed(2) }
+        : null,
+    [blogger]
+  );
   const communityTopics = useMemo(() => {
     const value = fakerRU.word.words({ count: { min: 5, max: 20 } });
     return value;
@@ -53,7 +57,7 @@ export const HeaderDetal: FC = () => {
   return (
     <>
       <Box sx={{ px: `40px`, pt: `15px` }}>
-        <Paper elevation={3} sx={{ padding: 1 }}>
+        <Paper sx={{ padding: 1 }}>
           <Grid2 container spacing={`20px`}>
             <Grid2 xs={12} md={12} lg>
               <Stack
@@ -72,6 +76,8 @@ export const HeaderDetal: FC = () => {
                   }}
                 >
                   <Avatar
+                    alt="avatar"
+                    src={blogger.image || undefined}
                     variant="rounded"
                     sx={{ height: `90px`, width: `90px`, borderRadius: `15px` }}
                   ></Avatar>
@@ -313,7 +319,6 @@ export const HeaderDetal: FC = () => {
                 )}
                 {!!precentUnsubscribe && (
                   <StatElement
-                    error
                     icon={<PeopleAltOutlinedIcon fontSize="large" />}
                     label="Процент отписок"
                     value={

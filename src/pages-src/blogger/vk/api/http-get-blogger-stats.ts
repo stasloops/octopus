@@ -8,7 +8,7 @@ export interface IGetBloggerSchema {
   response: IBlogger;
 }
 
-export const httpGetBlogger = (payload: IGetBloggerSchema["payload"]) =>
+export const httpGetBloggerStats = (payload: IGetBloggerSchema["payload"]) =>
   http
-    .get<IGetBloggerSchema["response"]>(`/blogger/platform/${payload.id}`)
+    .get<IGetBloggerSchema["response"]>(`/blogger/platform/${payload.id}/stats`)
     .then((response) => response.data);

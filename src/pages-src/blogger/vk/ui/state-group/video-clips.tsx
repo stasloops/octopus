@@ -15,11 +15,11 @@ import {
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC, useMemo, useState } from "react";
-import { useBloggerStore } from "../../model/store";
+import { useGetBloggerMutate } from "../../api/use-blogger";
 import { StatElement } from "./stat";
 
 export const VideoClips: FC = () => {
-  const blogger = useBloggerStore((state) => state.value);
+  const { data: blogger } = useGetBloggerMutate();
   const [open, setOpen] = useState<boolean>(false);
 
   const onChangeOpen = () => {
@@ -69,7 +69,7 @@ export const VideoClips: FC = () => {
 
   if (!blogger) return null;
   return (
-    <Paper elevation={3}>
+    <Paper>
       <ButtonBase onClick={onChangeOpen} sx={{ width: `100%` }}>
         <Stack
           direction="row"

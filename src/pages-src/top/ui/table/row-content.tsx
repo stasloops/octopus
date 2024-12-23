@@ -1,3 +1,4 @@
+import { IBlogger } from "@/src/shared/api/blogger/model";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import {
   Avatar,
@@ -11,7 +12,6 @@ import {
 } from "@mui/material";
 import { Theme } from "@mui/system";
 import Link from "next/link";
-import { IBlogger } from "../../api/http-get-blogger";
 import { platformList } from "../../model/const";
 import { SubscribersElement } from "./subscribers-number";
 
@@ -47,7 +47,7 @@ export function rowContent(_index: number, row: IBlogger) {
         }}
       >
         <Link href={row.url} target="_blank" rel="noopener noreferrer">
-          <Avatar></Avatar>
+          <Avatar alt="avatar" src={row.image || undefined}></Avatar>
         </Link>
       </TableCell>
       <TableCell
@@ -187,7 +187,7 @@ export function rowContent(_index: number, row: IBlogger) {
         <Stack spacing={2}>
           <Stack direction="row" spacing={2}>
             <Link href={row.url} target="_blank" rel="noopener noreferrer">
-              <Avatar></Avatar>
+              <Avatar alt="avatar" src={row.image || undefined}></Avatar>
             </Link>
             <Stack
               direction="column"

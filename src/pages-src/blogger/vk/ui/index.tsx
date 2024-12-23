@@ -3,9 +3,9 @@
 import Loading from "@/src/pages-src/loading";
 import { Layout } from "@/src/widgets/layout";
 import { Box, Chip, Stack, Tooltip, Typography } from "@mui/material";
-import { FC, useCallback, useEffect } from "react";
+import { FC } from "react";
 import { useGetBloggerMutate } from "../api/use-blogger";
-import { useBloggerStore } from "../model/store";
+import { useGetBloggerMutateStats } from "../api/use-blogger-stats";
 import { Charts } from "./charts";
 import { HeaderDetal } from "./header-detal";
 import { StateGroup } from "./state-group";
@@ -15,23 +15,15 @@ interface PageProps {
 }
 
 export const Page: FC<PageProps> = ({ idBlogger }) => {
-  const { mutateAsync, isLoading, data } = useGetBloggerMutate();
-  const setBloggerTable = useBloggerStore((state) => state.setValue);
-
-  const startMutate = useCallback(async () => {
-    const res = await mutateAsync({ id__in: idBlogger.toString() });
-    if (!res) return;
-    if (res.data.length <= 0) return;
-    setBloggerTable(res.data[0]);
-  }, [setBloggerTable, mutateAsync, idBlogger]);
-
-  useEffect(() => {
-    startMutate();
-  }, [idBlogger]);
+  const { isLoading: isLoadingBlogger, data: dataBlogger } =
+    useGetBloggerMutate();
+  const { isLoading: isLoadingBloggerStats, data: dataBloggerStats } =
+    useGetBloggerMutateStats();
+  const isLoading = isLoadingBlogger && isLoadingBloggerStats;
 
   return (
     <>
-      {!!data && !isLoading && (
+      {!!dataBlogger && !isLoading && (
         <>
           <Layout />
           <Box>
@@ -61,7 +53,7 @@ export const Page: FC<PageProps> = ({ idBlogger }) => {
           </Box>
         </>
       )}
-      {(!data || !!isLoading) && <Loading />}
+      {(!dataBlogger || !!isLoading) && <Loading />}
     </>
   );
 };
