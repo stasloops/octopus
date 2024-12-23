@@ -1,3 +1,4 @@
+import { colorsList } from "@/src/shared/lib/colors";
 import { theme } from "@/src/shared/lib/theme";
 import { fakerRU } from "@faker-js/faker";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -39,17 +40,22 @@ export const TypeContent: FC = () => {
             <IconButton sx={{ position: `absolute`, top: `0px`, right: `0px` }}>
               <MoreVertIcon />
             </IconButton>
-            <Stack spacing={2}>
+            <Stack spacing={2} height={`100%`}>
               <Typography variant="h6" color={theme.palette.error.main}>
                 Тип контента
               </Typography>
               <Box
                 sx={{
+                  position: `relative`,
                   width: `100%`,
-                  height: `calc(500px - 70px)`,
+                  height: `100%`,
                 }}
               >
-                <ChartElement dataChart={dataChart} />
+                <Box
+                  sx={{ position: `absolute`, width: `100%`, height: `100%` }}
+                >
+                  <ChartElement dataChart={dataChart} />
+                </Box>
               </Box>
             </Stack>
           </Paper>
@@ -85,14 +91,15 @@ const ChartElement: FC<{
             fill: `#fff`,
           },
         }}
-        margin={{ top: 10, bottom: 110, left: 10, right: 10 }}
-        slotProps={{
-          legend: {
-            // direction: "row",
-            position: { vertical: "bottom", horizontal: "middle" },
-            padding: 0,
-          },
-        }}
+        margin={{ right: 200 }}
+        // slotProps={{
+        //   legend: {
+        //     // direction: "row",
+        //     position: { vertical: "bottom", horizontal: "middle" },
+        //     padding: 0,
+        //   },
+        // }}
+        colors={colorsList.slice(2)}
       />
     </>
   );
