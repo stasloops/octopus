@@ -11,16 +11,16 @@ export interface IBlogger {
   is_confirmed: boolean; // Аккаунт подтвержден
   subscribers: number; // Кол-во подписчиков
   er: number; // ER, %
-  posts: number;
+  posts: number | number; // Колчество видео
   attributes: null;
   id: number;
   url: string; // ссылка на блогера
   blogger: null;
   platform: null;
-  theme: string;
+  theme: number | string; // Тематика сообщества
   image: string; // Аватарка
-  videos: null;
-  clips: null;
+  videos: number | null; // Колчество клипов
+  clips: number | null; // Колчество постов
   unsubscribe_perc: number; // Процент отписок
   external_links: null;
   tags: string[]; // Теги

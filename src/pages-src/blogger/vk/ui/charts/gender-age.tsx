@@ -1,5 +1,4 @@
 import { colorsList } from "@/src/shared/lib/colors";
-import { theme } from "@/src/shared/lib/theme";
 import { fakerRU } from "@faker-js/faker";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
@@ -66,14 +65,47 @@ export const GenderAge: FC = () => {
   const [fakerData] = useState(genFakeData());
 
   const dataChart: MakeOptional<PieValueType, "id">[] | null = useMemo(() => {
-    const data = fakerData[gender];
+    if (!bloggerStats?.subscribers_genders) return null;
+    const subscribersGenders: { [gender: string]: { [age: string]: number } } =
+      {
+        ...bloggerStats?.subscribers_genders,
+        all: {
+          "0-12":
+            bloggerStats?.subscribers_genders["male"]?.["0-12"] ||
+            0 + bloggerStats?.subscribers_genders["female"]?.["0-12"] ||
+            0,
+          "13-18":
+            bloggerStats?.subscribers_genders["male"]?.["13-18"] ||
+            0 + bloggerStats?.subscribers_genders["female"]?.["13-18"] ||
+            0,
+          "19-30":
+            bloggerStats?.subscribers_genders["male"]?.["19-30"] ||
+            0 + bloggerStats?.subscribers_genders["female"]?.["19-30"] ||
+            0,
+          "31-55":
+            bloggerStats?.subscribers_genders["male"]?.["31-55"] ||
+            0 + bloggerStats?.subscribers_genders["female"]?.["31-55"] ||
+            0,
+          "56-80":
+            bloggerStats?.subscribers_genders["male"]?.["56-80"] ||
+            0 + bloggerStats?.subscribers_genders["female"]?.["56-80"] ||
+            0,
+          "80+":
+            bloggerStats?.subscribers_genders["male"]?.["80+"] ||
+            0 + bloggerStats?.subscribers_genders["female"]?.["80+"] ||
+            0,
+        },
+      };
+    const data = subscribersGenders[gender];
+    if (!data) return null;
+
     const value = [
-      { value: data["0-12"], label: "0-12" },
-      { value: data["13-18"], label: "13-18" },
-      { value: data["19-30"], label: "19-30" },
-      { value: data["31-55"], label: "31-55" },
-      { value: data["56-80"], label: "56-80" },
-      { value: data["80+"], label: "80+" },
+      { value: data["0-12"] || 0, label: "0-12" },
+      { value: data["13-18"] || 0, label: "13-18" },
+      { value: data["19-30"] || 0, label: "19-30" },
+      { value: data["31-55"] || 0, label: "31-55" },
+      { value: data["56-80"] || 0, label: "56-80" },
+      { value: data["80+"] || 0, label: "80+" },
     ];
     return value;
   }, [bloggerStats, gender]);
@@ -99,7 +131,7 @@ export const GenderAge: FC = () => {
               <MoreVertIcon />
             </IconButton>
             <Stack spacing={2} height={`100%`}>
-              <Typography variant="h6" color={theme.palette.error.main} pr={2}>
+              <Typography variant="h6" pr={2}>
                 Пол и возраст аудитории сообщества
               </Typography>
               <Box
@@ -151,12 +183,12 @@ export const GenderAge: FC = () => {
                     handleChange={handleChange}
                     label="Женщины"
                   />
-                  <CheckBoxElement
+                  {/* <CheckBoxElement
                     value={gender}
-                    gender="none"
+                    gender="null"
                     handleChange={handleChange}
                     label="Не указан"
-                  />
+                  /> */}
                 </Grid2>
               </Box>
             </Stack>

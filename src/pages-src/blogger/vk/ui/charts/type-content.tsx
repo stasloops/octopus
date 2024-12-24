@@ -1,6 +1,4 @@
 import { colorsList } from "@/src/shared/lib/colors";
-import { theme } from "@/src/shared/lib/theme";
-import { fakerRU } from "@faker-js/faker";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Box, IconButton, Paper, Stack, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
@@ -8,22 +6,24 @@ import { PieValueType } from "@mui/x-charts";
 import { MakeOptional } from "@mui/x-charts/internals";
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
 import { FC, useMemo } from "react";
+import { useGetBloggerMutate } from "../../api/use-blogger";
 import { useGetBloggerMutateStats } from "../../api/use-blogger-stats";
 
 export const TypeContent: FC = () => {
+  const { data: dataBlogger } = useGetBloggerMutate();
   const { data: bloggerStats } = useGetBloggerMutateStats();
 
   const dataChart: MakeOptional<PieValueType, "id">[] | null = useMemo(() => {
     const value = [
-      { value: fakerRU.number.int({ min: 0, max: 1000 }), label: "Видеоклипы" },
+      { value: dataBlogger?.videos || 0, label: "Видеоклипы" },
       {
-        value: fakerRU.number.int({ min: 0, max: 1000 }),
+        value: dataBlogger?.clips || 0,
         label: "Короткие видео",
       },
-      { value: fakerRU.number.int({ min: 0, max: 1000 }), label: "Посты" },
+      { value: dataBlogger?.posts || 0, label: "Посты" },
     ];
     return value;
-  }, [bloggerStats]);
+  }, [dataBlogger]);
 
   return (
     <>
@@ -41,7 +41,7 @@ export const TypeContent: FC = () => {
               <MoreVertIcon />
             </IconButton>
             <Stack spacing={2} height={`100%`}>
-              <Typography variant="h6" color={theme.palette.error.main} pr={2}>
+              <Typography variant="h6" pr={2}>
                 Тип контента
               </Typography>
               <Box

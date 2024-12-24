@@ -98,14 +98,6 @@ export const FilterElement: FC = () => {
             <Grid2 xs={12} md={6} lg={4}>
               <TextField
                 fullWidth
-                label="Кол-во подписок"
-                variant="outlined"
-                size="small"
-              />
-            </Grid2>
-            <Grid2 xs={12} md={6} lg={4}>
-              <TextField
-                fullWidth
                 label="Кол-во постов (в блоге за весь период)"
                 variant="outlined"
                 size="small"

@@ -26,16 +26,13 @@ export const HeaderDetal: FC = () => {
         : null,
     [blogger]
   );
-  const countSubscribers = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 1000 });
-    const shorten = numberShortenCharacrer(value);
-    return shorten;
-  }, [blogger]);
-  const countPost = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 3000 });
-    const shorten = numberShortenCharacrer(value);
-    return shorten;
-  }, [blogger]);
+  const countPost = useMemo(
+    () =>
+      blogger?.posts !== undefined && blogger?.posts !== null
+        ? numberShortenCharacrer(blogger.posts)
+        : null,
+    [blogger]
+  );
   const precentUnsubscribe = useMemo(
     () =>
       blogger?.unsubscribe_perc !== undefined &&
@@ -44,10 +41,13 @@ export const HeaderDetal: FC = () => {
         : null,
     [blogger]
   );
-  const communityTopics = useMemo(() => {
-    const value = fakerRU.word.words({ count: { min: 5, max: 20 } });
-    return value;
-  }, [blogger]);
+  const communityTopics = useMemo(
+    () =>
+      blogger?.theme !== undefined && blogger?.theme !== null
+        ? blogger?.theme
+        : null,
+    [blogger]
+  );
   const location = useMemo(() => {
     const value = fakerRU.location.city();
     return value;
@@ -206,7 +206,6 @@ export const HeaderDetal: FC = () => {
                                   maxWidth: `400px`,
                                   "& span": {
                                     fontWeight: 800,
-                                    color: theme.palette.error.main,
                                   },
                                 }}
                               >
@@ -276,25 +275,8 @@ export const HeaderDetal: FC = () => {
                     }
                   />
                 )}
-                {!!countSubscribers && (
-                  <StatElement
-                    error
-                    icon={<PeopleAltOutlinedIcon fontSize="large" />}
-                    label="Кол-во подписок"
-                    value={
-                      <Tooltip
-                        title={countSubscribers.origin.toLocaleString("ru-RU")}
-                      >
-                        <Typography align="center" variant="h6">
-                          {countSubscribers.value}
-                        </Typography>
-                      </Tooltip>
-                    }
-                  />
-                )}
                 {!!countPost && (
                   <StatElement
-                    error
                     icon={<PeopleAltOutlinedIcon fontSize="large" />}
                     label="Кол-во постов"
                     value={

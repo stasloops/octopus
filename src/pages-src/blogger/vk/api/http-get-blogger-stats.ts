@@ -8,6 +8,11 @@ export interface IGetBloggerSchema {
     clips_tags: { [tag: string]: number } | undefined;
     videos_tags: { [tag: string]: number } | undefined;
     posts_tags: { [tag: string]: number } | undefined;
+
+    subscribers_genders:
+      | { [gender: string]: { [age: string]: number } }
+      | undefined;
+    subscribers_locations: { [city: string]: number } | undefined;
   };
 }
 

@@ -43,7 +43,7 @@ export const TagPost: FC = () => {
       setIsMany(
         refBox2.current.clientHeight - 4 > refBox1.current.clientHeight
       );
-    }, 2000);
+    }, 1000);
   }, []);
 
   const onChangeScroll = () => {
