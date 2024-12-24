@@ -31,7 +31,7 @@ export const AudienceGeography: FC = () => {
       const element = bloggerStats.subscribers_locations[key];
       value.push({ value: element, label: key });
     }
-    if (value.length > 5) setIsMany(true);
+    if (value.length > 8) setIsMany(true);
     return value;
   }, [bloggerStats]);
 
