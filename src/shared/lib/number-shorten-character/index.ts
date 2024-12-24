@@ -4,7 +4,7 @@ export function numberShortenCharacrer(
   value: number,
   comma: number = 1
 ): { value: string; characrer: boolean; origin: number } {
-  let suffixNum: number = Math.floor((`${value}`.length - 1) / 3);
+  let suffixNum: number = Math.floor((`${Math.round(value)}`.length - 1) / 3);
   let shortValue: number | string = parseFloat(
     (suffixNum != 0 ? value / Math.pow(1000, suffixNum) : value).toPrecision()
   );

@@ -15,11 +15,11 @@ import {
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC, useMemo, useState } from "react";
-import { useGetBloggerMutate } from "../../api/use-blogger";
+import { useGetBloggerMutateStats } from "../../api/use-blogger-stats";
 import { StatElement } from "./stat";
 
 export const VideoClips: FC = () => {
-  const { data: blogger } = useGetBloggerMutate();
+  const { data: blogger } = useGetBloggerMutateStats();
   const [open, setOpen] = useState<boolean>(false);
 
   const onChangeOpen = () => {
@@ -27,17 +27,20 @@ export const VideoClips: FC = () => {
   };
 
   const param1 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.videos_counters) return null;
+    const value = blogger.videos_counters.views || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
   const param2 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.videos_counters) return null;
+    const value = blogger.videos_counters.likes || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
   const param3 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.videos_counters) return null;
+    const value = blogger.videos_counters.comments || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
@@ -47,12 +50,14 @@ export const VideoClips: FC = () => {
     return shorten;
   }, [blogger]);
   const param5 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.videos_counters) return null;
+    const value = blogger.videos_counters.likes_12_avg || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
   const param6 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.videos_counters) return null;
+    const value = blogger.videos_counters.comments_12_avg || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
@@ -62,7 +67,8 @@ export const VideoClips: FC = () => {
     return shorten;
   }, [blogger]);
   const param8 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.videos_counters) return null;
+    const value = blogger.videos_counters.views_12_avg || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
@@ -91,7 +97,6 @@ export const VideoClips: FC = () => {
           <Grid2 container spacing={`20px`}>
             {!!param1 && (
               <StatElement
-                error
                 label="Кол-во просмотров в видео"
                 value={
                   <Tooltip title={param1.origin.toLocaleString("ru-RU")}>
@@ -104,7 +109,6 @@ export const VideoClips: FC = () => {
             )}
             {!!param2 && (
               <StatElement
-                error
                 label="Кол-во лайков в видео"
                 value={
                   <Tooltip title={param2.origin.toLocaleString("ru-RU")}>
@@ -117,7 +121,6 @@ export const VideoClips: FC = () => {
             )}
             {!!param3 && (
               <StatElement
-                error
                 label="Кол-во сообщений в видеопостах"
                 value={
                   <Tooltip title={param3.origin.toLocaleString("ru-RU")}>
@@ -143,7 +146,6 @@ export const VideoClips: FC = () => {
             )}
             {!!param5 && (
               <StatElement
-                error
                 label="Среднее количество лайков на видео"
                 value={
                   <Tooltip title={param5.origin.toLocaleString("ru-RU")}>
@@ -156,7 +158,6 @@ export const VideoClips: FC = () => {
             )}
             {!!param6 && (
               <StatElement
-                error
                 label="Среднее количество комментариев на последних 12 видео"
                 value={
                   <Tooltip title={param6.origin.toLocaleString("ru-RU")}>
@@ -182,7 +183,6 @@ export const VideoClips: FC = () => {
             )}
             {!!param8 && (
               <StatElement
-                error
                 label="Среднее количество просмотров на последние 12 видео"
                 value={
                   <Tooltip title={param8.origin.toLocaleString("ru-RU")}>

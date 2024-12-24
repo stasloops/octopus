@@ -13,6 +13,43 @@ export interface IGetBloggerSchema {
       | { [gender: string]: { [age: string]: number } }
       | undefined;
     subscribers_locations: { [city: string]: number } | undefined;
+
+    posts_counters:
+      | {
+          views: number;
+          likes: number;
+          comments: number;
+          reposts: number;
+          views_12_avg: number;
+          likes_12_avg: number;
+          comments_12_avg: number;
+          reposts_12_avg: number;
+        }
+      | undefined;
+    videos_counters:
+      | {
+          views: number;
+          likes: number;
+          comments: number;
+          reposts: number;
+          views_12_avg: number;
+          likes_12_avg: number;
+          comments_12_avg: number;
+          reposts_12_avg: number;
+        }
+      | undefined;
+    clips_counters:
+      | {
+          views: number;
+          likes: number;
+          comments: number;
+          reposts: number;
+          views_12_avg: number;
+          likes_12_avg: number;
+          comments_12_avg: number;
+          reposts_12_avg: number;
+        }
+      | undefined;
   };
 }
 

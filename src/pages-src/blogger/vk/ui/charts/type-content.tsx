@@ -79,6 +79,10 @@ const ChartElement: FC<{
       <PieChart
         series={[
           {
+            valueFormatter: (item) =>
+              item === null
+                ? ""
+                : `${item.value} / ${((item.value / summ) * 100).toFixed(1)}%`,
             arcLabel: (item) => `${((item.value / summ) * 100).toFixed(1)}%`,
             arcLabelMinAngle: 35,
             arcLabelRadius: "60%",
