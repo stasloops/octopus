@@ -1,4 +1,3 @@
-import { colorsList } from "@/src/shared/lib/colors";
 import { fakerRU } from "@faker-js/faker";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
@@ -256,7 +255,7 @@ const ChartElement: FC<{
           },
         }}
         margin={{ right: 200 }}
-        colors={colorsList.slice(6)}
+        // colors={colorsList.slice(6)}
       />
     </>
   );

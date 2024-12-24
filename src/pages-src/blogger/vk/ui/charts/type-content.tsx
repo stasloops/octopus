@@ -1,4 +1,3 @@
-import { colorsList } from "@/src/shared/lib/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Box, IconButton, Paper, Stack, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
@@ -103,7 +102,7 @@ const ChartElement: FC<{
         //     padding: 0,
         //   },
         // }}
-        colors={colorsList.slice(2)}
+        // colors={colorsList.slice(2)}
       />
     </>
   );

@@ -1,6 +1,5 @@
 import { numberShortenCharacrer } from "@/src/shared/lib/number-shorten-character";
 import { theme } from "@/src/shared/lib/theme";
-import { fakerRU } from "@faker-js/faker";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import { Avatar, Box, Paper, Stack, Tooltip, Typography } from "@mui/material";
@@ -48,10 +47,13 @@ export const HeaderDetal: FC = () => {
         : null,
     [blogger]
   );
-  const location = useMemo(() => {
-    const value = fakerRU.location.city();
-    return value;
-  }, [blogger]);
+  const location = useMemo(
+    () =>
+      blogger?.location !== undefined && blogger?.location !== null
+        ? blogger?.location
+        : null,
+    [blogger]
+  );
 
   if (!blogger) return null;
   return (
@@ -241,7 +243,7 @@ export const HeaderDetal: FC = () => {
                     <Typography
                       sx={{
                         "& span": {
-                          color: theme.palette.error.main,
+                          color: theme.palette.primary.light,
                         },
                       }}
                     >

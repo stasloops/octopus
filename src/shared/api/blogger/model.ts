@@ -7,7 +7,7 @@ export interface IBlogger {
   gender: null;
   years: null;
   status: null;
-  location: null;
+  location: string | null;
   is_confirmed: boolean; // Аккаунт подтвержден
   subscribers: number; // Кол-во подписчиков
   er: number; // ER, %
