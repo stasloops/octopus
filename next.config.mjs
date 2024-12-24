@@ -6,9 +6,10 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true
   },
+  transpilePackages: ['@mui/x-charts'],
   // output: 'standalone',
   // basePath: '/login',
-  // transpilePackages: ['@mui/x-charts'],
+  // 
   // webpack(config) {
   //   config.module.rules.push({
   //     test: /\.svg$/,

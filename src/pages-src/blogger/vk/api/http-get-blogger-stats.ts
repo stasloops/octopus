@@ -9,6 +9,10 @@ export interface IGetBloggerSchema {
     videos_tags: { [tag: string]: number } | undefined;
     posts_tags: { [tag: string]: number } | undefined;
 
+    videos_views_history: { [value: string]: number } | undefined;
+    posts_views_history: { [value: string]: number } | undefined;
+    clips_views_history: { [value: string]: number } | undefined;
+
     subscribers_genders:
       | { [gender: string]: { [age: string]: number } }
       | undefined;
