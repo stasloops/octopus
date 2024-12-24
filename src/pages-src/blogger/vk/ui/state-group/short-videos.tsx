@@ -15,11 +15,11 @@ import {
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC, useMemo, useState } from "react";
-import { useGetBloggerMutate } from "../../api/use-blogger";
+import { useGetBloggerMutateStats } from "../../api/use-blogger-stats";
 import { StatElement } from "./stat";
 
 export const ShortVideos: FC = () => {
-  const { data: blogger } = useGetBloggerMutate();
+  const { data: blogger } = useGetBloggerMutateStats();
   const [open, setOpen] = useState<boolean>(false);
 
   const onChangeOpen = () => {
@@ -27,17 +27,20 @@ export const ShortVideos: FC = () => {
   };
 
   const param1 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.clips_counters) return null;
+    const value = blogger.clips_counters.views || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
   const param2 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.clips_counters) return null;
+    const value = blogger.clips_counters.likes || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
   const param3 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.clips_counters) return null;
+    const value = blogger.clips_counters.comments || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
@@ -47,17 +50,20 @@ export const ShortVideos: FC = () => {
     return shorten;
   }, [blogger]);
   const param5 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.clips_counters) return null;
+    const value = blogger.clips_counters.views_12_avg || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
   const param6 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.clips_counters) return null;
+    const value = blogger.clips_counters.likes_12_avg || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
   const param7 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.clips_counters) return null;
+    const value = blogger.clips_counters.comments_12_avg || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
@@ -91,7 +97,6 @@ export const ShortVideos: FC = () => {
           <Grid2 container spacing={`20px`}>
             {!!param1 && (
               <StatElement
-                error
                 label="Кол-во просмотров в клипах"
                 value={
                   <Tooltip title={param1.origin.toLocaleString("ru-RU")}>
@@ -104,7 +109,6 @@ export const ShortVideos: FC = () => {
             )}
             {!!param2 && (
               <StatElement
-                error
                 label="Кол-во лайков в клипах"
                 value={
                   <Tooltip title={param2.origin.toLocaleString("ru-RU")}>
@@ -117,7 +121,6 @@ export const ShortVideos: FC = () => {
             )}
             {!!param3 && (
               <StatElement
-                error
                 label="Кол-во сообщений в клипах"
                 value={
                   <Tooltip title={param3.origin.toLocaleString("ru-RU")}>
@@ -143,7 +146,6 @@ export const ShortVideos: FC = () => {
             )}
             {!!param5 && (
               <StatElement
-                error
                 label="Среднее количество просмотров в 12 последних клипах"
                 value={
                   <Tooltip title={param5.origin.toLocaleString("ru-RU")}>
@@ -156,7 +158,6 @@ export const ShortVideos: FC = () => {
             )}
             {!!param6 && (
               <StatElement
-                error
                 label="Среднее количество лайков в 12 последних клипах"
                 value={
                   <Tooltip title={param6.origin.toLocaleString("ru-RU")}>
@@ -169,7 +170,6 @@ export const ShortVideos: FC = () => {
             )}
             {!!param7 && (
               <StatElement
-                error
                 label="Среднее количество комментариев на последних 12 клипах"
                 value={
                   <Tooltip title={param7.origin.toLocaleString("ru-RU")}>

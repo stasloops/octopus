@@ -15,11 +15,11 @@ import {
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC, useMemo, useState } from "react";
-import { useGetBloggerMutate } from "../../api/use-blogger";
+import { useGetBloggerMutateStats } from "../../api/use-blogger-stats";
 import { StatElement } from "./stat";
 
 export const Posts: FC = () => {
-  const { data: blogger } = useGetBloggerMutate();
+  const { data: blogger } = useGetBloggerMutateStats();
   const [open, setOpen] = useState<boolean>(false);
 
   const onChangeOpen = () => {
@@ -27,17 +27,20 @@ export const Posts: FC = () => {
   };
 
   const param1 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.posts_counters) return null;
+    const value = blogger.posts_counters.views || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
   const param2 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.posts_counters) return null;
+    const value = blogger.posts_counters.likes || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
   const param3 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.posts_counters) return null;
+    const value = blogger.posts_counters.comments || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
@@ -47,22 +50,26 @@ export const Posts: FC = () => {
     return shorten;
   }, [blogger]);
   const param5 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.posts_counters) return null;
+    const value = blogger.posts_counters.reposts || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
   const param6 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.posts_counters) return null;
+    const value = blogger.posts_counters.views_12_avg || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
   const param7 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.posts_counters) return null;
+    const value = blogger.posts_counters.likes_12_avg || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
   const param8 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.posts_counters) return null;
+    const value = blogger.posts_counters.comments_12_avg || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
@@ -72,7 +79,8 @@ export const Posts: FC = () => {
     return shorten;
   }, [blogger]);
   const param10 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.posts_counters) return null;
+    const value = blogger.posts_counters.reposts_12_avg || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
@@ -101,7 +109,6 @@ export const Posts: FC = () => {
           <Grid2 container spacing={`20px`}>
             {!!param1 && (
               <StatElement
-                error
                 label="Кол-во просмотров постов"
                 value={
                   <Tooltip title={param1.origin.toLocaleString("ru-RU")}>
@@ -114,7 +121,6 @@ export const Posts: FC = () => {
             )}
             {!!param2 && (
               <StatElement
-                error
                 label="Кол-во лайков к постам"
                 value={
                   <Tooltip title={param2.origin.toLocaleString("ru-RU")}>
@@ -127,7 +133,6 @@ export const Posts: FC = () => {
             )}
             {!!param3 && (
               <StatElement
-                error
                 label="Кол-во сообщений в посте"
                 value={
                   <Tooltip title={param3.origin.toLocaleString("ru-RU")}>
@@ -153,7 +158,6 @@ export const Posts: FC = () => {
             )}
             {!!param5 && (
               <StatElement
-                error
                 label="Кол-во репостов обычного поста"
                 value={
                   <Tooltip title={param5.origin.toLocaleString("ru-RU")}>
@@ -166,7 +170,6 @@ export const Posts: FC = () => {
             )}
             {!!param6 && (
               <StatElement
-                error
                 label="Средний охват в 12 последних постах"
                 value={
                   <Tooltip title={param6.origin.toLocaleString("ru-RU")}>
@@ -179,7 +182,6 @@ export const Posts: FC = () => {
             )}
             {!!param7 && (
               <StatElement
-                error
                 label="Среднее количество лайков в 12 последних постах"
                 value={
                   <Tooltip title={param7.origin.toLocaleString("ru-RU")}>
@@ -192,7 +194,6 @@ export const Posts: FC = () => {
             )}
             {!!param8 && (
               <StatElement
-                error
                 label="Среднее количество комментариев на последних 12 постах"
                 value={
                   <Tooltip title={param8.origin.toLocaleString("ru-RU")}>
@@ -218,7 +219,6 @@ export const Posts: FC = () => {
             )}
             {!!param10 && (
               <StatElement
-                error
                 label="Среднее количество репостов постов за последние 12 постов"
                 value={
                   <Tooltip title={param10.origin.toLocaleString("ru-RU")}>
