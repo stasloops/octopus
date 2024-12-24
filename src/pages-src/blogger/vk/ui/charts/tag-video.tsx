@@ -38,9 +38,13 @@ export const TagVideo: FC = () => {
   const refBox2 = useRef<HTMLDivElement>();
 
   useEffect(() => {
-    if (!refBox1.current || !refBox2.current) return;
-    setIsMany(refBox2.current.clientHeight - 4 > refBox1.current.clientHeight);
-  }, [refBox1.current, refBox2.current]);
+    setTimeout(() => {
+      if (!refBox1.current || !refBox2.current) return;
+      setIsMany(
+        refBox2.current.clientHeight - 4 > refBox1.current.clientHeight
+      );
+    }, 2000);
+  }, []);
 
   const onChangeScroll = () => {
     setScroll(!scroll);
