@@ -22,6 +22,6 @@ export interface IBlogger {
   videos: number | null; // Колчество клипов
   clips: number | null; // Колчество постов
   unsubscribe_perc: number; // Процент отписок
-  external_links: null;
+  external_links: string[] | null; // ссылки на сотсети
   tags: string[]; // Теги
 }

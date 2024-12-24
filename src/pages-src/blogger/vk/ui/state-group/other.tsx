@@ -16,6 +16,7 @@ import {
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC, useMemo, useState } from "react";
 import { useGetBloggerMutate } from "../../api/use-blogger";
+import { ExternalLinks } from "./external-links";
 import { StatElement } from "./stat";
 
 export const Other: FC = () => {
@@ -62,6 +63,7 @@ export const Other: FC = () => {
       <Collapse in={open}>
         <Box sx={{ width: `cacl(100% + 20px)`, padding: 1 }}>
           <Grid2 container spacing={`20px`}>
+            <ExternalLinks />
             {!!param1 && (
               <StatElement
                 error

@@ -8,7 +8,7 @@ import { VideoClips } from "./video-clips";
 export const StateGroup: FC = () => {
   return (
     <>
-      <Stack spacing={3} sx={{ px: `40px`, pt: `15px` }}>
+      <Stack spacing={2} sx={{ px: `40px`, pt: `15px` }}>
         <VideoClips />
         <ShortVideos />
         <Posts />
