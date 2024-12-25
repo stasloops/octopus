@@ -129,7 +129,7 @@ const ChartElement: FC<{
             const radius = 7;
             // const { ownerState } = props;
             const { x, y, height, width, ...restProps } = props.style as any;
-
+            if (x?.animation?.to === undefined) return;
             const d = `M${x.animation.to},${y.animation.to} h${
               width.animation.to - radius
             } a${radius},${radius} 0 0 1 ${radius},${radius}v ${
@@ -137,7 +137,6 @@ const ChartElement: FC<{
             } a${radius},${radius} 0 0 1 ${-radius},${radius} h${
               radius - width.animation.to
             }z`;
-            console.log(d);
 
             return (
               <path
