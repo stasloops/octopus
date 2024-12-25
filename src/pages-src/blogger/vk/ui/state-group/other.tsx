@@ -34,13 +34,14 @@ export const Other: FC = () => {
   }, [close]);
 
   const param1 = useMemo(() => {
-    if (!blogger?.audience_in_numbers) return null;
+    if (blogger?.audience_in_numbers === undefined) return null;
     const value = blogger.audience_in_numbers || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
   const param2 = useMemo(() => {
-    const value = fakerRU.number.float({ min: 0.01, max: 100.0 });
+    if (blogger?.posts_ads_perc === undefined) return null;
+    const value = blogger.posts_ads_perc;
     return { value: value.toFixed(2) };
   }, [blogger]);
   const param3 = useMemo(() => {
@@ -85,7 +86,6 @@ export const Other: FC = () => {
             )}
             {!!param2 && (
               <StatElement
-                error
                 label="Процент (%) рекламных постов у блоггера"
                 value={<Typography variant="h6">{param2.value}%</Typography>}
                 icon2={<OndemandVideoIcon />}

@@ -2,6 +2,7 @@ import { Box, CircularProgress, Stack } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC, useEffect, useState } from "react";
 import { AudienceGeography } from "./audience-geography";
+import { ClipTheme } from "./clip-theme";
 import { ClipViewDynamics } from "./clip-view-dynamics";
 import { DemoDynamics } from "./dynamics-generate";
 import { DemoDynamics2 } from "./dynamics-generate-test";
@@ -42,6 +43,7 @@ export const Charts: FC = () => {
               <>
                 <AudienceGeography />
                 <ThemeVideos />
+                <ClipTheme />
               </>
             )}
             {!postRender && (

@@ -6,6 +6,8 @@ export interface IGetBloggerSchema {
   };
   response: {
     audience_in_numbers: number;
+    posts_ads_perc: number;
+    clips_themes: { [city: string]: number } | undefined;
 
     clips_tags: { [tag: string]: number } | undefined;
     videos_tags: { [tag: string]: number } | undefined;
