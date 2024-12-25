@@ -15,12 +15,12 @@ import {
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC, useMemo, useState } from "react";
-import { useGetBloggerMutate } from "../../api/use-blogger";
+import { useGetBloggerMutateStats } from "../../api/use-blogger-stats";
 import { ExternalLinks } from "./external-links";
 import { StatElement } from "./stat";
 
 export const Other: FC = () => {
-  const { data: blogger } = useGetBloggerMutate();
+  const { data: blogger } = useGetBloggerMutateStats();
   const [open, setOpen] = useState<boolean>(false);
 
   const onChangeOpen = () => {
@@ -28,7 +28,8 @@ export const Other: FC = () => {
   };
 
   const param1 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.audience_in_numbers) return null;
+    const value = blogger.audience_in_numbers || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
@@ -66,7 +67,6 @@ export const Other: FC = () => {
             <ExternalLinks />
             {!!param1 && (
               <StatElement
-                error
                 label="Кол-во аудитории в цифрах"
                 value={
                   <Tooltip title={param1.origin.toLocaleString("ru-RU")}>

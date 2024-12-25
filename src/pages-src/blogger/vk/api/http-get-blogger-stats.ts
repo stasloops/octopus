@@ -5,6 +5,8 @@ export interface IGetBloggerSchema {
     id: number;
   };
   response: {
+    audience_in_numbers: number;
+
     clips_tags: { [tag: string]: number } | undefined;
     videos_tags: { [tag: string]: number } | undefined;
     posts_tags: { [tag: string]: number } | undefined;

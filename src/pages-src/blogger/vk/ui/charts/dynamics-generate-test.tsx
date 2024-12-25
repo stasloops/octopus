@@ -110,7 +110,7 @@ const ChartElement: FC<{
         layout="horizontal"
         sx={(theme) => ({
           [`.${barElementClasses.root}`]: {
-            fill: `#00000017`,
+            fill: `#fff0`,
             // strokeWidth: 4,
             // stroke: theme.palette.primary.contrastText,
           },
@@ -127,7 +127,7 @@ const ChartElement: FC<{
         slots={{
           bar: (props) => {
             const radius = 7;
-            const { ownerState } = props;
+            // const { ownerState } = props;
             const { x, y, height, width, ...restProps } = props.style as any;
 
             const d = `M${x.animation.to},${y.animation.to} h${
@@ -137,10 +137,12 @@ const ChartElement: FC<{
             } a${radius},${radius} 0 0 1 ${-radius},${radius} h${
               radius - width.animation.to
             }z`;
+            console.log(d);
+
             return (
               <path
                 d={d}
-                fill={`#00000017`}
+                fill={`#fff0`}
                 strokeWidth={3}
                 stroke={theme.palette.primary.contrastText}
                 {...restProps}
