@@ -1,10 +1,12 @@
 import { IBlogger } from "@/src/shared/api/blogger/model";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import TouchAppOutlinedIcon from "@mui/icons-material/TouchAppOutlined";
 import {
   Avatar,
   Box,
   Button,
+  Chip,
   Stack,
   SxProps,
   TableCell,
@@ -111,6 +113,21 @@ export function rowContent(_index: number, row: IBlogger) {
             )}
           </Stack>
         </Stack>
+      </TableCell>
+      <TableCell
+        sx={{
+          display: {
+            xs: `none`,
+            md: `table-cell`,
+            lg: `table-cell`,
+          },
+        }}
+      >
+        {row.description && (
+          <Tooltip title={row.description}>
+            <Chip icon={<TouchAppOutlinedIcon />} label="Описание" />
+          </Tooltip>
+        )}
       </TableCell>
       <TableCell
         sx={{

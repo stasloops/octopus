@@ -23,6 +23,7 @@ export function fixedHeaderContent() {
       >
         <TableCell sx={{ ...TableCellSX, width: `70px` }}>Аватар</TableCell>
         <TableCell sx={{ ...TableCellSX }}>Имя / Кол-во подписчиков</TableCell>
+        <TableCell sx={{ ...TableCellSX }}>Описание</TableCell>
         <TableCell sx={{ ...TableCellSX }}>Логин / ID</TableCell>
         <TableCell sx={{ ...TableCellSX }}>ER, %</TableCell>
         <TableCell sx={{ ...TableCellSX }}></TableCell>

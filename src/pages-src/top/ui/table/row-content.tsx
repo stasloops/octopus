@@ -1,9 +1,12 @@
 import { IBlogger } from "@/src/shared/api/blogger/model";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import TouchAppOutlinedIcon from "@mui/icons-material/TouchAppOutlined";
 import {
   Avatar,
   Box,
   Button,
+  Chip,
   Stack,
   SxProps,
   TableCell,
@@ -120,29 +123,81 @@ export function rowContent(_index: number, row: IBlogger) {
           },
         }}
       >
-        <Link
-          href={row.url}
-          style={{ color: `inherit`, textDecoration: `inherit` }}
-          target="_blank"
-          rel="noopener noreferrer"
+        {row.description && (
+          <Tooltip title={row.description}>
+            <Chip icon={<TouchAppOutlinedIcon />} label="Описание" />
+          </Tooltip>
+        )}
+      </TableCell>
+      <TableCell
+        sx={{
+          display: {
+            xs: `none`,
+            md: `table-cell`,
+            lg: `table-cell`,
+          },
+        }}
+      >
+        <Stack
+          direction="row"
+          spacing={1}
+          sx={{
+            justifyContent: "flex-start",
+            alignItems: "center",
+          }}
         >
-          <Box>
-            <Tooltip title={`@${row.id_}`}>
-              <Typography
-                sx={{
-                  maxWidth: `145px`,
-
-                  color: `#2B69D5`,
-                  ...Text1SX,
-                  padding: `8px 10px 10px 10px`,
-                  borderRadius: `30px`,
-                  background: `#D9E3F3`,
-                  display: `inline-block`,
+          <Box
+            sx={{
+              position: `relative`,
+              width: { xs: `100%`, md: `100vw`, lg: `100vw` },
+              maxWidth: `145px`,
+              height: `44px`,
+            }}
+          >
+            <Box
+              sx={{
+                position: `absolute`,
+                width: `100%`,
+                maxWidth: `100%`,
+              }}
+            >
+              <Link
+                href={row.url}
+                style={{
+                  color: `inherit`,
+                  textDecoration: `inherit`,
                 }}
-              >{`@${row.id_}`}</Typography>
-            </Tooltip>
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Box>
+                  <Tooltip title={`@${row.id_}`}>
+                    <Typography
+                      sx={{
+                        maxWidth: `100%`,
+
+                        color: `#2B69D5`,
+                        ...Text1SX,
+
+                        padding: `10px 10px 10px 10px`,
+                        borderRadius: `30px`,
+                        background: `#D9E3F3`,
+                        display: `inline-block`,
+                      }}
+                    >{`@${row.id_}`}</Typography>
+                  </Tooltip>
+                </Box>
+              </Link>
+            </Box>
           </Box>
-        </Link>
+          {!!row.is_confirmed && (
+            <Tooltip title={`Аккаунт подтвержден`}>
+              <Box sx={{ pb: `1px` }}>
+                <CheckCircleRoundedIcon color="primary" />
+              </Box>
+            </Tooltip>
+          )}
+        </Stack>
       </TableCell>
       <TableCell
         sx={{

@@ -130,7 +130,7 @@ export const HeaderDetal: FC = () => {
                                 >{`${blogger.title}`}</Typography>
                               </Tooltip>
                             )}
-                            {!blogger.is_confirmed && (
+                            {!!blogger.is_confirmed && (
                               <Tooltip title={`Аккаунт подтвержден`}>
                                 <CheckCircleRoundedIcon color="primary" />
                               </Tooltip>
