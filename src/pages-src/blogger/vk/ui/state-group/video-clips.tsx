@@ -14,8 +14,9 @@ import {
   Typography,
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import { FC, useMemo, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { useGetBloggerMutateStats } from "../../api/use-blogger-stats";
+import { useCloseAll } from "../../model/store";
 import { StatElement } from "./stat";
 
 export const VideoClips: FC = () => {
@@ -25,6 +26,11 @@ export const VideoClips: FC = () => {
   const onChangeOpen = () => {
     setOpen(!open);
   };
+
+  const close = useCloseAll((state) => state.value);
+  useEffect(() => {
+    setOpen(false);
+  }, [close]);
 
   const param1 = useMemo(() => {
     if (!blogger?.videos_counters) return null;

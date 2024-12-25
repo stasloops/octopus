@@ -2,12 +2,12 @@ import { theme } from "@/src/shared/lib/theme";
 import InsertLinkOutlinedIcon from "@mui/icons-material/InsertLinkOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
-    Box,
-    Button,
-    IconButton,
-    Paper,
-    Stack,
-    Typography,
+  Box,
+  Button,
+  IconButton,
+  Paper,
+  Stack,
+  Typography,
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC, useMemo } from "react";
@@ -25,7 +25,7 @@ export const ExternalLinks: FC = () => {
 
   return (
     <>
-      {externalLinks && (
+      {!!externalLinks?.length && (
         <Grid2 xs="auto">
           <Paper
             sx={{

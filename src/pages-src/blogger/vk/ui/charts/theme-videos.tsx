@@ -161,7 +161,7 @@ const StatElement: FC<StatElementProps> = ({ label, summ, value }) => {
           }}
         >
           <Typography>{label}</Typography>
-          <Typography>{`${value} / ${((value / summ) * 100).toFixed(
+          <Typography>{`${value.toLocaleString("ru-RU")} / ${((value / summ) * 100).toFixed(
             1
           )}%`}</Typography>
         </Stack>

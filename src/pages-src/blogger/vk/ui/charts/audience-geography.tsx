@@ -1,12 +1,12 @@
 import { theme } from "@/src/shared/lib/theme";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
-    Box,
-    Button,
-    IconButton,
-    Paper,
-    Stack,
-    Typography,
+  Box,
+  Button,
+  IconButton,
+  Paper,
+  Stack,
+  Typography,
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC, useMemo, useState } from "react";
@@ -148,9 +148,10 @@ const StatElement: FC<StatElementProps> = ({ label, summ, value }) => {
           }}
         >
           <Typography>{label}</Typography>
-          <Typography>{`${value} / ${((value / summ) * 100).toFixed(
-            1
-          )}%`}</Typography>
+          <Typography>{`${value.toLocaleString("ru-RU")} / ${(
+            (value / summ) *
+            100
+          ).toFixed(1)}%`}</Typography>
         </Stack>
         <Box sx={{ height: `13px`, position: `relative` }}>
           <Box

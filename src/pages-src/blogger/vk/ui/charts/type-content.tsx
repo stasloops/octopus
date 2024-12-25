@@ -81,7 +81,10 @@ const ChartElement: FC<{
             valueFormatter: (item) =>
               item === null
                 ? ""
-                : `${item.value} / ${((item.value / summ) * 100).toFixed(1)}%`,
+                : `${item.value.toLocaleString("ru-RU")} / ${(
+                    (item.value / summ) *
+                    100
+                  ).toFixed(1)}%`,
             arcLabel: (item) => `${((item.value / summ) * 100).toFixed(1)}%`,
             arcLabelMinAngle: 35,
             arcLabelRadius: "60%",
