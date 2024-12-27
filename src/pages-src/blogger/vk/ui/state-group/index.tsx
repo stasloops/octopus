@@ -22,7 +22,7 @@ export const StateGroup: FC = () => {
             alignItems: "center",
           }}
         >
-          <Button onClick={onCloseAll}>Закрыть все</Button>
+          <Button onClick={onCloseAll}>Свернуть все</Button>
         </Stack>
         <VideoClips />
         <ShortVideos />

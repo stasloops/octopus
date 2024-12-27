@@ -4,14 +4,11 @@ import { FC, useEffect, useState } from "react";
 import { AudienceGeography } from "./audience-geography";
 import { ClipTheme } from "./clip-theme";
 import { ClipViewDynamics } from "./clip-view-dynamics";
-import { DemoDynamics } from "./dynamics-generate";
-import { DemoDynamics2 } from "./dynamics-generate-test";
 import { GenderAge } from "./gender-age";
 import { PostViewDynamics } from "./post-view-dynamics";
 import { TagClip } from "./tag-clip";
 import { TagPost } from "./tag-post";
 import { TagVideo } from "./tag-video";
-import { ThemeVideos } from "./theme-videos";
 import { TypeContent } from "./type-content";
 import { VideoViewDynamics } from "./video-view-dynamics";
 
@@ -37,12 +34,12 @@ export const Charts: FC = () => {
             <VideoViewDynamics />
             <PostViewDynamics />
             <ClipViewDynamics />
-            <DemoDynamics />
-            <DemoDynamics2 />
+            {/* <DemoDynamics />
+            <DemoDynamics2 /> */}
             {postRender && (
               <>
                 <AudienceGeography />
-                <ThemeVideos />
+                {/* <ThemeVideos /> */}
                 <ClipTheme />
               </>
             )}

@@ -202,56 +202,56 @@ export const HeaderDetal: FC = () => {
                               width: `100%`,
                             }}
                           >
-                            {!!communityTopics && (
+                            <Paper
+                              variant="outlined"
+                              sx={{
+                                background: `#EDF4FF`,
+                                padding: 1,
+                              }}
+                            >
+                              {!!communityTopics && (
+                                <Box sx={{ minHeight: `60px` }}>
+                                  <Typography
+                                    sx={{
+                                      "& span": {
+                                        fontWeight: 800,
+                                        color: theme.palette.primary.light,
+                                      },
+                                    }}
+                                  >
+                                    <span>{`Тематика сообщества: `}</span>
+                                    {communityTopics}
+                                  </Typography>
+                                </Box>
+                              )}
                               <Typography
                                 sx={{
-                                  maxWidth: `400px`,
                                   "& span": {
-                                    fontWeight: 800,
+                                    color: theme.palette.primary.light,
                                   },
                                 }}
                               >
-                                <span>{`Тематика сообщества: `}</span>
-                                {communityTopics}
+                                <span>{`Подтверждённый аккаунт: `}</span>
+                                {!!blogger.is_confirmed ? `ДА` : `НЕТ`}
                               </Typography>
-                            )}
+                              <Typography
+                                sx={{
+                                  "& span": {
+                                    color: theme.palette.primary.light,
+                                  },
+                                }}
+                              >
+                                <span>{`Местоположение: `}</span>
+                                {location}
+                              </Typography>
+                            </Paper>
                           </Box>
                         </Grid2>
                       </Grid2>
                     </Box>
                   </Stack>
                 </Stack>
-                <Box>
-                  <Paper
-                    variant="outlined"
-                    sx={{
-                      background: `#EDF4FF`,
-                      padding: 1,
-                      maxWidth: `320px`,
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        "& span": {
-                          color: theme.palette.primary.light,
-                        },
-                      }}
-                    >
-                      <span>{`Подтверждённый аккаунт: `}</span>
-                      {!!blogger.is_confirmed ? `ДА` : `НЕТ`}
-                    </Typography>
-                    <Typography
-                      sx={{
-                        "& span": {
-                          color: theme.palette.primary.light,
-                        },
-                      }}
-                    >
-                      <span>{`Местоположение: `}</span>
-                      {location}
-                    </Typography>
-                  </Paper>
-                </Box>
+                <Box></Box>
               </Stack>
             </Grid2>
             <Grid2 xs={12} md={12} lg={`auto`}>
