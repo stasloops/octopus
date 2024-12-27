@@ -32,6 +32,8 @@ export interface IGetBloggerSchema {
           likes_12_avg: number;
           comments_12_avg: number;
           reposts_12_avg: number;
+          comments_replies: number;
+          comments_replies_12_avg: number;
         }
       | undefined;
     videos_counters:
@@ -44,6 +46,8 @@ export interface IGetBloggerSchema {
           likes_12_avg: number;
           comments_12_avg: number;
           reposts_12_avg: number;
+          comments_replies: number;
+          comments_replies_12_avg: number;
         }
       | undefined;
     clips_counters:
@@ -56,6 +60,8 @@ export interface IGetBloggerSchema {
           likes_12_avg: number;
           comments_12_avg: number;
           reposts_12_avg: number;
+          comments_replies: number;
+          comments_replies_12_avg: number;
         }
       | undefined;
   };

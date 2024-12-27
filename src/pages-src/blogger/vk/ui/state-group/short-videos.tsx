@@ -1,5 +1,4 @@
 import { numberShortenCharacrer } from "@/src/shared/lib/number-shorten-character";
-import { fakerRU } from "@faker-js/faker";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
@@ -51,7 +50,8 @@ export const ShortVideos: FC = () => {
     return shorten;
   }, [blogger]);
   const param4 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.clips_counters) return null;
+    const value = blogger.clips_counters.comments_replies || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
@@ -74,7 +74,8 @@ export const ShortVideos: FC = () => {
     return shorten;
   }, [blogger]);
   const param8 = useMemo(() => {
-    const value = fakerRU.number.int({ min: 10, max: 5000000 });
+    if (!blogger?.clips_counters) return null;
+    const value = blogger.clips_counters.comments_replies_12_avg || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [blogger]);
@@ -139,7 +140,6 @@ export const ShortVideos: FC = () => {
             )}
             {!!param4 && (
               <StatElement
-                error
                 label="Кол-во комментариев к одному сообщению в клипах"
                 value={
                   <Tooltip title={param4.origin.toLocaleString("ru-RU")}>
@@ -188,7 +188,6 @@ export const ShortVideos: FC = () => {
             )}
             {!!param8 && (
               <StatElement
-                error
                 label="Среднее количество комментариев к одному сообщению на последних 12 клипах"
                 value={
                   <Tooltip title={param8.origin.toLocaleString("ru-RU")}>
