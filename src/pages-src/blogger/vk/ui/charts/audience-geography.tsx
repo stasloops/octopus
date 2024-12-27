@@ -1,11 +1,14 @@
 import { theme } from "@/src/shared/lib/theme";
+import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
   Box,
   Button,
+  Collapse,
   IconButton,
   Paper,
   Stack,
+  TextField,
   Typography,
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
@@ -23,6 +26,11 @@ export const AudienceGeography: FC = () => {
   const [scroll, setScroll] = useState<boolean>(false);
   const [isMany, setIsMany] = useState<boolean>(false);
 
+  const [search, setSearch] = useState<string>(``);
+  const onChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+  };
+
   const dataChart: IDataChart[] | null = useMemo(() => {
     if (!bloggerStats) return null;
     if (bloggerStats.subscribers_locations === undefined) return null;
@@ -31,9 +39,15 @@ export const AudienceGeography: FC = () => {
       const element = bloggerStats.subscribers_locations[key];
       value.push({ value: element, label: key });
     }
-    if (value.length > 8) setIsMany(true);
-    return value;
-  }, [bloggerStats]);
+    const valueFilter = !search
+      ? value
+      : value.filter((el) =>
+          el.label.toLowerCase().includes(search.toLocaleLowerCase())
+        );
+    if (valueFilter.length > 8) setIsMany(true);
+    else setIsMany(false);
+    return valueFilter;
+  }, [bloggerStats, search]);
 
   const summ: number = useMemo(() => {
     if (!dataChart) return 0;
@@ -42,6 +56,12 @@ export const AudienceGeography: FC = () => {
 
   const onChangeScroll = () => {
     setScroll(!scroll);
+  };
+
+  const [open, setOpen] = useState<boolean>(false);
+
+  const onChangeOpen = () => {
+    setOpen(!open);
   };
 
   return (
@@ -56,13 +76,42 @@ export const AudienceGeography: FC = () => {
               padding: 1,
             }}
           >
-            <IconButton sx={{ position: `absolute`, top: `0px`, right: `0px` }}>
-              <MoreVertIcon />
-            </IconButton>
+            <Stack
+              direction="row"
+              spacing={0}
+              sx={{
+                justifyContent: "center",
+                alignItems: "center",
+                position: `absolute`,
+                top: `0px`,
+                right: `0px`,
+              }}
+            >
+              <IconButton onClick={onChangeOpen}>
+                <FilterAltOutlinedIcon />
+              </IconButton>
+              <IconButton>
+                <MoreVertIcon />
+              </IconButton>
+            </Stack>
+
             <Stack spacing={2} height={`100%`}>
-              <Typography variant="h6" pr={2}>
-                {`География аудитории`}
-              </Typography>
+              <Box>
+                <Typography variant="h6" pr={2}>
+                  {`География аудитории`}
+                </Typography>
+                <Collapse in={open}>
+                  <TextField
+                    fullWidth
+                    label="Поиск"
+                    variant="outlined"
+                    size="small"
+                    onChange={onChangeText}
+                    value={search}
+                  />
+                </Collapse>
+              </Box>
+
               <Box
                 sx={{
                   position: `relative`,

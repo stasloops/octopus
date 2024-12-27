@@ -1,11 +1,14 @@
+import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
   Box,
   Button,
   Chip,
+  Collapse,
   IconButton,
   Paper,
   Stack,
+  TextField,
   Typography,
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
@@ -22,6 +25,11 @@ export const TagClip: FC = () => {
   const [scroll, setScroll] = useState<boolean>(false);
   const [isMany, setIsMany] = useState<boolean>(false);
 
+  const [search, setSearch] = useState<string>(``);
+  const onChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+  };
+
   const dataChart: IDataChart[] | null = useMemo(() => {
     if (!bloggerStats) return null;
     if (bloggerStats.clips_tags === undefined) return null;
@@ -31,8 +39,13 @@ export const TagClip: FC = () => {
       const element = bloggerStats.clips_tags[key];
       value.push({ value: element, label: key });
     }
-    return value;
-  }, [bloggerStats]);
+    const valueFilter = !search
+      ? value
+      : value.filter((el) =>
+          el.label.toLowerCase().includes(search.toLocaleLowerCase())
+        );
+    return valueFilter;
+  }, [bloggerStats, search]);
 
   const refBox1 = useRef<HTMLDivElement>();
   const refBox2 = useRef<HTMLDivElement>();
@@ -44,10 +57,16 @@ export const TagClip: FC = () => {
         refBox2.current.clientHeight - 4 > refBox1.current.clientHeight
       );
     }, 1000);
-  }, []);
+  }, [dataChart]);
 
   const onChangeScroll = () => {
     setScroll(!scroll);
+  };
+
+  const [open, setOpen] = useState<boolean>(false);
+
+  const onChangeOpen = () => {
+    setOpen(!open);
   };
 
   return (
@@ -62,13 +81,41 @@ export const TagClip: FC = () => {
               padding: 1,
             }}
           >
-            <IconButton sx={{ position: `absolute`, top: `0px`, right: `0px` }}>
-              <MoreVertIcon />
-            </IconButton>
+            <Stack
+              direction="row"
+              spacing={0}
+              sx={{
+                justifyContent: "center",
+                alignItems: "center",
+                position: `absolute`,
+                top: `0px`,
+                right: `0px`,
+              }}
+            >
+              <IconButton onClick={onChangeOpen}>
+                <FilterAltOutlinedIcon />
+              </IconButton>
+              <IconButton>
+                <MoreVertIcon />
+              </IconButton>
+            </Stack>
             <Stack spacing={2} height={`100%`}>
-              <Typography variant="h6" pr={2}>
-                {`Теги под клипами (короткие ролики)`}
-              </Typography>
+              <Box>
+                <Typography variant="h6" pr={2}>
+                  {`Теги под клипами (короткие ролики)`}
+                </Typography>
+                <Collapse in={open}>
+                  <TextField
+                    fullWidth
+                    label="Поиск"
+                    variant="outlined"
+                    size="small"
+                    onChange={onChangeText}
+                    value={search}
+                  />
+                </Collapse>
+              </Box>
+
               <Box
                 ref={refBox1}
                 sx={{
