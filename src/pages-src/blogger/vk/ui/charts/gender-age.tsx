@@ -42,13 +42,14 @@ const genFakeData = (): any => {
     "80+": fakerRU.number.int({ min: 0, max: 1000 }),
   };
   const all = {
-    "0-12": male["0-12"] + female["0-12"] + none["0-12"],
-    "13-18": male["13-18"] + female["13-18"] + none["13-18"],
-    "19-30": male["19-30"] + female["19-30"] + none["19-30"],
-    "31-55": male["31-55"] + female["31-55"] + none["31-55"],
-    "56-80": male["56-80"] + female["56-80"] + none["56-80"],
-    "80+": male["80+"] + female["80+"] + none["80+"],
+    "0-12": male["0-12"] || 0 + female["0-12"] || 0,
+    "13-18": male["13-18"] || 0 + female["13-18"] || 0,
+    "19-30": male["19-30"] || 0 + female["19-30"] || 0,
+    "31-55": male["31-55"] || 0 + female["31-55"] || 0,
+    "56-80": male["56-80"] || 0 + female["56-80"] || 0,
+    "80+": male["80+"] || 0 + female["80+"] || 0,
   };
+
   return {
     male,
     female,
@@ -65,36 +66,32 @@ export const GenderAge: FC = () => {
 
   const dataChart: MakeOptional<PieValueType, "id">[] | null = useMemo(() => {
     if (!bloggerStats?.subscribers_genders) return null;
+
     const subscribersGenders: { [gender: string]: { [age: string]: number } } =
       {
         ...bloggerStats?.subscribers_genders,
         all: {
           "0-12":
-            bloggerStats?.subscribers_genders["male"]?.["0-12"] ||
-            0 + bloggerStats?.subscribers_genders["female"]?.["0-12"] ||
-            0,
+            (bloggerStats?.subscribers_genders["male"]?.["0-12"] || 0) +
+            (bloggerStats?.subscribers_genders["female"]?.["0-12"] || 0),
           "13-18":
-            bloggerStats?.subscribers_genders["male"]?.["13-18"] ||
-            0 + bloggerStats?.subscribers_genders["female"]?.["13-18"] ||
-            0,
+            (bloggerStats?.subscribers_genders["male"]?.["13-18"] || 0) +
+            (bloggerStats?.subscribers_genders["female"]?.["13-18"] || 0),
           "19-30":
-            bloggerStats?.subscribers_genders["male"]?.["19-30"] ||
-            0 + bloggerStats?.subscribers_genders["female"]?.["19-30"] ||
-            0,
+            (bloggerStats?.subscribers_genders["male"]?.["19-30"] || 0) +
+            (bloggerStats?.subscribers_genders["female"]?.["19-30"] || 0),
           "31-55":
-            bloggerStats?.subscribers_genders["male"]?.["31-55"] ||
-            0 + bloggerStats?.subscribers_genders["female"]?.["31-55"] ||
-            0,
+            (bloggerStats?.subscribers_genders["male"]?.["31-55"] || 0) +
+            (bloggerStats?.subscribers_genders["female"]?.["31-55"] || 0),
           "56-80":
-            bloggerStats?.subscribers_genders["male"]?.["56-80"] ||
-            0 + bloggerStats?.subscribers_genders["female"]?.["56-80"] ||
-            0,
+            (bloggerStats?.subscribers_genders["male"]?.["56-80"] || 0) +
+            (bloggerStats?.subscribers_genders["female"]?.["56-80"] || 0),
           "80+":
-            bloggerStats?.subscribers_genders["male"]?.["80+"] ||
-            0 + bloggerStats?.subscribers_genders["female"]?.["80+"] ||
-            0,
+            (bloggerStats?.subscribers_genders["male"]?.["80+"] || 0) +
+            (bloggerStats?.subscribers_genders["female"]?.["80+"] || 0),
         },
       };
+
     const data = subscribersGenders[gender];
     if (!data) return null;
 
@@ -241,7 +238,10 @@ const ChartElement: FC<{
             valueFormatter: (item) =>
               item === null
                 ? ""
-                : `${item.value.toLocaleString("ru-RU")} / ${((item.value / summ) * 100).toFixed(1)}%`,
+                : `${item.value.toLocaleString("ru-RU")} / ${(
+                    (item.value / summ) *
+                    100
+                  ).toFixed(1)}%`,
             arcLabel: (item) => `${((item.value / summ) * 100).toFixed(1)}%`,
             arcLabelMinAngle: 35,
             arcLabelRadius: "60%",
