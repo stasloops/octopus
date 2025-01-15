@@ -6,11 +6,9 @@ import { FC } from "react";
 import { FilterElement } from "./filter";
 import { ResultList } from "./result-list";
 
-interface PageProps {
-  search: string;
-}
+interface PageProps {}
 
-export const Page: FC<PageProps> = ({ search }) => {
+export const Page: FC<PageProps> = ({}) => {
   return (
     <>
       <Layout />
