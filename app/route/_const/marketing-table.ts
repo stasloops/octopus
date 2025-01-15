@@ -26,7 +26,7 @@ export function createRandomMarketing(index: number): any {
     likes: fakerRU.number.int({ min: 200, max: 10000000 }),
     comments: fakerRU.number.int({ min: 200, max: 10000000 }),
 
-    text: fakerRU.word.words({ count: { min: 10, max: 40 } }),
+    text: fakerRU.word.words({ count: { min: 10, max: 150 } }),
   };
 }
 

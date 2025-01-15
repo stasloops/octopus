@@ -4,6 +4,7 @@ import { Layout } from "@/src/widgets/layout";
 import { Box, Typography } from "@mui/material";
 import { FC } from "react";
 import { FilterElement } from "./filter";
+import { ResultList } from "./result-list";
 
 interface PageProps {
   search: string;
@@ -19,6 +20,7 @@ export const Page: FC<PageProps> = ({ search }) => {
           sx={{ px: `40px`, pt: `15px` }}
         >{`Поиск по маркетинговым интеграциям`}</Typography>
         <FilterElement />
+        <ResultList />
       </Box>
     </>
   );

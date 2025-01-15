@@ -1,12 +1,14 @@
 import { create } from "zustand";
-import { IGetBloggerSchema } from "../api/http-get-marketing-integrations";
+import {
+  IGetMarketingIntegrationsSchema
+} from "../api/http-get-marketing-integrations";
 
-interface IBloggerTableStore {
-  value: IGetBloggerSchema["response"] | null;
-  setValue: (value: IGetBloggerSchema["response"] | null) => void;
+interface IMarketingTableStore {
+  value: IGetMarketingIntegrationsSchema["response"] | null;
+  setValue: (value: IGetMarketingIntegrationsSchema["response"] | null) => void;
 }
 
-export const useBloggerTableStore = create<IBloggerTableStore>()((set) => ({
+export const useMarketingTableStore = create<IMarketingTableStore>()((set) => ({
   value: null,
   setValue: (value) => set(() => ({ value })),
 }));

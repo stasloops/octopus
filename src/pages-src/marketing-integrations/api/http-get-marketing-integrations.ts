@@ -1,5 +1,14 @@
-import { IBlogger } from "@/src/shared/api/blogger/model";
 import { httpLocal } from "@/src/shared/api/instance";
+
+export interface IMarketingIntegrations {
+  id: number;
+  avatar: string;
+  name: string;
+  hashtags: string[];
+  likes: number;
+  comments: number;
+  text: string;
+}
 
 export interface IGetMarketingIntegrationsSchema {
   payload?: {
@@ -11,7 +20,7 @@ export interface IGetMarketingIntegrationsSchema {
     id__in?: string;
   };
   response: {
-    data: IBlogger[];
+    data: IMarketingIntegrations[];
     meta: {
       limit: number;
       offset: number;

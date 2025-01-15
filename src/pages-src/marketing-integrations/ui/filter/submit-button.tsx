@@ -11,9 +11,7 @@ export const SubmitButton: FC = () => {
   const { mutateAsync, isLoading } = useMarketingIntegrations();
 
   const onSubmit = async (data: IFormFilter) => {
-    console.log(data);
-    const res = await mutateAsync(data);
-    console.log(res);
+    await mutateAsync(data);
   };
 
   return (
