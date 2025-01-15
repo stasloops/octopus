@@ -1,0 +1,25 @@
+"use client";
+
+import { Layout } from "@/src/widgets/layout";
+import { Box, Typography } from "@mui/material";
+import { FC } from "react";
+import { FilterElement } from "./filter";
+
+interface PageProps {
+  search: string;
+}
+
+export const Page: FC<PageProps> = ({ search }) => {
+  return (
+    <>
+      <Layout />
+      <Box>
+        <Typography
+          variant="h6"
+          sx={{ px: `40px`, pt: `15px` }}
+        >{`Поиск по маркетинговым интеграциям`}</Typography>
+        <FilterElement />
+      </Box>
+    </>
+  );
+};

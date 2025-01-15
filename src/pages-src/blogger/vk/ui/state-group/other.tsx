@@ -95,7 +95,7 @@ export const Other: FC = () => {
             {!!param3 && (
               <StatElement
                 error
-                label="Процент (%) использования ненормативной лексики аудиторией"
+                label="Процент (%) использования ненормативной лексики в текстовых постах"
                 value={<Typography variant="h6">{param3.value}%</Typography>}
                 icon2={<OndemandVideoIcon />}
                 icon3={<VisibilityOutlinedIcon />}
