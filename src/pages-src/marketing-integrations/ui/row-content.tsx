@@ -1,13 +1,25 @@
+import { numberShortenCharacrer } from "@/src/shared/lib/number-shorten-character";
 import {
   Avatar,
-  Button,
   Paper,
   Stack,
   Typography
 } from "@mui/material";
+import { FC, useMemo } from "react";
 import { IMarketingIntegrations } from "../api/http-get-marketing-integrations";
+import { OpenRow } from "./open-row";
 
-export function rowContent(_index: number, row: IMarketingIntegrations) {
+interface RowContentProps {
+  _index: number;
+  row: IMarketingIntegrations;
+}
+
+export const RowContent: FC<RowContentProps> = ({ _index, row }) => {
+  const likes = useMemo(() => numberShortenCharacrer(row.likes), [row.likes]);
+  const comments = useMemo(
+    () => numberShortenCharacrer(row.comments),
+    [row.comments]
+  );
   return (
     <>
       <Paper sx={{ padding: 2, mx: `40px`, mt: `20px` }}>
@@ -35,8 +47,8 @@ export function rowContent(_index: number, row: IMarketingIntegrations) {
                 }}
               >
                 <Typography variant="body2">{`Рекламодатели: ${row.name}`}</Typography>
-                <Typography variant="body2">{`Лайки: ${row.likes}`}</Typography>
-                <Typography variant="body2">{`Комментарии: ${row.comments}`}</Typography>
+                <Typography variant="body2">{`Лайки: ${likes.value}`}</Typography>
+                <Typography variant="body2">{`Комментарии: ${comments.value}`}</Typography>
               </Stack>
               <Typography variant="body2">{`Хэштеги: ${row.hashtags
                 .map((el) => `#${el}`)
@@ -61,20 +73,10 @@ export function rowContent(_index: number, row: IMarketingIntegrations) {
             }}
           >
             <Typography variant="body2">{row.text}</Typography>
-            <Button
-              variant="outlined"
-              color="primary"
-              sx={{
-                borderRadius: `20px`,
-                whiteSpace: `nowrap`,
-                flexShrink: 0,
-              }}
-            >
-              Открыть отчёт
-            </Button>
+            <OpenRow row={row} />
           </Stack>
         </Stack>
       </Paper>
     </>
   );
-}
+};

@@ -1,10 +1,11 @@
 import { CircularProgress, Stack } from "@mui/material";
 import { FC, useCallback, useMemo } from "react";
 import { Virtuoso } from "react-virtuoso";
+import { IMarketingIntegrations } from "../api/http-get-marketing-integrations";
 import { useMarketingIntegrations } from "../api/use-marketing-integrations";
 import { limitCount } from "../model/const";
 import { useMarketingTableStore } from "../model/store";
-import { rowContent } from "./row-content";
+import { RowContent } from "./row-content";
 
 export const ResultList: FC = () => {
   const marketingTable = useMarketingTableStore((state) => state.value);
@@ -47,7 +48,9 @@ export const ResultList: FC = () => {
             allowFullScreen
             style={{ height: 400 }}
             data={marketingTable.data}
-            itemContent={rowContent}
+            itemContent={(_index: number, row: IMarketingIntegrations) => (
+              <RowContent _index={_index} row={row} />
+            )}
             endReached={loadMore}
             components={{
               Footer: () => (

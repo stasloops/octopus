@@ -23,8 +23,12 @@ export function createRandomMarketing(index: number): any {
     name: fakerRU.internet.username(),
     hashtags: tags,
 
-    likes: fakerRU.number.int({ min: 200, max: 10000000 }),
+    subscribers: fakerRU.number.int({ min: 200, max: 10000000 }),
     comments: fakerRU.number.int({ min: 200, max: 10000000 }),
+    likes: fakerRU.number.int({ min: 200, max: 10000000 }),
+    er1: fakerRU.number.float({ min: 0.1, max: 1.9 }),
+    er2: fakerRU.number.float({ min: 0.1, max: 1.9 }),
+    er3: fakerRU.number.float({ min: 0.1, max: 1.9 }),
 
     text: fakerRU.word.words({ count: { min: 10, max: 150 } }),
   };

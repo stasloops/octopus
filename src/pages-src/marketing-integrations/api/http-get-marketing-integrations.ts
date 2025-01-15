@@ -5,9 +5,14 @@ export interface IMarketingIntegrations {
   avatar: string;
   name: string;
   hashtags: string[];
+  text: string;
+
+  subscribers: number;
   likes: number;
   comments: number;
-  text: string;
+  er1: number;
+  er2: number;
+  er3: number;
 }
 
 export interface IGetMarketingIntegrationsSchema {
