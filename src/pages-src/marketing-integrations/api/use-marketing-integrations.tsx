@@ -1,24 +1,21 @@
 import { enqueueSnackbar } from "notistack";
 import { useMutation } from "react-query";
 import { limitCount } from "../model/const";
-import { IFormFilter } from "../model/form";
 import { useMarketingTableStore } from "../model/store";
-import { httpMarketingIntegrations } from "./http-get-marketing-integrations";
+import {
+  httpMarketingIntegrations,
+  IGetMarketingIntegrationsSchema,
+} from "./http-get-marketing-integrations";
 
 export const useMarketingIntegrations = () => {
   const setMarketingTable = useMarketingTableStore((state) => state.setValue);
 
   const props = useMutation({
-    mutationFn: (data: IFormFilter) =>
-      httpMarketingIntegrations({
-        offset: 0,
-        limit: limitCount,
-        // sort: `-subscribers`,
-      }).then(),
+    mutationFn: (data: IGetMarketingIntegrationsSchema["payload"]) =>
+      httpMarketingIntegrations(data).then(),
     onSuccess: (data, variables) => {
-      if (!!data) {
-        setMarketingTable(data);
-      }
+      if (!data) return;
+      if (data.data.length < limitCount) data.meta.end = true;
     },
     onError: (error: Error, variables) => {
       enqueueSnackbar("Ошибка сервера", { variant: "error" });

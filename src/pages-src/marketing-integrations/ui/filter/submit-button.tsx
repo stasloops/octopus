@@ -3,15 +3,25 @@ import { Button, CircularProgress } from "@mui/material";
 import { FC } from "react";
 import { useFormContext } from "react-hook-form";
 import { useMarketingIntegrations } from "../../api/use-marketing-integrations";
+import { limitCount } from "../../model/const";
 import { IFormFilter } from "../../model/form";
+import { useMarketingTableStore } from "../../model/store";
 
 export const SubmitButton: FC = () => {
   const { handleSubmit } = useFormContext<IFormFilter>();
 
   const { mutateAsync, isLoading } = useMarketingIntegrations();
 
+  const setMarketingTable = useMarketingTableStore((state) => state.setValue);
+
   const onSubmit = async (data: IFormFilter) => {
-    await mutateAsync(data);
+    const res = await mutateAsync({
+      offset: 0,
+      limit: limitCount,
+      // sort: `-subscribers`,
+    });
+    if (!res) return;
+    setMarketingTable(res);
   };
 
   return (
