@@ -32,7 +32,7 @@ export const VirtuosoTableComponents: TableComponents<IBlogger> = {
             borderCollapse: "separate",
             tableLayout: "fixed",
             px: `38px`,
-            "& .MuiTableCell-head": { borderTop: `none` },
+            "& .MuiTableCell-head": { borderTop: `none`, color: `#2B3A8B` },
             "& .MuiTableCell-root": { px: 0 },
           }}
           size="small"

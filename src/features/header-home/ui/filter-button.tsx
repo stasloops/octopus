@@ -28,7 +28,11 @@ export const FilterButton: FC = () => {
         <Drawer anchor="top" open={open} onClose={toggleDrawer(false)}>
           <Box sx={{ position: `relative` }}>
             <IconButton
-              sx={{ position: `absolute`, top: `47px`, right: `38px` }}
+              sx={{
+                position: `absolute`,
+                top: { xs: `56px`, md: `47px`, lg: `47px` },
+                right: { xs: `20px`, md: `38px`, lg: `38px` },
+              }}
               onClick={toggleDrawer(false)}
             >
               <ClearOutlinedIcon sx={{ color: `#B5CDEF` }} />

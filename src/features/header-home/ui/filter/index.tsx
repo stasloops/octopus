@@ -27,7 +27,7 @@ export const FilterElement: FC = () => {
   return (
     <Box
       sx={{
-        padding: `47px 38px`,
+        padding: { xs: `56px 20px`, md: `47px 38px`, lg: `47px 38px` },
         "& .MuiInputBase-root": {
           borderRadius: `20px`,
         },
@@ -60,8 +60,23 @@ export const FilterElement: FC = () => {
           <SearchInput />
         </Box>
         <Box sx={{ width: `cacl(100% + 20px)` }}>
-          <Grid2 container spacing={`20px`}>
-            <Grid2 xs={12} md={6} lg={4}>
+          <Grid2
+            sx={{
+              justifyContent: {
+                xs: `center`,
+                md: `flex-start`,
+                lg: `flex-start`,
+              },
+              alignItems: {
+                xs: `flex-start`,
+                md: `flex-start`,
+                lg: `flex-start`,
+              },
+            }}
+            container
+            spacing={`20px`}
+          >
+            <Grid2 xs={6} md={6} lg={4}>
               <TextField
                 fullWidth
                 label="Кол-во подписчиков"
@@ -70,7 +85,7 @@ export const FilterElement: FC = () => {
                 sx={InputSX}
               />
             </Grid2>
-            <Grid2 xs={12} md={6} lg={4}>
+            <Grid2 xs={6} md={6} lg={4}>
               <TextField
                 fullWidth
                 label="География аудитории"
@@ -79,7 +94,7 @@ export const FilterElement: FC = () => {
                 sx={InputSX}
               />
             </Grid2>
-            <Grid2 xs={12} md={6} lg={4}>
+            <Grid2 xs={6} md={6} lg={4}>
               <TextField
                 fullWidth
                 label="Упоминания бренда"
@@ -88,7 +103,7 @@ export const FilterElement: FC = () => {
                 sx={InputSX}
               />
             </Grid2>
-            <Grid2 xs={12} md={6} lg={4}>
+            <Grid2 xs={6} md={6} lg={4}>
               <TextField
                 fullWidth
                 label="ER% в сообществе"
@@ -97,7 +112,7 @@ export const FilterElement: FC = () => {
                 sx={InputSX}
               />
             </Grid2>
-            <Grid2 xs={12} md={6} lg={4}>
+            <Grid2 xs={6} md={6} lg={4}>
               <TextField
                 fullWidth
                 label="Аккаунт в другой социальной сети"
@@ -106,7 +121,7 @@ export const FilterElement: FC = () => {
                 sx={InputSX}
               />
             </Grid2>
-            <Grid2 xs={12} md={6} lg={4}>
+            <Grid2 xs={6} md={6} lg={4}>
               <TextField
                 fullWidth
                 label="Рекламодатели"
@@ -115,7 +130,7 @@ export const FilterElement: FC = () => {
                 sx={InputSX}
               />
             </Grid2>
-            <Grid2 xs={12} md={6} lg={4}>
+            <Grid2 xs={6} md={6} lg={4}>
               <TextField
                 fullWidth
                 label="Кол-во подписок"
@@ -124,7 +139,7 @@ export const FilterElement: FC = () => {
                 sx={InputSX}
               />
             </Grid2>
-            <Grid2 xs={12} md={6} lg={4}>
+            <Grid2 xs={6} md={6} lg={4}>
               <TextField
                 fullWidth
                 label="Кол-во постов (в блоге за весь период)"
@@ -133,7 +148,7 @@ export const FilterElement: FC = () => {
                 sx={InputSX}
               />
             </Grid2>
-            <Grid2 xs={12} md={6} lg={4}>
+            <Grid2 xs={6} md={6} lg={4}>
               <TextField
                 fullWidth
                 label="Подтверждённый аккаунт"
@@ -142,7 +157,7 @@ export const FilterElement: FC = () => {
                 sx={InputSX}
               />
             </Grid2>
-            <Grid2 xs={12} md={6} lg={4}>
+            <Grid2 xs={6} md={6} lg={4}>
               <TextField
                 fullWidth
                 label="Местоположение"
@@ -151,7 +166,7 @@ export const FilterElement: FC = () => {
                 sx={InputSX}
               />
             </Grid2>
-            <Grid2 xs={12} md={6} lg={4}>
+            <Grid2 xs={6} md={6} lg={4}>
               <TextField
                 fullWidth
                 label="Теги постов"
@@ -160,7 +175,7 @@ export const FilterElement: FC = () => {
                 sx={InputSX}
               />
             </Grid2>
-            <Grid2 xs={12} md={6} lg={4}>
+            <Grid2 xs={6} md={6} lg={4}>
               <TextField
                 fullWidth
                 label="Кол-во просмотров (VK Video)"
@@ -169,7 +184,7 @@ export const FilterElement: FC = () => {
                 sx={InputSX}
               />
             </Grid2>
-            <Grid2 xs={12} md={6} lg={4}>
+            <Grid2 xs={6} md={6} lg={4}>
               <TextField
                 fullWidth
                 label="Тематика сообщества"
@@ -178,7 +193,7 @@ export const FilterElement: FC = () => {
                 sx={InputSX}
               />
             </Grid2>
-            <Grid2 xs={12} md={6} lg={4}>
+            <Grid2 xs={6} md={6} lg={4}>
               <TextField
                 fullWidth
                 label="Кол-во просмотров в клипах"
@@ -187,7 +202,7 @@ export const FilterElement: FC = () => {
                 sx={InputSX}
               />
             </Grid2>
-            <Grid2 xs={12} md={6} lg={4}>
+            <Grid2 xs={6} md={6} lg={4}>
               <TextField
                 fullWidth
                 label="Средний охват в сообществах"
@@ -198,11 +213,27 @@ export const FilterElement: FC = () => {
             </Grid2>
           </Grid2>
         </Box>
-        <Box>
+        <Box
+          sx={{
+            position: `relative`,
+            px: {
+              xs: `41px`,
+              md: 0,
+              lg: 0,
+            },
+          }}
+        >
           <Button
             variant="contained"
             color="primary"
-            sx={{ borderRadius: `20px`, width: `98px` }}
+            sx={{
+              borderRadius: `20px`,
+              width: {
+                xs: `100%`,
+                md: `98px`,
+                lg: `98px`,
+              },
+            }}
           >
             Поиск
           </Button>

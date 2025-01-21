@@ -73,7 +73,7 @@ export function rowContent(_index: number, row: IBlogger) {
           {row.title && (
             <Tooltip title={row.title}>
               <Typography
-                sx={{ ...Text1SX, maxWidth: `100%` }}
+                sx={{ ...Text1SX, maxWidth: `100%`, color: `#222657` }}
               >{`${row.title}`}</Typography>
             </Tooltip>
           )}
@@ -126,7 +126,15 @@ export function rowContent(_index: number, row: IBlogger) {
         {row.description && (
           <Tooltip title={row.description}>
             <Chip
-              sx={{ background: `#EFFCFC` }}
+              sx={{
+                background: `#EFFCFC`,
+                "& .MuiChip-label": {
+                  color: `#222657`,
+                  fontSize: `14px`,
+                  fontWeight: 600,
+                },
+                "& .MuiChip-icon": { color: `#222657` },
+              }}
               icon={<TouchAppOutlinedIcon />}
               label="Описание"
             />
@@ -210,6 +218,9 @@ export function rowContent(_index: number, row: IBlogger) {
             md: `table-cell`,
             lg: `table-cell`,
           },
+          color: `#2B3A8B`,
+          fontSize: `14px`,
+          fontWeight: 600,
         }}
       >{`${row.er.toFixed(1)}%`}</TableCell>
       <TableCell
@@ -273,7 +284,10 @@ export function rowContent(_index: number, row: IBlogger) {
                   {row.title && (
                     <Tooltip title={row.title}>
                       <Typography
-                        sx={{ ...Text1SX, maxWidth: `100%` }}
+                        sx={{
+                          ...Text1SX,
+                          maxWidth: `100%`,
+                        }}
                       >{`${row.title}`}</Typography>
                     </Tooltip>
                   )}

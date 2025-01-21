@@ -37,6 +37,7 @@ export const SearchInput: FC<SearchInputProps> = () => {
         size="small"
         inputRef={inputRef}
         sx={{
+          width: { xs: `100%`, md: `300px`, lg: `300px` },
           "& .MuiOutlinedInput-notchedOutline": {
             background: `#EFFCFC`,
             borderColor: `#B5CDEF`,
