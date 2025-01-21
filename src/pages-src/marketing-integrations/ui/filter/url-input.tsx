@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { CustomTextField } from "@/src/shared/ui/custom-text-field";
 import { FC } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { IFormFilter } from "../../model/form";
@@ -17,10 +17,11 @@ export const UrlInput: FC = () => {
           formState,
         }) => (
           <>
-            <TextField
+            <CustomTextField
               fullWidth
               label="Ссылка на бренд"
               variant="outlined"
+              size="small"
               error={Boolean(error)}
               helperText={error ? error.message : ""}
               onChange={onChange}

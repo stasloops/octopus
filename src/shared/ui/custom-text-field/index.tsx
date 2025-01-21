@@ -1,6 +1,6 @@
 import { SxProps, TextField, TextFieldProps, Theme } from "@mui/material";
 
-const InputSX: SxProps<Theme> | any = {
+export const CustomTextFieldSX: SxProps<Theme> | any = {
   "& .MuiOutlinedInput-notchedOutline": {
     borderColor: `#B5CDEF`,
     zIndex: -1,
@@ -8,10 +8,17 @@ const InputSX: SxProps<Theme> | any = {
   "& .MuiInputLabel-root": {
     color: `#B5CDEF`,
   },
+  "& .MuiInputBase-root": {
+    borderRadius: `20px`,
+  },
 };
 
 export const CustomTextField = (props: TextFieldProps) => {
   return (
-    <TextField variant="outlined" {...props} sx={{ ...InputSX, ...props.sx }} />
+    <TextField
+      variant="outlined"
+      {...props}
+      sx={{ ...CustomTextFieldSX, ...props.sx }}
+    />
   );
 };

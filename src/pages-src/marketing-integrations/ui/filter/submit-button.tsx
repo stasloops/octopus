@@ -1,5 +1,5 @@
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { Button, CircularProgress } from "@mui/material";
+import { Box, Button, CircularProgress } from "@mui/material";
 import { FC } from "react";
 import { useFormContext } from "react-hook-form";
 import { useMarketingIntegrations } from "../../api/use-marketing-integrations";
@@ -26,28 +26,51 @@ export const SubmitButton: FC = () => {
 
   return (
     <>
-      {!isLoading && (
-        <Button
-          variant="contained"
-          color="primary"
-          endIcon={<SearchOutlinedIcon />}
-          sx={{ borderRadius: `20px` }}
-          onClick={handleSubmit(onSubmit)}
-        >
-          Поиск
-        </Button>
-      )}
-      {!!isLoading && (
-        <Button
-          variant="contained"
-          color="primary"
-          disabled
-          sx={{ borderRadius: `20px` }}
-          endIcon={<CircularProgress color="inherit" size="15px" />}
-        >
-          Загрузка
-        </Button>
-      )}
+      <Box
+        sx={{
+          width: {
+            xs: `100%`,
+            md: `auto`,
+            lg: `auto`,
+          },
+          position: `relative`,
+          px: {
+            xs: `41px`,
+            md: 0,
+            lg: 0,
+          },
+        }}
+      >
+        {!isLoading && (
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<SearchOutlinedIcon />}
+            sx={{
+              borderRadius: `20px`,
+              width: {
+                xs: `100%`,
+                md: `98px`,
+                lg: `98px`,
+              },
+            }}
+            onClick={handleSubmit(onSubmit)}
+          >
+            Поиск
+          </Button>
+        )}
+        {!!isLoading && (
+          <Button
+            variant="contained"
+            color="primary"
+            disabled
+            sx={{ borderRadius: `20px` }}
+            startIcon={<CircularProgress color="inherit" size="15px" />}
+          >
+            Загрузка
+          </Button>
+        )}
+      </Box>
     </>
   );
 };

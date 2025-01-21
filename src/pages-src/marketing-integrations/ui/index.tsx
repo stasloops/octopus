@@ -15,7 +15,17 @@ export const Page: FC<PageProps> = ({}) => {
       <Box>
         <Typography
           variant="h6"
-          sx={{ px: `38px`, pt: `15px` }}
+          sx={{
+            px: {
+              xs: `18px`,
+              md: `38px`,
+              lg: `38px`,
+            },
+            pt: `40px`,
+            fontWeight: `600`,
+            fontSize: `20px`,
+            lineHeight: `25px`,
+          }}
         >{`Поиск по маркетинговым интеграциям`}</Typography>
         <FilterElement />
         <ResultList />

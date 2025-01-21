@@ -1,12 +1,5 @@
 import { CustomTextField } from "@/src/shared/ui/custom-text-field";
-import {
-  Box,
-  Button,
-  Chip,
-  Stack,
-  Tooltip,
-  Typography
-} from "@mui/material";
+import { Box, Button, Chip, Stack, Tooltip, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC } from "react";
 import { SearchInput } from "./search-input";
@@ -16,9 +9,6 @@ export const FilterElement: FC = () => {
     <Box
       sx={{
         padding: { xs: `56px 20px`, md: `47px 38px`, lg: `47px 38px` },
-        "& .MuiInputBase-root": {
-          borderRadius: `20px`,
-        },
       }}
     >
       <Stack spacing={2}>

@@ -1,4 +1,5 @@
-import { Chip, Stack, TextField } from "@mui/material";
+import { CustomTextField } from "@/src/shared/ui/custom-text-field";
+import { Chip, Stack } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC } from "react";
 import { Controller, useFormContext } from "react-hook-form";
@@ -19,10 +20,11 @@ export const AdvertisersInput: FC = () => {
         }) => (
           <>
             <Stack spacing={1}>
-              <TextField
+              <CustomTextField
                 fullWidth
                 label="Рекламодатели *"
                 variant="outlined"
+                size="small"
                 error={Boolean(error)}
                 helperText={error ? error.message : ""}
                 onChange={onChange}

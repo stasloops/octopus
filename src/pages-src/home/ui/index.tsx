@@ -40,7 +40,7 @@ export const Page: FC<PageProps> = ({ search }) => {
                   md: `38px`,
                   lg: `38px`,
                 },
-                pt: `15px`,
+                pt: `40px`,
                 fontWeight: `600`,
                 fontSize: `20px`,
               }}
