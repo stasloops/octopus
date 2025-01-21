@@ -17,9 +17,21 @@ export const FilterButton: FC = () => {
         <IconButton
           sx={{
             background: `#2B3A8B40`,
-            borderRadius: `15px`,
-            width: `36px`,
-            height: `36px`,
+            borderRadius: {
+              xs: `12px`,
+              md: `15px`,
+              lg: `15px`,
+            },
+            width: {
+              xs: `30px`,
+              md: `36px`,
+              lg: `36px`,
+            },
+            height: {
+              xs: `30px`,
+              md: `36px`,
+              lg: `36px`,
+            },
           }}
           onClick={toggleDrawer(true)}
         >

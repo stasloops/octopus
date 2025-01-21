@@ -38,7 +38,16 @@ export const Header: FC<HeaderProps> = ({ headerChildren }) => {
           zIndex: -1,
         }}
       />
-      <Box sx={{ width: `100%`, px: `38px` }}>
+      <Box
+        sx={{
+          width: `100%`,
+          px: {
+            xs: `19px`,
+            md: `38px`,
+            lg: `38px`,
+          },
+        }}
+      >
         <Stack
           direction="row"
           spacing={2}
@@ -59,18 +68,48 @@ export const Header: FC<HeaderProps> = ({ headerChildren }) => {
             }}
           >
             <MenuButton />
-            <Link href={`/`}>
+            <Box
+              sx={{
+                display: {
+                  xs: `none`,
+                  md: `flex`,
+                  lg: `flex`,
+                },
+              }}
+            >
+              <Link href={`/`}>
+                <img
+                  src={`/logo-orda-white.svg`}
+                  alt="logo-orda"
+                  style={{
+                    objectFit: `contain`,
+                    width: `130px`,
+                    height: `50px`,
+                    // pointerEvents: `none`,
+                  }}
+                />
+              </Link>
+            </Box>
+            <Box
+              sx={{
+                display: {
+                  xs: `flex`,
+                  md: `none`,
+                  lg: `none`,
+                },
+              }}
+            >
               <img
-                src={`/logo-orda-white.svg`}
+                src={`/logo-orda-white-mobile.svg`}
                 alt="logo-orda"
                 style={{
                   objectFit: `contain`,
-                  width: `130px`,
-                  height: `50px`,
+                  width: `35px`,
+                  height: `35px`,
                   // pointerEvents: `none`,
                 }}
               />
-            </Link>
+            </Box>
           </Stack>
           <Stack
             direction="row"

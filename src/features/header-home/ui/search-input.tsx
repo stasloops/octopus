@@ -82,7 +82,7 @@ export const SearchInput: FC<SearchInputProps> = () => {
         sx={{
           justifyContent: "center",
           alignItems: "center",
-          display: { xs: `none`, md: `flex`, lg: `flex` },
+          // display: { xs: `none`, md: `flex`, lg: `flex` },
         }}
         onKeyDown={handleKeyPress as any}
       >
