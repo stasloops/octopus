@@ -31,8 +31,9 @@ export const VirtuosoTableComponents: TableComponents<IBlogger> = {
           sx={{
             borderCollapse: "separate",
             tableLayout: "fixed",
-            px: `40px`,
+            px: `38px`,
             "& .MuiTableCell-head": { borderTop: `none` },
+            "& .MuiTableCell-root": { px: 0 },
           }}
           size="small"
         />

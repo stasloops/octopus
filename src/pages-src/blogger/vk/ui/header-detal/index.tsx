@@ -58,7 +58,7 @@ export const HeaderDetal: FC = () => {
   if (!blogger) return null;
   return (
     <>
-      <Box sx={{ px: `40px`, pt: `15px` }}>
+      <Box sx={{ px: `38px`, pt: `15px` }}>
         <Paper sx={{ padding: 1 }}>
           <Grid2 container spacing={`20px`}>
             <Grid2 xs={12} md={12} lg>

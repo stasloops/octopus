@@ -1,12 +1,12 @@
 import { IBlogger } from "@/src/shared/api/blogger/model";
 import {
-  CircularProgress,
-  Stack,
-  Table,
-  TableBody,
-  TableContainer,
-  TableHead,
-  TableRow,
+    CircularProgress,
+    Stack,
+    Table,
+    TableBody,
+    TableContainer,
+    TableHead,
+    TableRow,
 } from "@mui/material";
 import { forwardRef } from "react";
 import { TableComponents } from "react-virtuoso";
@@ -31,7 +31,7 @@ export const VirtuosoTableComponents: TableComponents<IBlogger> = {
           sx={{
             borderCollapse: "separate",
             tableLayout: "fixed",
-            px: `40px`,
+            px: `38px`,
             "& .MuiTableCell-head": { borderTop: `none` },
           }}
           size="small"

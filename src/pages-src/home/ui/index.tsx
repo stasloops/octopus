@@ -34,8 +34,12 @@ export const Page: FC<PageProps> = ({ search }) => {
           <Layout headerChildren={<HeaderHome />} />
           <Box>
             <Typography
-              variant="h6"
-              sx={{ px: `40px`, pt: `15px` }}
+              sx={{
+                px: `38px`,
+                pt: `15px`,
+                fontWeight: `600`,
+                fontSize: `20px`,
+              }}
             >{`Поиск по блоггерам`}</Typography>
             <TextResultElement />
             <TableElement />

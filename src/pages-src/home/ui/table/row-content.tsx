@@ -79,7 +79,7 @@ export function rowContent(_index: number, row: IBlogger) {
           )}
           <Stack
             direction="row"
-            spacing={`5px`}
+            spacing={`7px`}
             sx={{
               justifyContent: "center",
               alignItems: "center",
@@ -125,7 +125,11 @@ export function rowContent(_index: number, row: IBlogger) {
       >
         {row.description && (
           <Tooltip title={row.description}>
-            <Chip icon={<TouchAppOutlinedIcon />} label="Описание" />
+            <Chip
+              sx={{ background: `#EFFCFC` }}
+              icon={<TouchAppOutlinedIcon />}
+              label="Описание"
+            />
           </Tooltip>
         )}
       </TableCell>
@@ -193,7 +197,7 @@ export function rowContent(_index: number, row: IBlogger) {
           {!!row.is_confirmed && (
             <Tooltip title={`Аккаунт подтвержден`}>
               <Box sx={{ pb: `1px` }}>
-                <CheckCircleRoundedIcon color="primary" />
+                <CheckCircleRoundedIcon sx={{ color: `#B5CDEF` }} />
               </Box>
             </Tooltip>
           )}

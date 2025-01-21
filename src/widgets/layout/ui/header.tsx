@@ -38,7 +38,7 @@ export const Header: FC<HeaderProps> = ({ headerChildren }) => {
           zIndex: -1,
         }}
       />
-      <Box sx={{ width: `100%`, px: `20px` }}>
+      <Box sx={{ width: `100%`, px: `38px` }}>
         <Stack
           direction="row"
           spacing={2}

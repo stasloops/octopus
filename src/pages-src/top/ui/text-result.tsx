@@ -20,7 +20,7 @@ export const TextResultElement: FC<TextResultElement> = ({}) => {
         <Box
           sx={{
             pt: `15px`,
-            px: `40px`,
+            px: `38px`,
             width: `100%`,
           }}
         >

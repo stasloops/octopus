@@ -13,7 +13,7 @@ export const StateGroup: FC = () => {
   };
   return (
     <>
-      <Stack spacing={2} sx={{ px: `40px`, pt: `15px` }}>
+      <Stack spacing={2} sx={{ px: `38px`, pt: `15px` }}>
         <Stack
           direction="row"
           spacing={2}

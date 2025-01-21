@@ -29,17 +29,28 @@ export const SearchInput: FC<SearchInputProps> = () => {
   return (
     <>
       <TextField
-        label="Поиск"
+        // label="Поиск"
         placeholder="Поиск"
         variant="outlined"
         onChange={onChangeText}
         value={text}
         size="small"
         inputRef={inputRef}
+        sx={{
+          "& .MuiOutlinedInput-notchedOutline": {
+            background: `#EFFCFC`,
+            borderColor: `#B5CDEF`,
+            zIndex: -1,
+          },
+          "& ::placeholder": {
+            color: `#B5CDEF`,
+          },
+          // background: `#000`
+        }}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <SearchIcon />
+              <SearchIcon sx={{ color: `#B5CDEF` }} />
             </InputAdornment>
           ),
           endAdornment: (

@@ -3,7 +3,9 @@ import {
   Button,
   Chip,
   Stack,
+  SxProps,
   TextField,
+  Theme,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -11,11 +13,21 @@ import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC } from "react";
 import { SearchInput } from "./search-input";
 
+const InputSX: SxProps<Theme> | any = {
+  "& .MuiOutlinedInput-notchedOutline": {
+    borderColor: `#B5CDEF`,
+    zIndex: -1,
+  },
+  "& .MuiInputLabel-root": {
+    color: `#B5CDEF`,
+  },
+};
+
 export const FilterElement: FC = () => {
   return (
     <Box
       sx={{
-        padding: 2,
+        padding: `47px 38px`,
         "& .MuiInputBase-root": {
           borderRadius: `20px`,
         },
@@ -31,7 +43,9 @@ export const FilterElement: FC = () => {
               alignItems: "center",
             }}
           >
-            <Typography variant="h6">Фильтр</Typography>
+            <Typography sx={{ fontWeight: `600`, fontSize: `20px` }}>
+              Фильтр
+            </Typography>
             <Tooltip title={`В разработке`}>
               <Chip
                 color="error"
@@ -53,6 +67,7 @@ export const FilterElement: FC = () => {
                 label="Кол-во подписчиков"
                 variant="outlined"
                 size="small"
+                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={12} md={6} lg={4}>
@@ -61,6 +76,7 @@ export const FilterElement: FC = () => {
                 label="География аудитории"
                 variant="outlined"
                 size="small"
+                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={12} md={6} lg={4}>
@@ -69,6 +85,7 @@ export const FilterElement: FC = () => {
                 label="Упоминания бренда"
                 variant="outlined"
                 size="small"
+                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={12} md={6} lg={4}>
@@ -77,6 +94,7 @@ export const FilterElement: FC = () => {
                 label="ER% в сообществе"
                 variant="outlined"
                 size="small"
+                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={12} md={6} lg={4}>
@@ -85,6 +103,7 @@ export const FilterElement: FC = () => {
                 label="Аккаунт в другой социальной сети"
                 variant="outlined"
                 size="small"
+                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={12} md={6} lg={4}>
@@ -93,6 +112,7 @@ export const FilterElement: FC = () => {
                 label="Рекламодатели"
                 variant="outlined"
                 size="small"
+                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={12} md={6} lg={4}>
@@ -101,6 +121,7 @@ export const FilterElement: FC = () => {
                 label="Кол-во подписок"
                 variant="outlined"
                 size="small"
+                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={12} md={6} lg={4}>
@@ -109,6 +130,7 @@ export const FilterElement: FC = () => {
                 label="Кол-во постов (в блоге за весь период)"
                 variant="outlined"
                 size="small"
+                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={12} md={6} lg={4}>
@@ -117,6 +139,7 @@ export const FilterElement: FC = () => {
                 label="Подтверждённый аккаунт"
                 variant="outlined"
                 size="small"
+                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={12} md={6} lg={4}>
@@ -125,6 +148,7 @@ export const FilterElement: FC = () => {
                 label="Местоположение"
                 variant="outlined"
                 size="small"
+                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={12} md={6} lg={4}>
@@ -133,6 +157,7 @@ export const FilterElement: FC = () => {
                 label="Теги постов"
                 variant="outlined"
                 size="small"
+                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={12} md={6} lg={4}>
@@ -141,6 +166,7 @@ export const FilterElement: FC = () => {
                 label="Кол-во просмотров (VK Video)"
                 variant="outlined"
                 size="small"
+                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={12} md={6} lg={4}>
@@ -149,6 +175,7 @@ export const FilterElement: FC = () => {
                 label="Тематика сообщества"
                 variant="outlined"
                 size="small"
+                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={12} md={6} lg={4}>
@@ -157,6 +184,7 @@ export const FilterElement: FC = () => {
                 label="Кол-во просмотров в клипах"
                 variant="outlined"
                 size="small"
+                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={12} md={6} lg={4}>
@@ -165,6 +193,7 @@ export const FilterElement: FC = () => {
                 label="Средний охват в сообществах"
                 variant="outlined"
                 size="small"
+                sx={InputSX}
               />
             </Grid2>
           </Grid2>
@@ -173,7 +202,7 @@ export const FilterElement: FC = () => {
           <Button
             variant="contained"
             color="primary"
-            sx={{ borderRadius: `20px` }}
+            sx={{ borderRadius: `20px`, width: `98px` }}
           >
             Поиск
           </Button>

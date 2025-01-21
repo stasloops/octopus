@@ -66,7 +66,7 @@ export const Page: FC<PageProps> = ({ idBlogger }) => {
               sx={{
                 justifyContent: "start",
                 alignItems: "center",
-                px: `40px`,
+                px: `38px`,
                 pt: `15px`,
               }}
             >

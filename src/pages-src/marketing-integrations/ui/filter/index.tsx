@@ -5,9 +5,9 @@ import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import {
-  defaultFormFilter,
-  FormFilterSchema,
-  IFormFilter,
+    defaultFormFilter,
+    FormFilterSchema,
+    IFormFilter,
 } from "../../model/form";
 import { AdvertisersInput } from "./advertisers-input";
 import { DataRangeInput } from "./data-range";
@@ -24,7 +24,7 @@ export const FilterElement: FC = () => {
 
   return (
     <>
-      <Box sx={{ px: `40px`, pt: `15px` }}>
+      <Box sx={{ px: `38px`, pt: `15px` }}>
         <Paper variant="outlined" sx={{ padding: `20px` }}>
           <FormProvider {...methods}>
             <Stack spacing={1}>

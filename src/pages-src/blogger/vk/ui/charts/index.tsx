@@ -23,7 +23,7 @@ export const Charts: FC = () => {
 
   return (
     <>
-      <Stack spacing={3} sx={{ px: `40px`, pt: `15px` }}>
+      <Stack spacing={3} sx={{ px: `38px`, pt: `15px` }}>
         <Box sx={{ width: `cacl(100% + 20px)` }}>
           <Grid2 container spacing={`20px`}>
             <TypeContent />

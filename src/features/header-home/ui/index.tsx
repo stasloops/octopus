@@ -10,7 +10,7 @@ export const HeaderHome: FC = () => {
     <>
       <Stack
         direction="row"
-        spacing={1}
+        spacing={`18px`}
         sx={{
           justifyContent: "center",
           alignItems: "center",
