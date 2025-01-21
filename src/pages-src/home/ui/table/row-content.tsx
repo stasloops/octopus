@@ -1,21 +1,20 @@
 import { IBlogger } from "@/src/shared/api/blogger/model";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
-import TouchAppOutlinedIcon from "@mui/icons-material/TouchAppOutlined";
 import {
   Avatar,
   Box,
   Button,
-  Chip,
   Stack,
   SxProps,
   TableCell,
   Tooltip,
-  Typography,
+  Typography
 } from "@mui/material";
 import { Theme } from "@mui/system";
 import Link from "next/link";
 import { platformList } from "../../model/const";
+import { OpenDescription } from "./open-description";
 import { SubscribersElement } from "./subscribers-number";
 
 const Text1SX: SxProps<Theme> = {
@@ -123,23 +122,7 @@ export function rowContent(_index: number, row: IBlogger) {
           },
         }}
       >
-        {row.description && (
-          <Tooltip title={row.description}>
-            <Chip
-              sx={{
-                background: `#EFFCFC`,
-                "& .MuiChip-label": {
-                  color: `#222657`,
-                  fontSize: `14px`,
-                  fontWeight: 600,
-                },
-                "& .MuiChip-icon": { color: `#222657` },
-              }}
-              icon={<TouchAppOutlinedIcon />}
-              label="Описание"
-            />
-          </Tooltip>
-        )}
+        <OpenDescription row={row} />
       </TableCell>
       <TableCell
         sx={{
@@ -434,23 +417,7 @@ export function rowContent(_index: number, row: IBlogger) {
           pb: `65px`,
         }}
       >
-        {row.description && (
-          <Tooltip title={row.description}>
-            <Chip
-              sx={{
-                background: `#EFFCFC`,
-                "& .MuiChip-label": {
-                  color: `#222657`,
-                  fontSize: `14px`,
-                  fontWeight: 600,
-                },
-                "& .MuiChip-icon": { color: `#222657` },
-              }}
-              icon={<TouchAppOutlinedIcon />}
-              label="Описание"
-            />
-          </Tooltip>
-        )}
+        <OpenDescription row={row} />
       </TableCell>
     </>
   );

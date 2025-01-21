@@ -1,27 +1,15 @@
+import { CustomTextField } from "@/src/shared/ui/custom-text-field";
 import {
   Box,
   Button,
   Chip,
   Stack,
-  SxProps,
-  TextField,
-  Theme,
   Tooltip,
-  Typography,
+  Typography
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC } from "react";
 import { SearchInput } from "./search-input";
-
-const InputSX: SxProps<Theme> | any = {
-  "& .MuiOutlinedInput-notchedOutline": {
-    borderColor: `#B5CDEF`,
-    zIndex: -1,
-  },
-  "& .MuiInputLabel-root": {
-    color: `#B5CDEF`,
-  },
-};
 
 export const FilterElement: FC = () => {
   return (
@@ -77,138 +65,123 @@ export const FilterElement: FC = () => {
             spacing={`20px`}
           >
             <Grid2 xs={6} md={6} lg={4}>
-              <TextField
+              <CustomTextField
                 fullWidth
                 label="Кол-во подписчиков"
                 variant="outlined"
                 size="small"
-                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={6} md={6} lg={4}>
-              <TextField
+              <CustomTextField
                 fullWidth
                 label="География аудитории"
                 variant="outlined"
                 size="small"
-                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={6} md={6} lg={4}>
-              <TextField
+              <CustomTextField
                 fullWidth
                 label="Упоминания бренда"
                 variant="outlined"
                 size="small"
-                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={6} md={6} lg={4}>
-              <TextField
+              <CustomTextField
                 fullWidth
                 label="ER% в сообществе"
                 variant="outlined"
                 size="small"
-                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={6} md={6} lg={4}>
-              <TextField
+              <CustomTextField
                 fullWidth
                 label="Аккаунт в другой социальной сети"
                 variant="outlined"
                 size="small"
-                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={6} md={6} lg={4}>
-              <TextField
+              <CustomTextField
                 fullWidth
                 label="Рекламодатели"
                 variant="outlined"
                 size="small"
-                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={6} md={6} lg={4}>
-              <TextField
+              <CustomTextField
                 fullWidth
                 label="Кол-во подписок"
                 variant="outlined"
                 size="small"
-                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={6} md={6} lg={4}>
-              <TextField
+              <CustomTextField
                 fullWidth
                 label="Кол-во постов (в блоге за весь период)"
                 variant="outlined"
                 size="small"
-                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={6} md={6} lg={4}>
-              <TextField
+              <CustomTextField
                 fullWidth
                 label="Подтверждённый аккаунт"
                 variant="outlined"
                 size="small"
-                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={6} md={6} lg={4}>
-              <TextField
+              <CustomTextField
                 fullWidth
                 label="Местоположение"
                 variant="outlined"
                 size="small"
-                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={6} md={6} lg={4}>
-              <TextField
+              <CustomTextField
                 fullWidth
                 label="Теги постов"
                 variant="outlined"
                 size="small"
-                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={6} md={6} lg={4}>
-              <TextField
+              <CustomTextField
                 fullWidth
                 label="Кол-во просмотров (VK Video)"
                 variant="outlined"
                 size="small"
-                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={6} md={6} lg={4}>
-              <TextField
+              <CustomTextField
                 fullWidth
                 label="Тематика сообщества"
                 variant="outlined"
                 size="small"
-                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={6} md={6} lg={4}>
-              <TextField
+              <CustomTextField
                 fullWidth
                 label="Кол-во просмотров в клипах"
                 variant="outlined"
                 size="small"
-                sx={InputSX}
               />
             </Grid2>
             <Grid2 xs={6} md={6} lg={4}>
-              <TextField
+              <CustomTextField
                 fullWidth
                 label="Средний охват в сообществах"
                 variant="outlined"
                 size="small"
-                sx={InputSX}
               />
             </Grid2>
           </Grid2>
