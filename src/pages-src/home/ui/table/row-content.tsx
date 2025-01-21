@@ -246,22 +246,27 @@ export function rowContent(_index: number, row: IBlogger) {
       </TableCell>
       <TableCell
         sx={{
-          height: `180px`,
+          height: `170px`,
           display: {
             xs: `table-cell`,
             md: `none`,
             lg: `none`,
           },
+          pb: `65px`,
         }}
       >
-        <Stack spacing={2}>
-          <Stack direction="row" spacing={2}>
+        <Stack spacing={`16px`}>
+          <Stack direction="row" spacing={`4px`}>
             <Link href={row.url} target="_blank" rel="noopener noreferrer">
-              <Avatar alt="avatar" src={row.image || undefined}></Avatar>
+              <Avatar
+                alt="avatar"
+                src={row.image || undefined}
+                sx={{ width: `54px`, height: `54px` }}
+              ></Avatar>
             </Link>
             <Stack
               direction="column"
-              spacing={`4px`}
+              spacing={`10px`}
               sx={{
                 justifyContent: "center",
                 alignItems: "flex-start",
@@ -271,26 +276,46 @@ export function rowContent(_index: number, row: IBlogger) {
               <Box
                 sx={{
                   position: `relative`,
-                  width: `100%`,
-                  height: `15px`,
+                  width: { xs: `100%`, md: `100vw`, lg: `100vw` },
+                  maxWidth: `145px`,
+                  height: `26px`,
                 }}
               >
                 <Box
                   sx={{
                     position: `absolute`,
                     width: `100%`,
+                    maxWidth: `100%`,
                   }}
                 >
-                  {row.title && (
-                    <Tooltip title={row.title}>
-                      <Typography
-                        sx={{
-                          ...Text1SX,
-                          maxWidth: `100%`,
-                        }}
-                      >{`${row.title}`}</Typography>
-                    </Tooltip>
-                  )}
+                  <Link
+                    href={row.url}
+                    style={{
+                      color: `inherit`,
+                      textDecoration: `inherit`,
+                    }}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Box>
+                      <Tooltip title={`@${row.id_}`}>
+                        <Typography
+                          sx={{
+                            maxWidth: `100%`,
+
+                            color: `#2B69D5`,
+                            ...Text1SX,
+                            fontSize: `9px`,
+                            fontWeight: 600,
+                            padding: `5px 9px 5px 9px`,
+                            borderRadius: `30px`,
+                            background: `#D9E3F3`,
+                            display: `inline-block`,
+                          }}
+                        >{`@${row.id_}`}</Typography>
+                      </Tooltip>
+                    </Box>
+                  </Link>
                 </Box>
               </Box>
               <Stack
@@ -309,19 +334,21 @@ export function rowContent(_index: number, row: IBlogger) {
                   >
                     <Box
                       sx={{
+                        position: `relative`,
                         overflow: `hidden`,
                         borderRadius: `10px`,
-                        width: `18px`,
-                        height: `18px`,
+                        width: `12px`,
+                        height: `12px`,
                       }}
                     >
                       <img
                         src={platform.src}
                         alt="platform"
                         style={{
+                          position: `absolute`,
                           objectFit: `contain`,
-                          width: `18px`,
-                          height: `18px`,
+                          width: `12px`,
+                          height: `12px`,
                           // pointerEvents: `none`,
                         }}
                       />
@@ -334,22 +361,96 @@ export function rowContent(_index: number, row: IBlogger) {
               </Stack>
             </Stack>
           </Stack>
-          <Stack spacing={1}>
-            {row.er && <Typography>{`ER: ${row.er.toFixed(1)}%`}</Typography>}
-          </Stack>
-          <Box>
-            <Link href={`/blogger/vk/${row.id}`}>
-              <Button
-                variant="contained"
-                color="primary"
-                endIcon={<ArrowForwardIcon />}
-                sx={{ borderRadius: `20px` }}
-              >
-                Отчет
-              </Button>
-            </Link>
+          <Box
+            sx={{
+              position: `relative`,
+              width: `100%`,
+              height: `15px`,
+            }}
+          >
+            <Box
+              sx={{
+                position: `absolute`,
+                width: `100%`,
+              }}
+            >
+              {row.title && (
+                <Tooltip title={row.title}>
+                  <Typography
+                    sx={{
+                      color: `#222657`,
+                      fontSize: `9px`,
+                      fontWeight: 600,
+                      maxWidth: `100%`,
+                    }}
+                  >{`${row.title}`}</Typography>
+                </Tooltip>
+              )}
+            </Box>
           </Box>
         </Stack>
+        <Box sx={{ position: `absolute`, bottom: `13px`, right: 0, left: 0 }}>
+          <Stack spacing={2}>
+            <Box>
+              <Link href={`/blogger/vk/${row.id}`}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  endIcon={<ArrowForwardIcon />}
+                  sx={{ borderRadius: `20px` }}
+                >
+                  Отчет
+                </Button>
+              </Link>
+            </Box>
+          </Stack>
+        </Box>
+      </TableCell>
+      <TableCell></TableCell>
+      <TableCell
+        sx={{
+          height: `170px`,
+          display: {
+            xs: `table-cell`,
+            md: `none`,
+            lg: `none`,
+          },
+          color: `#2B3A8B`,
+          fontSize: `14px`,
+          fontWeight: 600,
+          pb: `65px`,
+        }}
+      >{`${row.er.toFixed(1)}%`}</TableCell>
+      <TableCell></TableCell>
+      <TableCell
+        sx={{
+          height: `170px`,
+          display: {
+            xs: `table-cell`,
+            md: `none`,
+            lg: `none`,
+          },
+          pb: `65px`,
+        }}
+      >
+        {row.description && (
+          <Tooltip title={row.description}>
+            <Chip
+              sx={{
+                background: `#EFFCFC`,
+                "& .MuiChip-label": {
+                  color: `#222657`,
+                  fontSize: `14px`,
+                  fontWeight: 600,
+                },
+                "& .MuiChip-icon": { color: `#222657` },
+              }}
+              icon={<TouchAppOutlinedIcon />}
+              label="Описание"
+            />
+          </Tooltip>
+        )}
       </TableCell>
     </>
   );

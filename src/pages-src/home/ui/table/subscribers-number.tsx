@@ -7,10 +7,18 @@ import { FC, useMemo } from "react";
 const TextSX: SxProps<Theme> = {
   color: `#fff`,
   fontWeight: 400,
-  fontSize: `11px`,
+  fontSize: {
+    xs: `9px`,
+    md: `11px`,
+    lg: `11px`,
+  },
   background: theme.palette.primary.main,
 
-  padding: `2px 10px 2px 10px`,
+  padding: {
+    xs: `2px 5px 2px 5px`,
+    md: `2px 10px 2px 10px`,
+    lg: `2px 10px 2px 10px`,
+  },
   borderRadius: `26px`,
 };
 

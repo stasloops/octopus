@@ -35,7 +35,11 @@ export const Page: FC<PageProps> = ({ search }) => {
           <Box>
             <Typography
               sx={{
-                px: `38px`,
+                px: {
+                  xs: `18px`,
+                  md: `38px`,
+                  lg: `38px`,
+                },
                 pt: `15px`,
                 fontWeight: `600`,
                 fontSize: `20px`,

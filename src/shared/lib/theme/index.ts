@@ -66,6 +66,9 @@ export const theme = createTheme({
         main: "#fff",
       },
     }),
+    text: {
+      primary: `#2B3A8B`,
+    },
     // background: { default: "#ececec" }
   },
 });

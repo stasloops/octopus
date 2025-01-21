@@ -31,8 +31,21 @@ export const VirtuosoTableComponents: TableComponents<IBlogger> = {
           sx={{
             borderCollapse: "separate",
             tableLayout: "fixed",
-            px: `38px`,
-            "& .MuiTableCell-head": { borderTop: `none`, color: `#2B3A8B` },
+            px: {
+              xs: `18px`,
+              md: `38px`,
+              lg: `38px`,
+            },
+            "& .MuiTableCell-head": {
+              borderTop: `none`,
+              color: `#2B3A8B`,
+              opacity: 0.4,
+              fontSize: {
+                xs: `9px`,
+                md: `14px`,
+                lg: `14px`,
+              },
+            },
             "& .MuiTableCell-root": { px: 0 },
           }}
           size="small"
@@ -56,7 +69,11 @@ export const VirtuosoTableComponents: TableComponents<IBlogger> = {
   TableHead: forwardRef<HTMLTableSectionElement>((props, ref) => (
     <TableHead {...props} ref={ref} />
   )),
-  TableRow: TableRow,
+  TableRow: (props, ref) => (
+    <>
+      <TableRow {...props} sx={{ position: `relative` }} />
+    </>
+  ),
   TableBody: forwardRef<HTMLTableSectionElement>((props, ref) => (
     <TableBody {...props} ref={ref} />
   )),
