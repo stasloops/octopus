@@ -34,15 +34,18 @@ export const Other: FC = () => {
 
   const param1 = useMemo(() => {
     if (blogger?.audience_in_numbers === undefined) return null;
-    const value = blogger.audience_in_numbers || 0;
-    const shorten = numberShortenCharacrer(value);
-    return shorten;
-  }, [blogger]);
+    return numberShortenCharacrer(blogger.audience_in_numbers || 0);
+  }, [blogger?.audience_in_numbers]);
+
   const param2 = useMemo(() => {
     if (blogger?.posts_ads_perc === undefined) return null;
-    const value = blogger.posts_ads_perc;
-    return { value: value.toFixed(2) };
-  }, [blogger]);
+    return { value: blogger.posts_ads_perc.toFixed(2) };
+  }, [blogger?.posts_ads_perc]);
+
+  const param3 = useMemo(() => {
+    if (typeof blogger?.posts_swear_perc !== "number") return null;
+    return { value: blogger?.posts_swear_perc.toFixed(2) };
+  }, [blogger?.posts_swear_perc]);
 
   if (!blogger) return null;
   return (
@@ -87,14 +90,10 @@ export const Other: FC = () => {
                 icon3={<VisibilityOutlinedIcon />}
               />
             )}
-            {typeof blogger.posts_swear_perc === "number" && (
+            {!!param3 && (
               <StatElement
                 label="Процент (%) использования ненормативной лексики в текстовых постах"
-                value={
-                  <Typography variant="h6">
-                    {blogger.posts_swear_perc}%
-                  </Typography>
-                }
+                value={<Typography variant="h6">{param3?.value}%</Typography>}
                 icon2={<OndemandVideoIcon />}
                 icon3={<VisibilityOutlinedIcon />}
               />
