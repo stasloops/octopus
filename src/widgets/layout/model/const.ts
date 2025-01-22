@@ -8,4 +8,5 @@ export const pageList: IPage[] = [
   { key: `/`, label: `Поиск по блоггерам` },
   { key: `/audience-intersection`, label: `Персечение аудиторий` },
   { key: `/marketing-integrations`, label: `Поиск по маркетинговым интеграциям` },
+  { key: `/upload-bloggers`, label: `Загрузка блогеров` },
 ];
