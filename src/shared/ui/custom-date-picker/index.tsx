@@ -17,11 +17,24 @@ const CalendarIcon = () => (
     }}
   />
 );
+const Calendar2Icon = () => (
+  <img
+    src={`/calendar-2.svg`}
+    alt="calendar-orda"
+    style={{
+      objectFit: `contain`,
+      width: `24px`,
+      height: `24px`,
+      // pointerEvents: `none`,
+    }}
+  />
+);
 
 export const CustomDatePicker = (
   props: DatePickerProps<Moment> & {
     customValue?: string;
     onCustomChange?: (value: string) => void;
+    gte?: boolean;
   }
 ) => {
   const value = useMemo(() => {
@@ -59,7 +72,8 @@ export const CustomDatePicker = (
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton onClick={handleClickOpen}>
-                  <CalendarIcon />
+                  {!props.gte && <CalendarIcon />}
+                  {!!props.gte && <Calendar2Icon />}
                 </IconButton>
               </InputAdornment>
             ),

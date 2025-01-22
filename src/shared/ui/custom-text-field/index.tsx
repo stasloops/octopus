@@ -10,6 +10,10 @@ export const CustomTextFieldSX: SxProps<Theme> | any = {
   },
   "& .MuiInputBase-root": {
     borderRadius: `20px`,
+    "& ::placeholder": {
+      color: `#B5CDEF`,
+      opacity: 1,
+    },
   },
 };
 

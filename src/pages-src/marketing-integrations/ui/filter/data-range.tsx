@@ -50,7 +50,7 @@ export const DataRangeInput: FC = () => {
           alignItems: "center",
         }}
       >
-        <CustomDatePicker customValue={data_gte} onCustomChange={setDateGte} />
+        <CustomDatePicker customValue={data_gte} onCustomChange={setDateGte} gte />
         <RemoveOutlinedIcon />
         <CustomDatePicker customValue={data_lte} onCustomChange={setDateLte} />
       </Stack>
