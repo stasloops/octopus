@@ -1,5 +1,4 @@
 import { numberShortenCharacrer } from "@/src/shared/lib/number-shorten-character";
-import { fakerRU } from "@faker-js/faker";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
@@ -42,10 +41,6 @@ export const Other: FC = () => {
   const param2 = useMemo(() => {
     if (blogger?.posts_ads_perc === undefined) return null;
     const value = blogger.posts_ads_perc;
-    return { value: value.toFixed(2) };
-  }, [blogger]);
-  const param3 = useMemo(() => {
-    const value = fakerRU.number.float({ min: 0.01, max: 100.0 });
     return { value: value.toFixed(2) };
   }, [blogger]);
 
@@ -92,11 +87,14 @@ export const Other: FC = () => {
                 icon3={<VisibilityOutlinedIcon />}
               />
             )}
-            {!!param3 && (
+            {typeof blogger.posts_swear_perc === "number" && (
               <StatElement
-                error
                 label="Процент (%) использования ненормативной лексики в текстовых постах"
-                value={<Typography variant="h6">{param3.value}%</Typography>}
+                value={
+                  <Typography variant="h6">
+                    {blogger.posts_swear_perc}%
+                  </Typography>
+                }
                 icon2={<OndemandVideoIcon />}
                 icon3={<VisibilityOutlinedIcon />}
               />
