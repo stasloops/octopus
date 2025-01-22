@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button } from "@mui/material";
@@ -11,20 +11,20 @@ interface UploadCsvProps {
 }
 
 export const UploadCsv: FC<UploadCsvProps> = ({ fallback }) => {
-  const [fileName, setFileName] = useState<string>("");
   const { isDragActive, handleDrag, handleDrop } = useDrag();
   const {
     register,
     formState: { errors },
     handleSubmit,
     setValue,
-    watch,
+    watch
   } = useForm<FormData>({
     resolver: zodResolver(uploadCsvSchema),
   });
 
   const fileList = watch("file");
   const hasFile = fileList && fileList.length > 0;
+  const fileName = hasFile ? fileList[0].name : "";
 
   const onSubmit = (data: FormData) => {
     const file = data.file[0];
@@ -32,14 +32,6 @@ export const UploadCsv: FC<UploadCsvProps> = ({ fallback }) => {
       fallback(file);
     }
   };
-
-  useEffect(() => {
-    if (hasFile) {
-      setFileName(fileList[0].name);
-    } else {
-      setFileName("");
-    }
-  }, [fileList, hasFile]);
 
   return (
     <Box component="form" onSubmit={handleSubmit(onSubmit)}>
@@ -90,7 +82,7 @@ export const UploadCsv: FC<UploadCsvProps> = ({ fallback }) => {
   );
 };
 
-const VisuallyHiddenInput = styled("input")({
+const VisuallyHiddenInput = styled('input')({
   clip: "rect(0 0 0 0)",
   clipPath: "inset(50%)",
   height: 1,

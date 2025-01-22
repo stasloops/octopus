@@ -5,16 +5,18 @@ import { enqueueSnackbar } from "notistack";
 import React from "react";
 import { UploadCsv } from "./upload-csv";
 import { saveBloggerPlatformCsv } from "../api";
+import { useMutation } from "react-query";
 
-export const UploadBloggersPage = () => {
-  const handleSaveBloggerPlatform = async (file: File) => {
-    try {
-      await saveBloggerPlatformCsv(file);
+export const Page = () => {
+  const { mutate: handleSaveBloggerPlatform } = useMutation({
+    mutationFn: (file: File) => saveBloggerPlatformCsv(file),
+    onSuccess: () => {
       enqueueSnackbar("Данные успешно сохранены!", { variant: "success" });
-    } catch {
+    },
+    onError: () => {
       enqueueSnackbar("Ошибка при сохранении данных", { variant: "error" });
-    }
-  };
+    },
+  });
   return (
     <>
       <Layout />

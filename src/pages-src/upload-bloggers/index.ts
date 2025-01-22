@@ -1,3 +1,3 @@
-import { UploadBloggersPage } from "./ui/upload-bloggers-page";
+import { Page } from "./ui";
 
-export default UploadBloggersPage
+export default Page
