@@ -1,8 +1,9 @@
 "use client";
 
+import { CustomTextField } from "@/src/shared/ui/custom-text-field";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import SearchIcon from "@mui/icons-material/Search";
-import { IconButton, InputAdornment, TextField } from "@mui/material";
+import { IconButton, InputAdornment } from "@mui/material";
 import { FC, useRef } from "react";
 import { useSearchStore } from "../../model/store";
 
@@ -28,7 +29,7 @@ export const SearchInput: FC<SearchInputProps> = () => {
 
   return (
     <>
-      <TextField
+      <CustomTextField
         // label="Поиск"
         placeholder="Поиск"
         variant="outlined"
@@ -37,16 +38,13 @@ export const SearchInput: FC<SearchInputProps> = () => {
         size="small"
         inputRef={inputRef}
         sx={{
-          width: { xs: `100%`, md: `300px`, lg: `300px` },
-          "& .MuiOutlinedInput-notchedOutline": {
+          "& .MuiOutlinedInput-notchedOutline ": {
             background: `#EFFCFC`,
-            borderColor: `#B5CDEF`,
             zIndex: -1,
           },
           "& ::placeholder": {
             color: `#B5CDEF`,
           },
-          // background: `#000`
         }}
         InputProps={{
           startAdornment: (

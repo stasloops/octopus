@@ -9,7 +9,7 @@ import {
   SxProps,
   TableCell,
   Tooltip,
-  Typography
+  Typography,
 } from "@mui/material";
 import { Theme } from "@mui/system";
 import Link from "next/link";
@@ -390,7 +390,15 @@ export function rowContent(_index: number, row: IBlogger) {
           </Stack>
         </Box>
       </TableCell>
-      <TableCell></TableCell>
+      <TableCell
+        sx={{
+          display: {
+            xs: `table-cell`,
+            md: `none`,
+            lg: `none`,
+          },
+        }}
+      ></TableCell>
       <TableCell
         sx={{
           height: `170px`,
@@ -405,7 +413,15 @@ export function rowContent(_index: number, row: IBlogger) {
           pb: `65px`,
         }}
       >{`${row.er.toFixed(1)}%`}</TableCell>
-      <TableCell></TableCell>
+      <TableCell
+        sx={{
+          display: {
+            xs: `table-cell`,
+            md: `none`,
+            lg: `none`,
+          },
+        }}
+      ></TableCell>
       <TableCell
         sx={{
           height: `170px`,
