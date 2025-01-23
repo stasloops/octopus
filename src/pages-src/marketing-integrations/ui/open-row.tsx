@@ -1,14 +1,14 @@
 import { numberShortenCharacrer } from "@/src/shared/lib/number-shorten-character";
 import {
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-    Stack,
-    TextField,
-    Tooltip,
-    Typography,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Stack,
+  TextField,
+  Tooltip,
+  Typography,
 } from "@mui/material";
 import { FC, useMemo, useState } from "react";
 import { IMarketingIntegrations } from "../api/http-get-marketing-integrations";
@@ -34,13 +34,15 @@ export const OpenRow: FC<OpenRowProps> = ({ row }) => {
   // }, [row]);
 
   const param2 = useMemo(() => {
-    if (row.metrics.likes === undefined || row.metrics.likes === null) return null;
+    if (row.metrics.likes === undefined || row.metrics.likes === null)
+      return null;
     const value = row.metrics.likes || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [row]);
   const param3 = useMemo(() => {
-    if (row.metrics.comments === undefined || row.metrics.comments === null) return null;
+    if (row.metrics.comments === undefined || row.metrics.comments === null)
+      return null;
     const value = row.metrics.comments || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;

@@ -3,7 +3,7 @@
 import { Layout } from "@/src/widgets/layout";
 import React from "react";
 import { UploadCsv } from "./upload-csv";
-import { Box, Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import { useSave } from "../lib/hooks/use-save";
 
 export const Page = () => {
@@ -26,8 +26,19 @@ export const Page = () => {
             fontWeight: `600`,
             fontSize: `20px`,
           }}
-        >{`Поиск по блоггерам`}</Typography>
+        >{`Загрузка блогеров`}</Typography>
         <UploadCsv fallback={handleSaveBloggerPlatform} />
+
+        <Box sx={{ marginTop: "12px" }}>
+          <Link
+            sx={{ cursor: "pointer" }}
+            href="/pdf/manual.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Инструкция по добавлению сообществ
+          </Link>
+        </Box>
       </Box>
     </>
   );

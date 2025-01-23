@@ -1,6 +1,11 @@
 import { useMutation } from "react-query";
 import { saveBloggerPlatformCsv } from "../../api";
 import { enqueueSnackbar } from "notistack";
+import { useRouter } from "next/navigation";
+
+interface IError {
+  response: { status: number; data: { detail: string } };
+}
 
 const MESSAGE_CONFIG = {
   success: "Данные успешно сохранены!",
@@ -10,14 +15,22 @@ const MESSAGE_CONFIG = {
 };
 
 export const useSave = () => {
+  const router = useRouter();
+
   const { mutate: handleSaveBloggerPlatform } = useMutation({
     mutationFn: (file: File) => saveBloggerPlatformCsv(file),
     onSuccess: () => {
       enqueueSnackbar(MESSAGE_CONFIG["success"], { variant: "success" });
+      router.push("/");
     },
-    onError: ({ response }: { response: { status: number } }) => {
-      if (response.status === 400) {
-        enqueueSnackbar(MESSAGE_CONFIG["error_400"], {
+    onError: ({
+      response: {
+        status,
+        data: { detail },
+      },
+    }: IError) => {
+      if (status === 400) {
+        enqueueSnackbar(detail, {
           variant: "error",
         });
       } else {
@@ -26,5 +39,5 @@ export const useSave = () => {
     },
   });
 
-  return handleSaveBloggerPlatform
+  return handleSaveBloggerPlatform;
 };

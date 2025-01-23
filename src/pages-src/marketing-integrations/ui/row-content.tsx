@@ -22,7 +22,7 @@ export const RowContent: FC<RowContentProps> = ({ _index, row }) => {
   );
   return (
     <>
-      <Paper sx={{ padding: 2, mx: `40px`, mt: `20px` }}>
+      <Paper sx={{ padding: 2, mx: `40px`, mt: `20px`, borderRadius: '20px' }}>
         <Stack spacing={2}>
           <Stack
             direction="row"
