@@ -6,6 +6,6 @@ export const saveBloggerPlatformCsv = async (file: File): Promise<void> => {
       file,
     });
   } catch (error) {
-    return console.error(error);
+    throw error;
   }
 };

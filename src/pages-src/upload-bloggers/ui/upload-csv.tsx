@@ -17,7 +17,7 @@ export const UploadCsv: FC<UploadCsvProps> = ({ fallback }) => {
     formState: { errors },
     handleSubmit,
     setValue,
-    watch
+    watch,
   } = useForm<FormData>({
     resolver: zodResolver(uploadCsvSchema),
   });
@@ -35,54 +35,46 @@ export const UploadCsv: FC<UploadCsvProps> = ({ fallback }) => {
 
   return (
     <Box component="form" onSubmit={handleSubmit(onSubmit)}>
-      <Box
-        sx={{
-          width: "100%",
-          maxWidth: "90%",
-          paddingTop: "40px",
-          margin: "0 auto",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        {errors.file && (
-          <div style={{ color: "red" }}>{errors.file.message}</div>
-        )}
+      {errors.file && <div style={{ color: "red" }}>{errors.file.message}</div>}
 
-        <DropZone
-          isDragActive={isDragActive}
-          onDragEnter={handleDrag}
-          onDragLeave={handleDrag}
-          onDragOver={handleDrag}
-          onDrop={(e) => handleDrop(e, setValue)}
-          component="label"
+      <DropZone
+        isDragActive={isDragActive}
+        onDragEnter={handleDrag}
+        onDragLeave={handleDrag}
+        onDragOver={handleDrag}
+        onDrop={(e) => handleDrop(e, setValue)}
+        component="label"
+        role={undefined}
+        tabIndex={-1}
+      >
+        <Button
+          component="span"
           role={undefined}
+          variant="contained"
           tabIndex={-1}
         >
-          <Button
-            component="span"
-            role={undefined}
-            variant="contained"
-            tabIndex={-1}
-          >
-            {fileName || "Загрузить CSV файл"}
-            <VisuallyHiddenInput
-              {...register("file")}
-              accept=".csv"
-              type="file"
-            />
-          </Button>
-        </DropZone>
-
-        <Button type="submit" variant="contained" disabled={!hasFile}>
-          Сохранить
+          {fileName || "Загрузить CSV файл"}
+          <VisuallyHiddenInput
+            {...register("file")}
+            accept=".csv"
+            type="file"
+          />
         </Button>
-      </Box>
+      </DropZone>
+
+      <Button
+        sx={{ mt: "12px", py: '12px', width: '100%' }}
+        type="submit"
+        variant="contained"
+        disabled={!hasFile}
+      >
+        Сохранить
+      </Button>
     </Box>
   );
 };
 
-const VisuallyHiddenInput = styled('input')({
+const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
   clipPath: "inset(50%)",
   height: 1,
@@ -103,11 +95,11 @@ const DropZone = styled(Box)<{ isDragActive: boolean }>((props) => ({
   alignItems: "center",
 
   border: props.isDragActive ? "2px dashed #2196f3" : "2px dashed  #cccccc",
-  borderRadius: "4px",
+  borderRadius: "30px",
   padding: "20px",
+  marginTop: '10px',
   textAlign: "center",
   backgroundColor: true ? "rgba(33, 150, 243, 0.1)" : "transparent",
   cursor: "pointer",
   transition: "all 0.3s ease",
-  marginBottom: "16px",
 }));

@@ -1,28 +1,34 @@
 "use client";
 
 import { Layout } from "@/src/widgets/layout";
-import { enqueueSnackbar } from "notistack";
 import React from "react";
 import { UploadCsv } from "./upload-csv";
-import { saveBloggerPlatformCsv } from "../api";
-import { useMutation } from "react-query";
+import { Box, Typography } from "@mui/material";
+import { useSave } from "../lib/hooks/use-save";
 
 export const Page = () => {
-  const { mutate: handleSaveBloggerPlatform } = useMutation({
-    mutationFn: (file: File) => saveBloggerPlatformCsv(file),
-    onSuccess: () => {
-      enqueueSnackbar("Данные успешно сохранены!", { variant: "success" });
-    },
-    onError: () => {
-      enqueueSnackbar("Ошибка при сохранении данных", { variant: "error" });
-    },
-  });
+  const handleSaveBloggerPlatform = useSave();
   return (
     <>
       <Layout />
-      <div>
+      <Box
+        sx={{
+          width: "100%",
+          p: {
+            xs: `18px`,
+            md: `38px`,
+            lg: `38px`,
+          },
+        }}
+      >
+        <Typography
+          sx={{
+            fontWeight: `600`,
+            fontSize: `20px`,
+          }}
+        >{`Поиск по блоггерам`}</Typography>
         <UploadCsv fallback={handleSaveBloggerPlatform} />
-      </div>
+      </Box>
     </>
   );
 };
