@@ -27,7 +27,7 @@ export interface IGetMarketingIntegrationsSchema {
     populate?: string;
     published_at__gte?: string;
     published_at__lte?: string;
-    search: string;
+    search?: string;
     id__in?: string;
   };
   response: {
