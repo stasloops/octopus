@@ -1,14 +1,14 @@
 import { numberShortenCharacrer } from "@/src/shared/lib/number-shorten-character";
 import {
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-    Stack,
-    TextField,
-    Tooltip,
-    Typography,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Stack,
+  TextField,
+  Tooltip,
+  Typography,
 } from "@mui/material";
 import { FC, useMemo, useState } from "react";
 import { IMarketingIntegrations } from "../api/http-get-marketing-integrations";
@@ -26,39 +26,41 @@ export const OpenRow: FC<OpenRowProps> = ({ row }) => {
     setOpen(false);
   };
 
-  const param1 = useMemo(() => {
-    if (row.subscribers === undefined || row.subscribers === null) return null;
-    const value = row.subscribers || 0;
-    const shorten = numberShortenCharacrer(value);
-    return shorten;
-  }, [row]);
+  // const param1 = useMemo(() => {
+  //   if (row?.subscribers === undefined || row.subscribers === null) return null;
+  //   const value = row.subscribers || 0;
+  //   const shorten = numberShortenCharacrer(value);
+  //   return shorten;
+  // }, [row]);
 
   const param2 = useMemo(() => {
-    if (row.likes === undefined || row.likes === null) return null;
-    const value = row.likes || 0;
+    if (row.metrics.likes === undefined || row.metrics.likes === null)
+      return null;
+    const value = row.metrics.likes || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [row]);
   const param3 = useMemo(() => {
-    if (row.comments === undefined || row.comments === null) return null;
-    const value = row.comments || 0;
+    if (row.metrics.comments === undefined || row.metrics.comments === null)
+      return null;
+    const value = row.metrics.comments || 0;
     const shorten = numberShortenCharacrer(value);
     return shorten;
   }, [row]);
 
   const param4 = useMemo(() => {
-    if (row.er1 === undefined || row.er1 === null) return null;
-    const value = row.er1 || 0;
+    if (row.metrics.er === undefined || row.metrics.er === null) return null;
+    const value = row.metrics.er || 0;
     return { value: value.toFixed(2) };
   }, [row]);
   const param5 = useMemo(() => {
-    if (row.er2 === undefined || row.er2 === null) return null;
-    const value = row.er2 || 0;
+    if (row.metrics.er2 === undefined || row.metrics.er2 === null) return null;
+    const value = row.metrics.er2 || 0;
     return { value: value.toFixed(2) };
   }, [row]);
   const param6 = useMemo(() => {
-    if (row.er3 === undefined || row.er3 === null) return null;
-    const value = row.er3 || 0;
+    if (row.metrics.er3 === undefined || row.metrics.er3 === null) return null;
+    const value = row.metrics.er3 || 0;
     return { value: value.toFixed(2) };
   }, [row]);
 
@@ -95,9 +97,9 @@ export const OpenRow: FC<OpenRowProps> = ({ row }) => {
                 maxRows={5}
                 minRows={3}
                 variant="outlined"
-                value={row.text}
+                value={row.content}
               />
-              {!!param1 && (
+              {/* {!!param1 && (
                 <Stack
                   direction="row"
                   spacing={2}
@@ -113,7 +115,7 @@ export const OpenRow: FC<OpenRowProps> = ({ row }) => {
                     <Typography variant="h6">{param1.value}</Typography>
                   </Tooltip>
                 </Stack>
-              )}
+              )} */}
               {!!param2 && (
                 <Stack
                   direction="row"
