@@ -1,18 +1,22 @@
-import { httpLocal } from "@/src/shared/api/instance";
+import { http } from "@/src/shared/api/instance";
 
 export interface IMarketingIntegrations {
   id: number;
-  avatar: string;
-  name: string;
-  hashtags: string[];
-  text: string;
-
-  subscribers: number;
-  likes: number;
-  comments: number;
-  er1: number;
-  er2: number;
-  er3: number;
+  url: string;
+  content: string;
+  blogger_id: null | number;
+  published_at: Date;
+  metrics: {
+    er: number;
+    er2?: number;
+    er3?: number;
+    comments: number;
+    likes: number;
+    reports: number;
+    views: number;
+  };
+  // name: string;
+  // hashtags: string[];
 }
 
 export interface IGetMarketingIntegrationsSchema {
@@ -21,7 +25,9 @@ export interface IGetMarketingIntegrationsSchema {
     offset?: number;
     sort?: string;
     populate?: string;
-    search?: string;
+    published_at__gte?: string;
+    published_at__lte?: string;
+    search: string;
     id__in?: string;
   };
   response: {
@@ -48,10 +54,11 @@ export interface IGetMarketingIntegrationsSchema {
 export const httpMarketingIntegrations = async (
   payload: IGetMarketingIntegrationsSchema["payload"]
 ) => {
-  const response = await httpLocal.get<
-    IGetMarketingIntegrationsSchema["response"]
-  >(`/marketing-integrations`, {
-    params: payload,
-  });
+  const response = await http.get<IGetMarketingIntegrationsSchema["response"]>(
+    `/blogger/post`,
+    {
+      params: payload,
+    }
+  );
   return response.data;
 };

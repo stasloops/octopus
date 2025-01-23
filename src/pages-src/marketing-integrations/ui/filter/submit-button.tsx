@@ -14,10 +14,16 @@ export const SubmitButton: FC = () => {
 
   const setMarketingTable = useMarketingTableStore((state) => state.setValue);
 
-  const onSubmit = async (data: IFormFilter) => {
+  const onSubmit = async ({ advertisers, data_gte, data_lte }: IFormFilter) => {
+    const startDate = data_gte ? `${data_gte}T00:00:00` : undefined;
+    const endDate = data_lte ? `${data_lte}T23:59:59` : undefined;
+
     const res = await mutateAsync({
       offset: 0,
       limit: limitCount,
+      search: advertisers,
+      published_at__gte: startDate,
+      published_at__lte: endDate,
       // sort: `-subscribers`,
     });
     if (!res) return;

@@ -42,7 +42,7 @@ export const theme = createTheme({
     MuiButton: {
       defaultProps: {
         style: {
-          // borderRadius: `100px`,
+          borderRadius: `100px`,
           textTransform: "none",
         },
       },
