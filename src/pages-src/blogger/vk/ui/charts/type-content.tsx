@@ -13,6 +13,15 @@ export const TypeContent: FC = () => {
   const { data: bloggerStats } = useGetBloggerMutateStats();
 
   const dataChart: MakeOptional<PieValueType, "id">[] | null = useMemo(() => {
+    if (!dataBlogger) return null;
+    if (
+      typeof dataBlogger.videos !== "number" ||
+      typeof dataBlogger.clips !== "number" ||
+      typeof dataBlogger.posts !== "number"
+    )
+      return null;
+    if (dataBlogger.videos + dataBlogger.clips + dataBlogger.posts === 0)
+      return null;
     const value = [
       { value: dataBlogger?.videos || 0, label: "Видеоклипы" },
       {
