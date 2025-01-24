@@ -43,20 +43,30 @@ export const PostViewDynamics: FC = () => {
   return (
     <>
       {!!dataChart && (
-        <Grid2 xs={12} md="auto" lg="auto">
+        <Grid2 xs={12} md={6} lg={4}>
           <Paper
             sx={{
+              borderRadius: `20px`,
               position: `relative`,
-              width: { xs: `100%`, md: `400px`, lg: `400px` },
-              height: `500px`,
-              padding: 1,
+              width: `100%`,
+              height: `513px`,
+              padding: `24px`,
             }}
           >
-            <IconButton sx={{ position: `absolute`, top: `0px`, right: `0px` }}>
-              <MoreVertIcon />
+            <IconButton
+              sx={{ position: `absolute`, top: `20px`, right: `5px` }}
+            >
+              <MoreVertIcon sx={{ color: `#B5CDEF` }} />
             </IconButton>
             <Stack spacing={2} height={`100%`}>
-              <Typography variant="h6" pr={2}>
+              <Typography
+                sx={{
+                  fontWeight: `600`,
+                  fontSize: `20px`,
+                  color: `#2B3A8B`,
+                }}
+                pr={2}
+              >
                 Динамика просмотров постов
               </Typography>
               <Box

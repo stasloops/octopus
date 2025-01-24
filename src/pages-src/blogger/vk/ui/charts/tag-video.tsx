@@ -72,13 +72,14 @@ export const TagVideo: FC = () => {
   return (
     <>
       {!!dataChart && (
-        <Grid2 xs={12} md="auto" lg="auto">
+        <Grid2 xs={12} md={6} lg={4}>
           <Paper
             sx={{
+              borderRadius: `20px`,
               position: `relative`,
-              width: { xs: `100%`, md: `400px`, lg: `400px` },
-              height: `500px`,
-              padding: 1,
+              width: `100%`,
+              height: `513px`,
+              padding: `24px`,
             }}
           >
             <Stack
@@ -88,20 +89,27 @@ export const TagVideo: FC = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 position: `absolute`,
-                top: `0px`,
-                right: `0px`,
+                top: `20px`,
+                right: `5px`,
               }}
             >
               <IconButton onClick={onChangeOpen}>
-                <FilterAltOutlinedIcon />
+                <FilterAltOutlinedIcon sx={{ color: `#B5CDEF` }} />
               </IconButton>
               <IconButton>
-                <MoreVertIcon />
+                <MoreVertIcon sx={{ color: `#B5CDEF` }} />
               </IconButton>
             </Stack>
             <Stack spacing={2} height={`100%`}>
               <Box>
-                <Typography variant="h6" pr={2}>
+                <Typography
+                  sx={{
+                    fontWeight: `600`,
+                    fontSize: `20px`,
+                    color: `#2B3A8B`,
+                  }}
+                  pr={2}
+                >
                   {`Теги под видео`}
                 </Typography>
                 <Collapse in={open}>
