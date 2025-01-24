@@ -1,3 +1,4 @@
+import { CustomTextField } from "@/src/shared/ui/custom-text-field";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
@@ -8,7 +9,6 @@ import {
   IconButton,
   Paper,
   Stack,
-  TextField,
   Typography,
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
@@ -107,19 +107,22 @@ export const TagClip: FC = () => {
                     fontWeight: `600`,
                     fontSize: `20px`,
                     color: `#2B3A8B`,
+                    whiteSpace: `pre-wrap`,
+                    height: `30px`,
                   }}
                   pr={2}
                 >
-                  {`Теги под клипами (короткие ролики)`}
+                  {`Теги под клипами\n(короткие ролики)`}
                 </Typography>
                 <Collapse in={open}>
-                  <TextField
+                  <CustomTextField
                     fullWidth
                     label="Поиск"
                     variant="outlined"
                     size="small"
                     onChange={onChangeText}
                     value={search}
+                    sx={{ mt: `30px` }}
                   />
                 </Collapse>
               </Box>
@@ -147,23 +150,30 @@ export const TagClip: FC = () => {
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        height: `100px`,
+                        height: `162px`,
                         background: `linear-gradient(#fff0, 10%, #fff)`,
                       }}
                     >
                       <Button
                         onClick={onChangeScroll}
-                        sx={{ width: `100%`, height: `100%` }}
+                        sx={{
+                          width: `100%`,
+                          height: `100%`,
+                          fontWeight: `400`,
+                          fontSize: `24px`,
+                          color: `#222657`,
+                        }}
                       >
                         Раскрыть
                       </Button>
                     </Box>
                   )}
-                  <Box ref={refBox2}>
+                  <Box ref={refBox2} sx={{ pt: `28px` }}>
                     <Grid2
                       container
-                      spacing={`10px`}
-                      width={`calc(100% - 10px)`}
+                      columnSpacing={`17px`}
+                      rowSpacing={`11px`}
+                      width={`calc(100% - 17px)`}
                     >
                       {dataChart
                         .sort((a, b) => b.value - a.value)
@@ -179,10 +189,26 @@ export const TagClip: FC = () => {
                             >
                               <Chip
                                 label={el.label}
-                                variant="outlined"
-                                size="small"
+                                variant="filled"
+                                sx={{
+                                  height: `27px`,
+                                  background: `#D9E3F3`,
+                                  "& .MuiChip-label": {
+                                    color: `#222657`,
+                                    fontSize: `12px`,
+                                    fontWeight: 400,
+                                    lineHeight: `15px`,
+                                  },
+                                }}
                               />
-                              <Typography variant="caption">
+                              <Typography
+                                sx={{
+                                  color: `#222657`,
+                                  fontSize: `12px`,
+                                  fontWeight: 400,
+                                  lineHeight: `15px`,
+                                }}
+                              >
                                 {el.value}
                               </Typography>
                             </Stack>
