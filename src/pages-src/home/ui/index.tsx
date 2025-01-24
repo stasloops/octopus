@@ -44,7 +44,7 @@ export const Page: FC<PageProps> = ({ search }) => {
                 fontWeight: `600`,
                 fontSize: `20px`,
               }}
-            >{`Поиск по блоггерам`}</Typography>
+            >{`Поиск по блогерам`}</Typography>
             <TextResultElement />
             <TableElement />
           </Box>

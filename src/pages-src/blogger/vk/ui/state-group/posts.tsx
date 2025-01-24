@@ -1,6 +1,6 @@
 import { numberShortenCharacrer } from "@/src/shared/lib/number-shorten-character";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
+import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import {
@@ -13,23 +13,19 @@ import {
   Typography,
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import { FC, useEffect, useMemo, useState } from "react";
+import { FC, useMemo } from "react";
 import { useGetBloggerMutateStats } from "../../api/use-blogger-stats";
 import { useCloseAll } from "../../model/store";
 import { StatElement } from "./stat";
 
 export const Posts: FC = () => {
   const { data: blogger } = useGetBloggerMutateStats();
-  const [open, setOpen] = useState<boolean>(false);
+  const open = useCloseAll((state) => state.group3Open);
+  const setOpen = useCloseAll((state) => state.onChangeGroup3Open);
 
   const onChangeOpen = () => {
     setOpen(!open);
   };
-
-  const close = useCloseAll((state) => state.value);
-  useEffect(() => {
-    setOpen(false);
-  }, [close]);
 
   const param1 = useMemo(() => {
     if (!blogger?.posts_counters) return null;
@@ -94,32 +90,43 @@ export const Posts: FC = () => {
 
   if (!blogger) return null;
   return (
-    <Paper>
+    <Paper sx={{ borderRadius: `20px`, pl: `24px` }}>
       <ButtonBase onClick={onChangeOpen} sx={{ width: `100%` }}>
         <Stack
           direction="row"
-          spacing={1}
+          spacing={`15px`}
           sx={{
             justifyContent: "start",
             alignItems: "center",
-            padding: 1,
+            height: `64px`,
             width: `100%`,
           }}
         >
-          <Typography variant="h6">ПОСТЫ</Typography>
-          {!open && <ArrowDropDownIcon />}
-          {!!open && <ArrowDropUpIcon />}
+          <Typography sx={{ fontWeight: 400, fontSize: `24px` }}>
+            ПОСТЫ
+          </Typography>
+          {!open && <KeyboardArrowDownRoundedIcon />}
+          {!!open && <KeyboardArrowUpRoundedIcon />}
         </Stack>
       </ButtonBase>
       <Collapse in={open}>
-        <Box sx={{ width: `cacl(100% + 20px)`, padding: 1 }}>
-          <Grid2 container spacing={`20px`}>
+        <Box sx={{ width: `cacl(100% + 20px)`, pt: `5px`, pb: `27px` }}>
+          <Grid2
+            container
+            spacing={`20px`}
+            sx={{
+              justifyContent: "center",
+              alignItems: "flex-start",
+            }}
+          >
             {!!param1 && (
               <StatElement
                 label="Кол-во просмотров постов"
                 value={
                   <Tooltip title={param1.origin.toLocaleString("ru-RU")}>
-                    <Typography variant="h6">{param1.value}</Typography>
+                    <Typography sx={{ fontWeight: 600, fontSize: `20px` }}>
+                      {param1.value}
+                    </Typography>
                   </Tooltip>
                 }
                 icon2={<OndemandVideoIcon />}
@@ -131,7 +138,9 @@ export const Posts: FC = () => {
                 label="Кол-во лайков к постам"
                 value={
                   <Tooltip title={param2.origin.toLocaleString("ru-RU")}>
-                    <Typography variant="h6">{param2.value}</Typography>
+                    <Typography sx={{ fontWeight: 600, fontSize: `20px` }}>
+                      {param2.value}
+                    </Typography>
                   </Tooltip>
                 }
                 icon2={<OndemandVideoIcon />}
@@ -143,7 +152,9 @@ export const Posts: FC = () => {
                 label="Кол-во сообщений в посте"
                 value={
                   <Tooltip title={param3.origin.toLocaleString("ru-RU")}>
-                    <Typography variant="h6">{param3.value}</Typography>
+                    <Typography sx={{ fontWeight: 600, fontSize: `20px` }}>
+                      {param3.value}
+                    </Typography>
                   </Tooltip>
                 }
                 icon2={<OndemandVideoIcon />}
@@ -155,7 +166,9 @@ export const Posts: FC = () => {
                 label="Кол-во комментариев к одному сообщению в посте"
                 value={
                   <Tooltip title={param4.origin.toLocaleString("ru-RU")}>
-                    <Typography variant="h6">{param4.value}</Typography>
+                    <Typography sx={{ fontWeight: 600, fontSize: `20px` }}>
+                      {param4.value}
+                    </Typography>
                   </Tooltip>
                 }
                 icon2={<OndemandVideoIcon />}
@@ -167,7 +180,9 @@ export const Posts: FC = () => {
                 label="Кол-во репостов обычного поста"
                 value={
                   <Tooltip title={param5.origin.toLocaleString("ru-RU")}>
-                    <Typography variant="h6">{param5.value}</Typography>
+                    <Typography sx={{ fontWeight: 600, fontSize: `20px` }}>
+                      {param5.value}
+                    </Typography>
                   </Tooltip>
                 }
                 icon2={<OndemandVideoIcon />}
@@ -179,7 +194,9 @@ export const Posts: FC = () => {
                 label="Средний охват в 12 последних постах"
                 value={
                   <Tooltip title={param6.origin.toLocaleString("ru-RU")}>
-                    <Typography variant="h6">{param6.value}</Typography>
+                    <Typography sx={{ fontWeight: 600, fontSize: `20px` }}>
+                      {param6.value}
+                    </Typography>
                   </Tooltip>
                 }
                 icon2={<OndemandVideoIcon />}
@@ -191,7 +208,9 @@ export const Posts: FC = () => {
                 label="Среднее количество лайков в 12 последних постах"
                 value={
                   <Tooltip title={param7.origin.toLocaleString("ru-RU")}>
-                    <Typography variant="h6">{param7.value}</Typography>
+                    <Typography sx={{ fontWeight: 600, fontSize: `20px` }}>
+                      {param7.value}
+                    </Typography>
                   </Tooltip>
                 }
                 icon2={<OndemandVideoIcon />}
@@ -203,7 +222,9 @@ export const Posts: FC = () => {
                 label="Среднее количество комментариев на последних 12 постах"
                 value={
                   <Tooltip title={param8.origin.toLocaleString("ru-RU")}>
-                    <Typography variant="h6">{param8.value}</Typography>
+                    <Typography sx={{ fontWeight: 600, fontSize: `20px` }}>
+                      {param8.value}
+                    </Typography>
                   </Tooltip>
                 }
                 icon2={<OndemandVideoIcon />}
@@ -215,7 +236,9 @@ export const Posts: FC = () => {
                 label="Среднее количество комментариев к одному сообщению на последних 12 постах"
                 value={
                   <Tooltip title={param9.origin.toLocaleString("ru-RU")}>
-                    <Typography variant="h6">{param9.value}</Typography>
+                    <Typography sx={{ fontWeight: 600, fontSize: `20px` }}>
+                      {param9.value}
+                    </Typography>
                   </Tooltip>
                 }
                 icon2={<OndemandVideoIcon />}
@@ -227,7 +250,9 @@ export const Posts: FC = () => {
                 label="Среднее количество репостов постов за последние 12 постов"
                 value={
                   <Tooltip title={param10.origin.toLocaleString("ru-RU")}>
-                    <Typography variant="h6">{param10.value}</Typography>
+                    <Typography sx={{ fontWeight: 600, fontSize: `20px` }}>
+                      {param10.value}
+                    </Typography>
                   </Tooltip>
                 }
                 icon2={<OndemandVideoIcon />}
