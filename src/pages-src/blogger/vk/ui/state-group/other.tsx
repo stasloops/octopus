@@ -1,6 +1,6 @@
 import { numberShortenCharacrer } from "@/shared/lib/number-shorten-character";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
+import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import {
@@ -13,7 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import { FC, useEffect, useMemo, useState } from "react";
+import { FC, useMemo } from "react";
 import { useGetBloggerMutateStats } from "../../api/use-blogger-stats";
 import { useCloseAll } from "../../model/store";
 import { ExternalLinks } from "./external-links";
@@ -21,16 +21,12 @@ import { StatElement } from "./stat";
 
 export const Other: FC = () => {
   const { data: blogger } = useGetBloggerMutateStats();
-  const [open, setOpen] = useState<boolean>(false);
+  const open = useCloseAll((state) => state.group4Open);
+  const setOpen = useCloseAll((state) => state.onChangeGroup4Open);
 
   const onChangeOpen = () => {
     setOpen(!open);
   };
-
-  const close = useCloseAll((state) => state.value);
-  useEffect(() => {
-    setOpen(false);
-  }, [close]);
 
   const param1 = useMemo(() => {
     if (blogger?.audience_in_numbers === undefined) return null;
@@ -49,33 +45,44 @@ export const Other: FC = () => {
 
   if (!blogger) return null;
   return (
-    <Paper>
+    <Paper sx={{ borderRadius: `20px`, pl: `24px` }}>
       <ButtonBase onClick={onChangeOpen} sx={{ width: `100%` }}>
         <Stack
           direction="row"
-          spacing={1}
+          spacing={`15px`}
           sx={{
             justifyContent: "start",
             alignItems: "center",
-            padding: 1,
+            height: `64px`,
             width: `100%`,
           }}
         >
-          <Typography variant="h6">ПРОЧЕЕ</Typography>
-          {!open && <ArrowDropDownIcon />}
-          {!!open && <ArrowDropUpIcon />}
+          <Typography sx={{ fontWeight: 400, fontSize: `24px` }}>
+            ПРОЧЕЕ
+          </Typography>
+          {!open && <KeyboardArrowDownRoundedIcon />}
+          {!!open && <KeyboardArrowUpRoundedIcon />}
         </Stack>
       </ButtonBase>
       <Collapse in={open}>
-        <Box sx={{ width: `cacl(100% + 20px)`, padding: 1 }}>
-          <Grid2 container spacing={`20px`}>
+        <Box sx={{ width: `cacl(100% + 20px)`, pt: `5px`, pb: `27px` }}>
+          <Grid2
+            container
+            spacing={`20px`}
+            sx={{
+              justifyContent: "center",
+              alignItems: "flex-start",
+            }}
+          >
             <ExternalLinks />
             {!!param1 && (
               <StatElement
                 label="Кол-во аудитории в цифрах"
                 value={
                   <Tooltip title={param1.origin.toLocaleString("ru-RU")}>
-                    <Typography variant="h6">{param1.value}</Typography>
+                    <Typography sx={{ fontWeight: 600, fontSize: `20px` }}>
+                      {param1.value}
+                    </Typography>
                   </Tooltip>
                 }
                 icon2={<OndemandVideoIcon />}
@@ -84,8 +91,12 @@ export const Other: FC = () => {
             )}
             {!!param2 && (
               <StatElement
-                label="Процент (%) рекламных постов у блоггера"
-                value={<Typography variant="h6">{param2.value}%</Typography>}
+                label="Процент (%) рекламных постов у блогера"
+                value={
+                  <Typography sx={{ fontWeight: 600, fontSize: `20px` }}>
+                    {param2.value}%
+                  </Typography>
+                }
                 icon2={<OndemandVideoIcon />}
                 icon3={<VisibilityOutlinedIcon />}
               />
@@ -93,7 +104,11 @@ export const Other: FC = () => {
             {!!param3 && (
               <StatElement
                 label="Процент (%) использования ненормативной лексики в текстовых постах"
-                value={<Typography variant="h6">{param3?.value}%</Typography>}
+                value={
+                  <Typography sx={{ fontWeight: 600, fontSize: `20px` }}>
+                    {param3?.value}%
+                  </Typography>
+                }
                 icon2={<OndemandVideoIcon />}
                 icon3={<VisibilityOutlinedIcon />}
               />

@@ -1,8 +1,8 @@
 "use client";
 
-import { HeaderHome } from "@/src/features/header-home";
-import Loading from "@/src/pages-src/loading";
-import { Layout } from "@/src/widgets/layout";
+import { HeaderHome } from "@/features/header-home";
+import Loading from "@/pages-src/loading";
+import { Layout } from "@/widgets/layout";
 import { Box, Typography } from "@mui/material";
 import { FC, useCallback, useEffect } from "react";
 import { useGetBloggerMutate } from "../api/use-blogger";
@@ -44,7 +44,7 @@ export const Page: FC<PageProps> = ({ search }) => {
                 fontWeight: `600`,
                 fontSize: `20px`,
               }}
-            >{`Поиск по блоггерам`}</Typography>
+            >{`Поиск по блогерам`}</Typography>
             <TextResultElement />
             <TableElement />
           </Box>

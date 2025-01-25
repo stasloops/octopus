@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Поиск по блоггерам",
+  title: "Поиск по блогерам",
 };
 
 export default async function RootLayout({
