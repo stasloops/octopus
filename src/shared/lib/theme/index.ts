@@ -67,7 +67,7 @@ export const theme = createTheme({
       },
     }),
     text: {
-      primary: `#2B3A8B`,
+      primary: `#222657`,
     },
     // background: { default: "#ececec" }
   },

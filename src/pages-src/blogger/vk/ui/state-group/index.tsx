@@ -7,19 +7,33 @@ import { ShortVideos } from "./short-videos";
 import { VideoClips } from "./video-clips";
 
 export const StateGroup: FC = () => {
-  const onChangeClose = useCloseAll((state) => state.onChange);
+  const closeIsOpen = useCloseAll(
+    (state) =>
+      state.group1Open ||
+      state.group2Open ||
+      state.group3Open ||
+      state.group4Open
+  );
+  const onChangeClose = useCloseAll((state) => state.onCloseAll);
   const onCloseAll = () => {
     onChangeClose();
   };
   return (
     <>
-      <Stack spacing={2} sx={{ px: `38px`, pt: `15px` }}>
+      <Stack
+        spacing="12px"
+        sx={{ px: `38px`, pt: `54px`, position: `relative` }}
+      >
         <Stack
           direction="row"
           spacing={2}
           sx={{
+            position: `absolute`,
+            top: `13px`,
+            right: `38px`,
             justifyContent: "flex-end",
             alignItems: "center",
+            display: closeIsOpen ? `block` : `none`,
           }}
         >
           <Button onClick={onCloseAll}>Свернуть все</Button>

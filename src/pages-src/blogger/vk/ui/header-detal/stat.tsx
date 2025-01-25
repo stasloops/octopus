@@ -1,4 +1,4 @@
-import { theme } from "@/src/shared/lib/theme";
+import { theme } from "@/shared/lib/theme";
 import { Stack, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC, ReactNode } from "react";
@@ -25,8 +25,6 @@ export const StatElement: FC<StatElementProps> = ({
           sx={{
             justifyContent: "center",
             alignItems: "center",
-            width: `115px`,
-            maxWidth: `115px`,
           }}
         >
           {icon}
@@ -34,6 +32,10 @@ export const StatElement: FC<StatElementProps> = ({
           <Typography
             color={!!error ? theme.palette.error.main : undefined}
             align="center"
+            sx={{
+              fontWeight: `400`,
+              fontSize: `12px`,
+            }}
           >
             {label}
           </Typography>

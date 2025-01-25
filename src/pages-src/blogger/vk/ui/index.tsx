@@ -5,11 +5,9 @@ import { Layout } from "@/widgets/layout";
 import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined";
 import {
   Box,
-  Chip,
   IconButton,
   Stack,
-  Tooltip,
-  Typography,
+  Typography
 } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { useGetBloggerMutateStats } from "../api/use-blogger-stats";
@@ -53,7 +51,7 @@ export const Page: FC<PageProps> = ({ idBlogger }) => {
         <>
           <Layout />
           {scrollUp && (
-            <Box sx={{ position: `fixed`, bottom: 0, right: 0 }}>
+            <Box sx={{ position: `fixed`, bottom: 0, right: 0, zIndex: 5 }}>
               <IconButton size="large" onClick={onClickUp}>
                 <ArrowCircleUpOutlinedIcon fontSize="large" />
               </IconButton>
@@ -66,19 +64,17 @@ export const Page: FC<PageProps> = ({ idBlogger }) => {
               sx={{
                 justifyContent: "start",
                 alignItems: "center",
-                px: `38px`,
-                pt: `15px`,
+                px: { xs: `20px`, md: `38px`, lg: `38px` },
+                pt: `40px`,
               }}
             >
-              <Typography variant="h6">{`Аналитика аккаунта`}</Typography>
-              <Tooltip title="Все данные с красной подписью или обводкой - сгенерированы (не настоящие)">
-                <Chip
-                  color="error"
-                  size="small"
-                  label="Альфа"
-                  variant="outlined"
-                />
-              </Tooltip>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: `600`,
+                  fontSize: `20px`,
+                }}
+              >{`Аналитика аккаунта`}</Typography>
             </Stack>
             <HeaderDetal />
             <StateGroup />

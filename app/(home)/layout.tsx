@@ -1,10 +1,10 @@
-import { verifySessionCustom } from "@/src/shared/lib/session-custom";
+import { verifySessionCustom } from "@/shared/lib/session-custom";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Поиск по блоггерам",
+  title: "Поиск по блогерам",
 };
 
 export default async function RootLayout({

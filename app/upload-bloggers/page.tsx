@@ -1,2 +1,2 @@
-export { default } from "@/src/pages-src/upload-bloggers";
+export { default } from "@/pages-src/upload-bloggers";
 

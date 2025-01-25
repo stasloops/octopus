@@ -1,4 +1,4 @@
-import { httpServer } from "@/src/shared/api/instance-server";
+import { httpServer } from "@/shared/api/instance-server";
 
 interface Schema {
   payload: FormData;

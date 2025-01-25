@@ -28,3 +28,30 @@ video {
   background: #4d4d4d7a;
   border-radius: 25px;
 } */
+
+@media screen and (min-width: 900px) {
+  /* скролл для миниокн */
+  .miniscroll::-webkit-scrollbar {
+    width: 18px;
+    background-color: #ffffff;
+  }
+
+  .rRadius::-webkit-scrollbar {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+
+  .miniscroll::-webkit-scrollbar-thumb {
+    width: 10px;
+    min-height: 20%;
+    border-radius: 20px;
+    box-shadow: inset 0 0 10px 10px #b5cdef;
+    border: 5px solid transparent;
+  }
+
+  .miniscroll::-webkit-scrollbar-track {
+    border-radius: 20px;
+    box-shadow: inset 0 0 10px 10px #effcfc;
+    border: 5px solid #fff;
+  }
+}

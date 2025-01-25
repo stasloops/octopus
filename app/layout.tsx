@@ -1,5 +1,5 @@
-import App from "@/src/app-src";
-import { fontFamily } from "@/src/shared/lib/theme/font";
+import App from "../src/app-src";
+import { fontFamily } from "@/shared/lib/theme/font";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import "./globals.css";

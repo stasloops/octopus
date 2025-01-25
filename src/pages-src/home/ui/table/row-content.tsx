@@ -1,4 +1,4 @@
-import { IBlogger } from "@/src/shared/api/blogger/model";
+import { IBlogger } from "@/shared/api/blogger/model";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import {

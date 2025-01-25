@@ -1,4 +1,4 @@
-import { http } from "@/src/shared/api/instance";
+import { http } from "@/shared/api/instance";
 
 export interface IMarketingIntegrations {
   id: number;

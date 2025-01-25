@@ -1,2 +1,2 @@
-export { default } from "@/src/pages-src/loading";
+export { default } from "@/pages-src/loading";
 

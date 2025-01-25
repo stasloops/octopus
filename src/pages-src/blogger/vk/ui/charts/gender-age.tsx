@@ -6,15 +6,21 @@ import {
   FormControlLabel,
   IconButton,
   Paper,
+  Portal,
   Stack,
   Typography,
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { PieValueType } from "@mui/x-charts";
 import { MakeOptional } from "@mui/x-charts/internals";
-import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
-import { FC, useMemo, useState } from "react";
+import {
+  PieChart,
+  pieArcClasses,
+  pieArcLabelClasses,
+} from "@mui/x-charts/PieChart";
+import { FC, useMemo, useRef, useState } from "react";
 import { useGetBloggerMutateStats } from "../../api/use-blogger-stats";
+import { CustomCheckGroup } from "../lib/custom-check-group";
 
 const genFakeData = (): any => {
   const male = {
@@ -106,29 +112,38 @@ export const GenderAge: FC = () => {
     return value;
   }, [bloggerStats, gender]);
 
-  const handleChange =
-    (value: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      setGender(value);
-    };
+  const handleChange = (value: string) => {
+    setGender(value);
+  };
 
   return (
     <>
       {!!dataChart && (
-        <Grid2 xs={12} md="auto" lg="auto">
+        <Grid2 xs={12} md={6} lg={4}>
           <Paper
             sx={{
+              borderRadius: `20px`,
               position: `relative`,
-              width: { xs: `100%`, md: `400px`, lg: `400px` },
-              height: `500px`,
-              padding: 1,
+              width: `100%`,
+              height: `513px`,
+              padding: `24px`,
             }}
           >
-            <IconButton sx={{ position: `absolute`, top: `0px`, right: `0px` }}>
-              <MoreVertIcon />
+            <IconButton
+              sx={{ position: `absolute`, top: `20px`, right: `5px` }}
+            >
+              <MoreVertIcon sx={{ color: `#B5CDEF` }} />
             </IconButton>
             <Stack spacing={2} height={`100%`}>
-              <Typography variant="h6" pr={2}>
-                Пол и возраст аудитории сообщества
+              <Typography
+                sx={{
+                  fontWeight: `600`,
+                  fontSize: `20px`,
+                  color: `#2B3A8B`,
+                }}
+                pr={2}
+              >
+                Пол и возраст аудитории
               </Typography>
               <Box
                 sx={{
@@ -150,42 +165,24 @@ export const GenderAge: FC = () => {
                   height: `0%`,
                 }}
               >
-                <Grid2
-                  container
-                  spacing={`5px`}
+                <Box
                   sx={{
                     position: `absolute`,
-                    bottom: 0,
-                    width: `100%`,
-                    justifyContent: "center",
-                    alignItems: "center",
+                    bottom: `20px`,
+                    left: 0,
+                    right: 0,
                   }}
                 >
-                  <CheckBoxElement
+                  <CustomCheckGroup
                     value={gender}
-                    gender="all"
-                    handleChange={handleChange}
-                    label="Все"
+                    onChange={handleChange}
+                    list={[
+                      { id: `all`, label: `Все` },
+                      { id: `male`, label: `Мужчины` },
+                      { id: `female`, label: `Женщины` },
+                    ]}
                   />
-                  <CheckBoxElement
-                    value={gender}
-                    gender="male"
-                    handleChange={handleChange}
-                    label="Мужчины"
-                  />
-                  <CheckBoxElement
-                    value={gender}
-                    gender="female"
-                    handleChange={handleChange}
-                    label="Женщины"
-                  />
-                  {/* <CheckBoxElement
-                    value={gender}
-                    gender="null"
-                    handleChange={handleChange}
-                    label="Не указан"
-                  /> */}
-                </Grid2>
+                </Box>
               </Box>
             </Stack>
           </Paper>
@@ -230,33 +227,184 @@ const ChartElement: FC<{
       .reduce((acc, number) => acc + number, 0);
   }, [dataChart]);
 
+  const container = useRef(null);
+
   return (
     <>
-      <PieChart
-        series={[
-          {
-            valueFormatter: (item) =>
-              item === null
-                ? ""
-                : `${item.value.toLocaleString("ru-RU")} / ${(
-                    (item.value / summ) *
-                    100
-                  ).toFixed(1)}%`,
-            arcLabel: (item) => `${((item.value / summ) * 100).toFixed(1)}%`,
-            arcLabelMinAngle: 35,
-            arcLabelRadius: "60%",
-            data: dataChart,
-          },
-        ]}
+      <Stack
+        direction="row"
+        spacing={2}
         sx={{
-          [`& .${pieArcLabelClasses.root}`]: {
-            fontWeight: "bold",
-            fill: `#fff`,
-          },
+          justifyContent: "center",
+          alignItems: "center",
+          height: `100%`,
+          width: `100%`,
+          pb: `90px`,
         }}
-        margin={{ right: 200 }}
-        // colors={colorsList.slice(6)}
-      />
+      >
+        <Box sx={{ height: `100%`, width: `100%` }}>
+          <PieChart
+            colors={[
+              `#B6EAFA`,
+              `#70D2F8`,
+              `#B5CDEF`,
+              `var(--my-custom-gradient, #123456)`,
+              `#2B69D5`,
+              `#222657`,
+            ]}
+            series={[
+              {
+                valueFormatter: (item) =>
+                  item === null
+                    ? ""
+                    : `${item.value.toLocaleString("ru-RU")} / ${(
+                        (item.value / summ) *
+                        100
+                      ).toFixed(1)}%`,
+                arcLabel: (item) =>
+                  `${((item.value / summ) * 100).toFixed(1)}%`,
+                arcLabelMinAngle: 35,
+                arcLabelRadius: "60%",
+                data: dataChart,
+
+                // startAngle: 90,
+                // endAngle: 450,
+              },
+            ]}
+            sx={{
+              "--my-custom-gradient": "url(#GlobalGradient)",
+              [`& .${pieArcLabelClasses.root}`]: {
+                fontWeight: "bold",
+                fill: `#fff`,
+              },
+              [`& .${pieArcClasses.root}`]: {
+                stroke: `none`,
+                filter: `drop-shadow(0 0 0.40rem rgba(0,0,0,.5))`,
+              },
+            }}
+            margin={{ right: 10, left: 10, bottom: 10, top: 10 }}
+            slots={{
+              pieArcLabel: (props) => {
+                const {
+                  startAngle,
+                  endAngle,
+                  arcLabelRadius,
+                  formattedArcLabel,
+                } = props;
+
+                const size = endAngle.get() - startAngle.get();
+                let fontSize = 0;
+                if (size >= 0.3) fontSize = 10;
+                if (size >= 0.5) fontSize = 15;
+                if (size >= 1) fontSize = 20;
+                if (size >= 2) fontSize = 25;
+                if (size >= 3) fontSize = 30;
+                if (size >= 4) fontSize = 35;
+                if (size >= 5) fontSize = 40;
+                const y =
+                  -Math.cos((startAngle.get() + endAngle.get()) / 2) *
+                  arcLabelRadius.get();
+                const x =
+                  Math.sin((startAngle.get() + endAngle.get()) / 2) *
+                  arcLabelRadius.get();
+
+                return (
+                  <g>
+                    <text
+                      textAnchor="middle"
+                      y={10}
+                      style={{
+                        color: `#fff`,
+                        fontSize: `${fontSize * 0.7}px`,
+                        fontWeight: 600,
+                        transform: `translate3d(${x}px, ${y}px, 0px)`,
+                        pointerEvents: `none`,
+                      }}
+                      fill={"#fff"}
+                    >
+                      {formattedArcLabel}
+                    </text>
+                  </g>
+                );
+              },
+              legend: (data) => {
+                return (
+                  <Portal container={() => container.current!}>
+                    <Grid2
+                      direction="column"
+                      container
+                      columnSpacing="7px"
+                      rowSpacing="12px"
+                      sx={{
+                        justifyContent: "flex-start",
+                        alignItems: "flex-start",
+                      }}
+                    >
+                      {data.seriesToDisplay.map((el, index) => (
+                        <Grid2 xs="auto">
+                          <Stack
+                            direction="row"
+                            justifyContent="start"
+                            alignItems="center"
+                            spacing={1}
+                            width="100%"
+                          >
+                            <Stack
+                              direction="row"
+                              justifyContent="center"
+                              alignItems="center"
+                              spacing="7px"
+                            >
+                              <Box
+                                sx={{
+                                  width: `25px`,
+                                  height: `25px`,
+                                  borderRadius: `20px`,
+                                  background: el.color,
+                                }}
+                              />
+                              <Typography
+                                textAlign="left"
+                                sx={{
+                                  fontSize: 12,
+                                  fontWeight: `600`,
+                                  fill: "#222657",
+                                }}
+                              >
+                                {el.label}
+                              </Typography>
+                            </Stack>
+                          </Stack>
+                        </Grid2>
+                      ))}
+                    </Grid2>
+                  </Portal>
+                );
+              },
+            }}
+            // colors={colorsList.slice(6)}
+          >
+            <linearGradient
+              id="GlobalGradient"
+              x1="0%"
+              y1="100%"
+              x2="0%"
+              y2="0%"
+            >
+              <stop offset="0" stopColor="#2B69D5" />
+              <stop offset="1" stopColor="#70D2F8" />
+            </linearGradient>
+          </PieChart>
+        </Box>
+        <Box
+          ref={container}
+          sx={{
+            width: `110px`,
+            "--my-custom-gradient":
+              "linear-gradient(267.43deg, #2B69D5 13.87%, #70D2F8 97.91%)",
+          }}
+        />
+      </Stack>
     </>
   );
 };

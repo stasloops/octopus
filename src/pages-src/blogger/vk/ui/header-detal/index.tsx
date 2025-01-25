@@ -1,7 +1,10 @@
 import { numberShortenCharacrer } from "@/shared/lib/number-shorten-character";
 import { theme } from "@/shared/lib/theme";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import ChromeReaderModeOutlinedIcon from "@mui/icons-material/ChromeReaderModeOutlined";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
+import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
+import UnsubscribeOutlinedIcon from "@mui/icons-material/UnsubscribeOutlined";
 import { Avatar, Box, Paper, Stack, Tooltip, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import Link from "next/link";
@@ -58,21 +61,41 @@ export const HeaderDetal: FC = () => {
   if (!blogger) return null;
   return (
     <>
-      <Box sx={{ px: `38px`, pt: `15px` }}>
-        <Paper sx={{ padding: 1 }}>
-          <Grid2 container spacing={`20px`}>
-            <Grid2 xs={12} md={12} lg>
-              <Stack
-                spacing={2}
-                sx={{
-                  width: `100%`,
-                  //  background: `red`
-                }}
-              >
+      <Box sx={{ px: { xs: `20px`, md: `38px`, lg: `38px` }, pt: `28px` }}>
+        <Paper
+          sx={{
+            position: `relative`,
+            padding: `23.5px`,
+            borderRadius: `20px`,
+            height: { xs: null, md: null, lg: `232px` },
+          }}
+        >
+          <Box sx={{ width: `100%`, height: `100%` }}>
+            <Grid2
+              sx={{
+                height: `100%`,
+                justifyContent: {
+                  xs: `flex-start`,
+                  md: `center`,
+                  lg: `center`,
+                },
+                alignItems: {
+                  xs: `flex-start`,
+                  md: `center`,
+                  lg: `center`,
+                },
+              }}
+              container
+              columnSpacing={`47px`}
+              rowSpacing={{ xs: `40px`, md: `40px`, lg: null }}
+              // spacing={`47px`}
+            >
+              <Grid2 xs={12} md lg>
                 <Stack
                   direction="row"
                   spacing={2}
                   sx={{
+                    width: `100%`,
                     justifyContent: "flex-start",
                     alignItems: "flex-start",
                   }}
@@ -81,10 +104,10 @@ export const HeaderDetal: FC = () => {
                     alt="avatar"
                     src={blogger.image || undefined}
                     variant="rounded"
-                    sx={{ height: `90px`, width: `90px`, borderRadius: `15px` }}
+                    sx={{ height: `90px`, width: `90px`, borderRadius: `20px` }}
                   ></Avatar>
                   <Stack
-                    spacing={3}
+                    spacing={`23px`}
                     sx={{
                       width: `100%`,
                       //  background: `blue`
@@ -103,7 +126,6 @@ export const HeaderDetal: FC = () => {
                           sx={{
                             position: `relative`,
                             width: `100%`,
-                            maxWidth: `300px`,
                             height: `15px`,
                           }}
                         >
@@ -120,12 +142,13 @@ export const HeaderDetal: FC = () => {
                             {blogger.title && (
                               <Tooltip title={blogger.title}>
                                 <Typography
-                                  variant="h6"
                                   color={theme.palette.primary.dark}
                                   sx={{
                                     textOverflow: `ellipsis`,
                                     overflow: `hidden`,
                                     whiteSpace: `nowrap`,
+                                    fontWeight: `600`,
+                                    fontSize: `20px`,
                                   }}
                                 >{`${blogger.title}`}</Typography>
                               </Tooltip>
@@ -187,6 +210,9 @@ export const HeaderDetal: FC = () => {
                                         borderRadius: `30px`,
                                         background: `#D9E3F3`,
                                         display: `inline-block`,
+
+                                        fontWeight: `600`,
+                                        fontSize: `14px`,
                                       }}
                                     >{`@${blogger.id_}`}</Typography>
                                   </Tooltip>
@@ -195,126 +221,181 @@ export const HeaderDetal: FC = () => {
                             </Box>
                           </Box>
                         </Grid2>
-                        <Grid2 xs={12} md lg>
-                          <Box
-                            sx={{
-                              // background: `red`,
-                              width: `100%`,
-                            }}
-                          >
-                            <Paper
-                              variant="outlined"
-                              sx={{
-                                background: `#EDF4FF`,
-                                padding: 1,
-                              }}
-                            >
-                              {!!communityTopics && (
-                                <Box sx={{ minHeight: `60px` }}>
-                                  <Typography
-                                    sx={{
-                                      "& span": {
-                                        fontWeight: 800,
-                                        color: theme.palette.primary.light,
-                                      },
-                                    }}
-                                  >
-                                    <span>{`Тематика сообщества: `}</span>
-                                    {communityTopics}
-                                  </Typography>
-                                </Box>
-                              )}
-                              <Typography
-                                sx={{
-                                  "& span": {
-                                    color: theme.palette.primary.light,
-                                  },
-                                }}
-                              >
-                                <span>{`Подтверждённый аккаунт: `}</span>
-                                {!!blogger.is_confirmed ? `ДА` : `НЕТ`}
-                              </Typography>
-                              <Typography
-                                sx={{
-                                  "& span": {
-                                    color: theme.palette.primary.light,
-                                  },
-                                }}
-                              >
-                                <span>{`Местоположение: `}</span>
-                                {location}
-                              </Typography>
-                            </Paper>
-                          </Box>
-                        </Grid2>
                       </Grid2>
                     </Box>
                   </Stack>
                 </Stack>
-                <Box></Box>
-              </Stack>
-            </Grid2>
-            <Grid2 xs={12} md={12} lg={`auto`}>
-              <Grid2
-                container
-                sx={{
-                  justifyContent: "flex-start",
-                  alignItems: "flex-start",
-                }}
-              >
-                {!!subscribers && (
-                  <StatElement
-                    icon={<PeopleAltOutlinedIcon fontSize="large" />}
-                    label="Кол-во подписчиков в сообществе автора"
-                    value={
-                      <Tooltip
-                        title={subscribers.origin.toLocaleString("ru-RU")}
-                      >
-                        <Typography align="center" variant="h6">
-                          {subscribers.value}
+              </Grid2>
+              <Grid2 xs={12} md lg>
+                <Box sx={{ width: `100%` }}>
+                  <Stack spacing="12px">
+                    {!!communityTopics && (
+                      <Box>
+                        <Typography
+                          sx={{
+                            "& span": {
+                              color: `#2B69D5`,
+                              fontWeight: 800,
+                            },
+                            fontWeight: 600,
+                          }}
+                        >
+                          <span>{`Тематика сообщества: `}</span>
+                          {communityTopics}
                         </Typography>
-                      </Tooltip>
-                    }
-                  />
-                )}
-                {!!countPost && (
-                  <StatElement
-                    icon={<PeopleAltOutlinedIcon fontSize="large" />}
-                    label="Кол-во постов"
-                    value={
-                      <Tooltip title={countPost.origin.toLocaleString("ru-RU")}>
-                        <Typography align="center" variant="h6">
-                          {countPost.value}
-                        </Typography>
-                      </Tooltip>
-                    }
-                  />
-                )}
-                {!!er && (
-                  <StatElement
-                    icon={<PeopleAltOutlinedIcon fontSize="large" />}
-                    label="ER сообщества"
-                    value={
-                      <Typography align="center" variant="h6">
-                        {er.value}%
-                      </Typography>
-                    }
-                  />
-                )}
-                {!!precentUnsubscribe && (
-                  <StatElement
-                    icon={<PeopleAltOutlinedIcon fontSize="large" />}
-                    label="Процент отписок"
-                    value={
-                      <Typography align="center" variant="h6">
-                        {precentUnsubscribe.value}%
-                      </Typography>
-                    }
-                  />
-                )}
+                      </Box>
+                    )}
+                    <Typography
+                      sx={{
+                        "& span": {
+                          color: `#2B69D5`,
+                          fontWeight: 500,
+                        },
+                        fontWeight: 600,
+                      }}
+                    >
+                      <span>{`Подтверждённый аккаунт: `}</span>
+                      {!!blogger.is_confirmed ? `ДА` : `НЕТ`}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        "& span": {
+                          color: `#2B69D5`,
+                          fontWeight: 500,
+                        },
+                        fontWeight: 600,
+                      }}
+                    >
+                      <span>{`Местоположение: `}</span>
+                      {location}
+                    </Typography>
+                  </Stack>
+                </Box>
+              </Grid2>
+              <Grid2 xs={12} md={12} lg="auto">
+                <Box>
+                  <Grid2
+                    container
+                    columnSpacing="21px"
+                    sx={{
+                      justifyContent: `center`,
+                      alignItems: `center`,
+                    }}
+                  >
+                    {!!subscribers && (
+                      <StatElement
+                        icon={
+                          <PeopleAltOutlinedIcon
+                            sx={{
+                              height: `70px`,
+                              width: `77px`,
+                              color: `#B5CDEF`,
+                            }}
+                          />
+                        }
+                        label="подписки"
+                        value={
+                          <Tooltip
+                            title={subscribers.origin.toLocaleString("ru-RU")}
+                          >
+                            <Typography
+                              align="center"
+                              sx={{
+                                fontWeight: `500`,
+                                fontSize: `16px`,
+                                color: `#2B69D5`,
+                              }}
+                            >
+                              {subscribers.value}
+                            </Typography>
+                          </Tooltip>
+                        }
+                      />
+                    )}
+                    {!!countPost && (
+                      <StatElement
+                        icon={
+                          <ChromeReaderModeOutlinedIcon
+                            sx={{
+                              height: `70px`,
+                              width: `77px`,
+                              color: `#B5CDEF`,
+                            }}
+                          />
+                        }
+                        label="посты"
+                        value={
+                          <Tooltip
+                            title={countPost.origin.toLocaleString("ru-RU")}
+                          >
+                            <Typography
+                              sx={{
+                                fontWeight: `500`,
+                                fontSize: `16px`,
+                                color: `#2B69D5`,
+                              }}
+                            >
+                              {countPost.value}
+                            </Typography>
+                          </Tooltip>
+                        }
+                      />
+                    )}
+                    {!!er && (
+                      <StatElement
+                        icon={
+                          <TrendingUpOutlinedIcon
+                            sx={{
+                              height: `70px`,
+                              width: `77px`,
+                              color: `#B5CDEF`,
+                            }}
+                          />
+                        }
+                        label="ER"
+                        value={
+                          <Typography
+                            sx={{
+                              fontWeight: `500`,
+                              fontSize: `16px`,
+                              color: `#2B69D5`,
+                            }}
+                          >
+                            {er.value}%
+                          </Typography>
+                        }
+                      />
+                    )}
+                    {!!precentUnsubscribe && (
+                      <StatElement
+                        icon={
+                          <UnsubscribeOutlinedIcon
+                            sx={{
+                              height: `70px`,
+                              width: `77px`,
+                              color: `#B5CDEF`,
+                            }}
+                          />
+                        }
+                        label="отписки"
+                        value={
+                          <Typography
+                            sx={{
+                              fontWeight: `500`,
+                              fontSize: `16px`,
+                              color: `#2B69D5`,
+                            }}
+                          >
+                            {precentUnsubscribe.value}%
+                          </Typography>
+                        }
+                      />
+                    )}
+                  </Grid2>
+                </Box>
               </Grid2>
             </Grid2>
-          </Grid2>
+          </Box>
         </Paper>
       </Box>
     </>

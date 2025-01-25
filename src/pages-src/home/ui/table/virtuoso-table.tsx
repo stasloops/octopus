@@ -1,4 +1,4 @@
-import { IBlogger } from "@/src/shared/api/blogger/model";
+import { IBlogger } from "@/shared/api/blogger/model";
 import {
   CircularProgress,
   Stack,
@@ -11,16 +11,25 @@ import {
 import { forwardRef } from "react";
 import { TableComponents } from "react-virtuoso";
 
+const VirtuosoScroller = forwardRef<HTMLDivElement>((props, ref) => (
+  <TableContainer id="Scroller" {...props} ref={ref} sx={{ height: `100%`, overflowX: "initial" }} />
+));
+VirtuosoScroller.displayName = 'VirtuosoScroller';
+
+const VirtuosoTableHead = forwardRef<HTMLTableSectionElement>((props, ref) => (
+  <TableHead {...props} ref={ref} />
+));
+VirtuosoTableHead.displayName = 'VirtuosoTableHead';
+
+const VirtuosoTableBody = forwardRef<HTMLTableSectionElement>((props, ref) => (
+  <TableBody {...props} ref={ref} />
+));
+VirtuosoTableBody.displayName = 'VirtuosoTableBody';
+
 export const VirtuosoTableComponents: TableComponents<IBlogger> = {
-  Scroller: forwardRef<HTMLDivElement>((props, ref) => (
-    <TableContainer
-      id="Scroller"
-      {...props}
-      ref={ref}
-      sx={{ height: `100%`, overflowX: "initial" }}
-      // style={{ overflowX: "initial" }}
-    />
-  )),
+  Scroller: VirtuosoScroller,
+  TableHead: VirtuosoTableHead,
+  TableBody: VirtuosoTableBody,
   Table: (props) => {
     const context = (props?.context || {}) as any;
     return (
@@ -66,15 +75,9 @@ export const VirtuosoTableComponents: TableComponents<IBlogger> = {
       </>
     );
   },
-  TableHead: forwardRef<HTMLTableSectionElement>((props, ref) => (
-    <TableHead {...props} ref={ref} />
-  )),
   TableRow: (props, ref) => (
     <>
       <TableRow {...props} sx={{ position: `relative` }} />
     </>
   ),
-  TableBody: forwardRef<HTMLTableSectionElement>((props, ref) => (
-    <TableBody {...props} ref={ref} />
-  )),
 };

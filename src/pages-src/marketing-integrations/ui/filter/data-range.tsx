@@ -1,6 +1,6 @@
 "use client";
 
-import { CustomDatePicker } from "@/src/shared/ui/custom-date-picker";
+import { CustomDatePicker } from "@/shared/ui/custom-date-picker";
 import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import { Stack } from "@mui/material";
 import { FC, useCallback } from "react";

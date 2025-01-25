@@ -1,6 +1,6 @@
 "use client";
 
-import { theme } from "@/src/shared/lib/theme";
+import { theme } from "@/shared/lib/theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";

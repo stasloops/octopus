@@ -23,9 +23,22 @@ export const Charts: FC = () => {
 
   return (
     <>
-      <Stack spacing={3} sx={{ px: `38px`, pt: `15px` }}>
+      <Stack
+        spacing={3}
+        sx={{
+          px: `38px`,
+          pt: `12px`,
+        }}
+      >
         <Box sx={{ width: `cacl(100% + 20px)` }}>
-          <Grid2 container spacing={`20px`}>
+          <Grid2
+            container
+            spacing={`12px`}
+            sx={{
+              justifyContent: "center",
+              alignItems: "flex-start",
+            }}
+          >
             <TypeContent />
             <GenderAge />
             <TagPost />

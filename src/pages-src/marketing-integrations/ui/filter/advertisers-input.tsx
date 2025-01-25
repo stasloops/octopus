@@ -1,4 +1,4 @@
-import { CustomTextField } from "@/src/shared/ui/custom-text-field";
+import { CustomTextField } from "@/shared/ui/custom-text-field";
 import { Chip, Stack } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC } from "react";

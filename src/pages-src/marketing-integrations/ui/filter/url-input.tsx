@@ -1,4 +1,4 @@
-import { CustomTextField } from "@/src/shared/ui/custom-text-field";
+import { CustomTextField } from "@/shared/ui/custom-text-field";
 import { FC } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { IFormFilter } from "../../model/form";

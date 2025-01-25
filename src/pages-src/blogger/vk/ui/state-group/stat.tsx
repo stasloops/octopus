@@ -1,4 +1,4 @@
-import { theme } from "@/src/shared/lib/theme";
+import { theme } from "@/shared/lib/theme";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Box, IconButton, Paper, Stack, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
@@ -23,13 +23,15 @@ export const StatElement: FC<StatElementProps> = ({
 }) => {
   return (
     <>
-      <Grid2 xs="auto">
+      <Grid2 xs={12} md={4} lg={3}>
         <Paper
           sx={{
+            borderRadius: `20px`,
             position: `relative`,
-            width: `290px`,
-            minHeight: `110px`,
-            padding: 1,
+            width: `100%`,
+            // minHeight: `110px`,
+            height: `126px`,
+            padding: `17px 9px`,
             color: theme.palette.white.main,
             background: `linear-gradient(to bottom right, #3d84de, #62bcf1)`,
             borderBottom: !!error
@@ -37,12 +39,12 @@ export const StatElement: FC<StatElementProps> = ({
               : undefined,
           }}
         >
-          <IconButton sx={{ position: `absolute`, top: `0px`, right: `0px` }}>
+          <IconButton sx={{ position: `absolute`, top: `10px`, right: `0px` }}>
             <MoreVertIcon color="white" />
           </IconButton>
           <Stack
             direction="row"
-            spacing={2}
+            spacing={`14px`}
             sx={{
               justifyContent: "flex-start",
               alignItems: "flex-start",
@@ -50,19 +52,23 @@ export const StatElement: FC<StatElementProps> = ({
           >
             <Box
               sx={{
-                height: `50px`,
-                width: `50px`,
+                height: `30px`,
+                width: `30px`,
                 position: `relative`,
               }}
             >
               <Box
                 sx={{
                   position: `absolute`,
-                  height: `24px`,
-                  width: `24px`,
+                  height: `17px`,
+                  width: `17px`,
                   left: `50%`,
                   top: `50%`,
                   transform: `translate(-50%, -50%)`,
+                  "& svg": {
+                    height: `17px`,
+                    width: `17px`,
+                  },
                 }}
               >
                 {icon1}
@@ -70,11 +76,15 @@ export const StatElement: FC<StatElementProps> = ({
               <Box
                 sx={{
                   position: `absolute`,
-                  height: `24px`,
-                  width: `24px`,
+                  height: `17px`,
+                  width: `17px`,
                   left: `35%`,
                   top: `35%`,
                   transform: `translate(-50%, -50%)`,
+                  "& svg": {
+                    height: `17px`,
+                    width: `17px`,
+                  },
                 }}
               >
                 {icon2}
@@ -82,11 +92,15 @@ export const StatElement: FC<StatElementProps> = ({
               <Box
                 sx={{
                   position: `absolute`,
-                  height: `24px`,
-                  width: `24px`,
+                  height: `17px`,
+                  width: `17px`,
                   left: `65%`,
                   top: `65%`,
                   transform: `translate(-50%, -50%)`,
+                  "& svg": {
+                    height: `17px`,
+                    width: `17px`,
+                  },
                 }}
               >
                 {icon3}
@@ -94,7 +108,17 @@ export const StatElement: FC<StatElementProps> = ({
             </Box>
             <Stack spacing={0}>
               {value}
-              <Typography>{label}</Typography>
+              <Typography
+                sx={{
+                  fontWeight: 600,
+                  fontSize: `12px`,
+                  // width: `195px`,
+                  lineHeight: `15px`,
+                  pr: `20px`,
+                }}
+              >
+                {label}
+              </Typography>
             </Stack>
           </Stack>
         </Paper>

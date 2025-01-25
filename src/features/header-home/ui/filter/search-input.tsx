@@ -1,6 +1,6 @@
 "use client";
 
-import { CustomTextField } from "@/src/shared/ui/custom-text-field";
+import { CustomTextField } from "@/shared/ui/custom-text-field";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import { IconButton, InputAdornment } from "@mui/material";

@@ -4,10 +4,10 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Box, IconButton, Paper, Stack, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import {
-  axisClasses,
-  BarChart,
-  barElementClasses,
-  PieValueType,
+    axisClasses,
+    BarChart,
+    barElementClasses,
+    PieValueType,
 } from "@mui/x-charts";
 import { MakeOptional } from "@mui/x-charts/internals";
 import { FC, useMemo, useState } from "react";

@@ -1,4 +1,4 @@
-import { numberShortenCharacrer } from "@/src/shared/lib/number-shorten-character";
+import { numberShortenCharacrer } from "@/shared/lib/number-shorten-character";
 import {
   Button,
   Dialog,
