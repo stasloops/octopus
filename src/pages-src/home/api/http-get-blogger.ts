@@ -1,16 +1,25 @@
-import { IBlogger } from "@/src/shared/api/blogger/model";
-import { http } from "@/src/shared/api/instance";
-import { httpServer } from "@/src/shared/api/instance-server";
+import { IBlogger } from "@/shared/api/blogger/model";
+import { http } from "@/shared/api/instance";
+import { httpServer } from "@/shared/api/instance-server";
+
+interface IPayloadParams {
+  er__lte?: number;
+  posts__lte?: number;
+  subscribers__lte?: number;
+  search?: string;
+}
+
+
+interface IPayload extends IPayloadParams {
+  limit?: number;
+  offset?: number;
+  sort?: string;
+  populate?: string;
+  id__in?: string;
+}
 
 export interface IGetBloggerSchema {
-  payload?: {
-    limit?: number;
-    offset?: number;
-    sort?: string;
-    populate?: string;
-    search?: string;
-    id__in?: string;
-  };
+  payload?: IPayload;
   response: {
     data: IBlogger[];
     meta: {

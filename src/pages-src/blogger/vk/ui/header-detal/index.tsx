@@ -1,5 +1,5 @@
-import { numberShortenCharacrer } from "@/src/shared/lib/number-shorten-character";
-import { theme } from "@/src/shared/lib/theme";
+import { numberShortenCharacrer } from "@/shared/lib/number-shorten-character";
+import { theme } from "@/shared/lib/theme";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import { Avatar, Box, Paper, Stack, Tooltip, Typography } from "@mui/material";

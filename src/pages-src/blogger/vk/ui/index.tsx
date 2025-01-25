@@ -1,7 +1,7 @@
 "use client";
 
-import Loading from "@/src/pages-src/loading";
-import { Layout } from "@/src/widgets/layout";
+import Loading from "@/pages-src/loading";
+import { Layout } from "@/widgets/layout";
 import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined";
 import {
   Box,
@@ -12,11 +12,11 @@ import {
   Typography,
 } from "@mui/material";
 import { FC, useEffect, useState } from "react";
-import { useGetBloggerMutate } from "../api/use-blogger";
 import { useGetBloggerMutateStats } from "../api/use-blogger-stats";
 import { Charts } from "./charts";
 import { HeaderDetal } from "./header-detal";
 import { StateGroup } from "./state-group";
+import { useBlogers } from "@/entities/bloger";
 
 interface PageProps {
   idBlogger: number;
@@ -24,7 +24,7 @@ interface PageProps {
 
 export const Page: FC<PageProps> = ({ idBlogger }) => {
   const { isLoading: isLoadingBlogger, data: dataBlogger } =
-    useGetBloggerMutate();
+    useBlogers();
   const { isLoading: isLoadingBloggerStats, data: dataBloggerStats } =
     useGetBloggerMutateStats();
   const isLoading = isLoadingBlogger && isLoadingBloggerStats;

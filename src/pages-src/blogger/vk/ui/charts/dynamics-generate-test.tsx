@@ -1,4 +1,4 @@
-import { theme } from "@/src/shared/lib/theme";
+import { theme } from "@/shared/lib/theme";
 import { fakerRU } from "@faker-js/faker";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Box, IconButton, Paper, Stack, Typography } from "@mui/material";
@@ -11,8 +11,8 @@ import {
 } from "@mui/x-charts";
 import { MakeOptional } from "@mui/x-charts/internals";
 import { FC, useMemo, useState } from "react";
-import { useGetBloggerMutate } from "../../api/use-blogger";
 import { useGetBloggerMutateStats } from "../../api/use-blogger-stats";
+import { useBlogers } from "@/entities/bloger";
 
 type TTag = { [tag: string]: number };
 
@@ -33,7 +33,7 @@ interface IDataChart {
 }
 
 export const DemoDynamics2: FC = () => {
-  const { data: dataBlogger } = useGetBloggerMutate();
+  const { data: dataBlogger } = useBlogers();
   const { data: bloggerStats } = useGetBloggerMutateStats();
 
   const [fakerData] = useState(genFakeData());

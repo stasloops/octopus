@@ -1,21 +1,21 @@
 "use client";
 
-import { HeaderHome } from "@/src/features/header-home";
-import Loading from "@/src/pages-src/loading";
-import { Layout } from "@/src/widgets/layout";
+import { HeaderHome } from "@/features/header-home";
+import Loading from "@/pages-src/loading";
+import { Layout } from "@/widgets/layout";
 import { Box, Typography } from "@mui/material";
 import { FC, useCallback, useEffect } from "react";
-import { useGetBloggerMutate } from "../api/use-blogger";
 import { useBloggerTableStore } from "../model/store";
 import { TableElement } from "./table";
 import { TextResultElement } from "./text-result";
+import { useBlogers } from "@/entities/bloger";
 
 interface PageProps {
   search: string;
 }
 
 export const Page: FC<PageProps> = ({ search }) => {
-  const { mutateAsync, isLoading, data } = useGetBloggerMutate();
+  const { mutateAsync, isLoading, data } = useBlogers();
   const setBloggerTable = useBloggerTableStore((state) => state.setValue);
 
   const startMutate = useCallback(async () => {
