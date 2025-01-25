@@ -1,4 +1,4 @@
-import { LayoutHeight } from "@/src/widgets/layout/model/const";
+import { LayoutHeight } from "@/widgets/layout/model/const";
 import { TableCell, TableRow } from "@mui/material";
 
 export function fixedHeaderContent() {

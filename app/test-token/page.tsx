@@ -1,2 +1,2 @@
-export { default } from "@/src/pages-src/test-token";
+export { default } from "@/pages-src/test-token";
 

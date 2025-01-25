@@ -1,4 +1,4 @@
-import { numberShortenCharacrer } from "@/src/shared/lib/number-shorten-character";
+import { numberShortenCharacrer } from "@/shared/lib/number-shorten-character";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";

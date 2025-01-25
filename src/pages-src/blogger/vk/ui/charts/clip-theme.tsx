@@ -1,4 +1,4 @@
-import { theme } from "@/src/shared/lib/theme";
+import { theme } from "@/shared/lib/theme";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {

@@ -1,5 +1,5 @@
 import { dataTableMarketing } from "@/app/route/_const/marketing-table";
-import { sleep } from "@/src/shared/lib/sleep";
+import { sleep } from "@/shared/lib/sleep";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest, context: any) {

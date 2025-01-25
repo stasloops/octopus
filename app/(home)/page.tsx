@@ -1,5 +1,5 @@
-import Page from "@/src/pages-src/home";
-import { verifySessionCustom } from "@/src/shared/lib/session-custom";
+import Page from "@/pages-src/home";
+import { verifySessionCustom } from "@/shared/lib/session-custom";
 import { redirect } from "next/navigation";
 
 const PageServer = async ({

@@ -1,5 +1,5 @@
-import { numberShortenCharacrer } from "@/src/shared/lib/number-shorten-character";
-import { theme } from "@/src/shared/lib/theme";
+import { numberShortenCharacrer } from "@/shared/lib/number-shorten-character";
+import { theme } from "@/shared/lib/theme";
 import { SxProps, Tooltip, Typography } from "@mui/material";
 import { Theme } from "@mui/system";
 import { FC, useMemo } from "react";
