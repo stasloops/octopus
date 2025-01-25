@@ -1,4 +1,5 @@
 import { theme } from "@/src/shared/lib/theme";
+import { CustomTextField } from "@/src/shared/ui/custom-text-field";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
@@ -8,8 +9,7 @@ import {
   IconButton,
   Paper,
   Stack,
-  TextField,
-  Typography,
+  Typography
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC, useMemo, useState } from "react";
@@ -108,7 +108,7 @@ export const ClipTheme: FC = () => {
                   {`Тематика в клипах`}
                 </Typography>
                 <Collapse in={open}>
-                  <TextField
+                  <CustomTextField
                     fullWidth
                     label="Поиск"
                     variant="outlined"
@@ -140,14 +140,20 @@ export const ClipTheme: FC = () => {
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        height: `100px`,
+                        height: `162px`,
                         background: `linear-gradient(#fff0, 10%, #fff)`,
                         zIndex: 1,
                       }}
                     >
                       <Button
                         onClick={onChangeScroll}
-                        sx={{ width: `100%`, height: `100%` }}
+                        sx={{
+                          width: `100%`,
+                          height: `100%`,
+                          fontWeight: `400`,
+                          fontSize: `24px`,
+                          color: `#222657`,
+                        }}
                       >
                         Раскрыть
                       </Button>
@@ -159,6 +165,7 @@ export const ClipTheme: FC = () => {
                     }}
                   >
                     <Virtuoso
+                      className="miniscroll"
                       style={{
                         height: "100%",
                         overflow: !!scroll ? `auto` : `hidden`,
@@ -194,7 +201,7 @@ interface StatElementProps {
 const StatElement: FC<StatElementProps> = ({ label, summ, value }) => {
   return (
     <>
-      <Stack spacing={`5px`} sx={{ py: `5px`, px: `3px` }}>
+      <Stack spacing={`9px`} sx={{ py: `5px`, px: `3px` }}>
         <Stack
           direction="row"
           spacing={2}
@@ -209,7 +216,14 @@ const StatElement: FC<StatElementProps> = ({ label, summ, value }) => {
             100
           ).toFixed(1)}%`}</Typography>
         </Stack>
-        <Box sx={{ height: `13px`, position: `relative` }}>
+        <Box
+          sx={{
+            height: `22px`,
+            position: `relative`,
+            borderRadius: `15px`,
+            overflow: `hidden`,
+          }}
+        >
           <Box
             sx={{
               left: 0,
@@ -217,21 +231,20 @@ const StatElement: FC<StatElementProps> = ({ label, summ, value }) => {
               top: 0,
               bottom: 0,
               position: `absolute`,
-              background: theme.palette.primary.main,
-              opacity: 0.3,
-              borderRadius: `10px`,
+              background: `#D9E3F3`,
+              borderRadius: `15px`,
             }}
           ></Box>
           <Box
             sx={{
-              left: 0,
+              left: `-30px`,
               top: 0,
               bottom: 0,
               position: `absolute`,
-              width: `${((value / summ) * 100).toFixed(1)}%`,
+              width: `calc(${((value / summ) * 100).toFixed(1)}% + 30px)`,
               background: theme.palette.primary.main,
               //   opacity: 0.3,
-              borderRadius: `10px`,
+              borderRadius: `15px`,
             }}
           ></Box>
         </Box>
