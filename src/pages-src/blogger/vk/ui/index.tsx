@@ -1,14 +1,10 @@
 "use client";
 
 import Loading from "@/pages-src/loading";
+import { ConteinerMonitorCenter } from "@/shared/ui/container-monitor-center";
 import { Layout } from "@/widgets/layout";
 import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined";
-import {
-  Box,
-  IconButton,
-  Stack,
-  Typography
-} from "@mui/material";
+import { Box, IconButton, Stack, Typography } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { useGetBloggerMutate } from "../api/use-blogger";
 import { useGetBloggerMutateStats } from "../api/use-blogger-stats";
@@ -58,27 +54,29 @@ export const Page: FC<PageProps> = ({ idBlogger }) => {
             </Box>
           )}
           <Box>
-            <Stack
-              direction="row"
-              spacing={2}
-              sx={{
-                justifyContent: "start",
-                alignItems: "center",
-                px: { xs: `20px`, md: `38px`, lg: `38px` },
-                pt: `40px`,
-              }}
-            >
-              <Typography
-                variant="h6"
+            <ConteinerMonitorCenter>
+              <Stack
+                direction="row"
+                spacing={2}
                 sx={{
-                  fontWeight: `600`,
-                  fontSize: `20px`,
+                  justifyContent: "start",
+                  alignItems: "center",
+                  px: { xs: `20px`, md: `38px`, lg: `38px` },
+                  pt: `40px`,
                 }}
-              >{`Аналитика аккаунта`}</Typography>
-            </Stack>
-            <HeaderDetal />
-            <StateGroup />
-            <Charts />
+              >
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: `600`,
+                    fontSize: `20px`,
+                  }}
+                >{`Аналитика аккаунта`}</Typography>
+              </Stack>
+              <HeaderDetal />
+              <StateGroup />
+              <Charts />
+            </ConteinerMonitorCenter>
           </Box>
         </>
       )}

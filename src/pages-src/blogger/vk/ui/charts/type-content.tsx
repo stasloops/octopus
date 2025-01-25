@@ -192,7 +192,7 @@ const ChartElement: FC<{
                 <Grid2
                   direction="row"
                   container
-                  columnSpacing="7px"
+                  columnSpacing="8px"
                   rowSpacing="12px"
                   sx={{
                     justifyContent: "center",
@@ -205,14 +205,14 @@ const ChartElement: FC<{
                         direction="row"
                         justifyContent="start"
                         alignItems="center"
-                        spacing={1}
+                        spacing="5px"
                         width="100%"
                       >
                         <Stack
                           direction="row"
                           justifyContent="center"
                           alignItems="center"
-                          spacing="7px"
+                          spacing="2px"
                         >
                           <Box
                             sx={{
