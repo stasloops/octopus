@@ -1,15 +1,15 @@
-import { CustomTextField } from "@/src/shared/ui/custom-text-field";
+import { CustomTextField } from "@/shared/ui/custom-text-field";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
-  Box,
-  Button,
-  Chip,
-  Collapse,
-  IconButton,
-  Paper,
-  Stack,
-  Typography,
+    Box,
+    Button,
+    Chip,
+    Collapse,
+    IconButton,
+    Paper,
+    Stack,
+    Typography,
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC, useEffect, useMemo, useRef, useState } from "react";

@@ -1,6 +1,6 @@
 "use server";
 
-import { createSessionCustom } from "@/src/shared/lib/session-custom";
+import { createSessionCustom } from "@/shared/lib/session-custom";
 import { FormSchema, IForm } from "../model/form";
 import { httpPostAutorizate } from "./http-post-autorizate";
 

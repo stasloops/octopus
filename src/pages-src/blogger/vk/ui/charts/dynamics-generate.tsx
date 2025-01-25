@@ -1,4 +1,4 @@
-import { theme } from "@/src/shared/lib/theme";
+import { theme } from "@/shared/lib/theme";
 import { fakerRU } from "@faker-js/faker";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Box, IconButton, Paper, Stack, Typography } from "@mui/material";

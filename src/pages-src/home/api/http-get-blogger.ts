@@ -1,6 +1,6 @@
-import { IBlogger } from "@/src/shared/api/blogger/model";
-import { http } from "@/src/shared/api/instance";
-import { httpServer } from "@/src/shared/api/instance-server";
+import { IBlogger } from "@/shared/api/blogger/model";
+import { http } from "@/shared/api/instance";
+import { httpServer } from "@/shared/api/instance-server";
 
 export interface IGetBloggerSchema {
   payload?: {

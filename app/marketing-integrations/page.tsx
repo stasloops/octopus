@@ -1,2 +1,2 @@
-export { default } from "@/src/pages-src/marketing-integrations";
+export { default } from "@/pages-src/marketing-integrations";
 

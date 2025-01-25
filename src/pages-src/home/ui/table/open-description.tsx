@@ -1,4 +1,4 @@
-import { IBlogger } from "@/src/shared/api/blogger/model";
+import { IBlogger } from "@/shared/api/blogger/model";
 import TouchAppOutlinedIcon from "@mui/icons-material/TouchAppOutlined";
 import {
   Button,

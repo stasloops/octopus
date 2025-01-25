@@ -1,2 +1,2 @@
-export { default } from "@/src/pages-src/login";
+export { default } from "@/pages-src/login";
 

@@ -1,16 +1,16 @@
-import { numberShortenCharacrer } from "@/src/shared/lib/number-shorten-character";
+import { numberShortenCharacrer } from "@/shared/lib/number-shorten-character";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import {
-  Box,
-  ButtonBase,
-  Collapse,
-  Paper,
-  Stack,
-  Tooltip,
-  Typography,
+    Box,
+    ButtonBase,
+    Collapse,
+    Paper,
+    Stack,
+    Tooltip,
+    Typography,
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC, useMemo } from "react";

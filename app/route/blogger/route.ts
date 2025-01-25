@@ -1,5 +1,5 @@
 import { dataTableBlogger } from "@/app/route/_const/data-table";
-import { verifySessionCustom } from "@/src/shared/lib/session-custom";
+import { verifySessionCustom } from "@/shared/lib/session-custom";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest, context: any) {

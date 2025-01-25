@@ -1,6 +1,6 @@
 "use client";
 
-import { Layout } from "@/src/widgets/layout";
+import { Layout } from "@/widgets/layout";
 import React from "react";
 import { UploadCsv } from "./upload-csv";
 import { Box, Link, Typography } from "@mui/material";

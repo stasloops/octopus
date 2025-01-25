@@ -1,4 +1,4 @@
-import { asyncLocalStorage } from "@/src/shared/lib/async-local-storage";
+import { asyncLocalStorage } from "@/shared/lib/async-local-storage";
 import { useRouter } from "next/navigation";
 import { enqueueSnackbar } from "notistack";
 import { useMutation, useQueryClient } from "react-query";

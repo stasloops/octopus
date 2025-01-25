@@ -1,6 +1,6 @@
 "use client";
 
-import { Layout } from "@/src/widgets/layout";
+import { Layout } from "@/widgets/layout";
 import { Box, Typography } from "@mui/material";
 import { FC } from "react";
 import { FilterElement } from "./filter";

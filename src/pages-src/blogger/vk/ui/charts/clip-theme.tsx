@@ -1,5 +1,5 @@
-import { theme } from "@/src/shared/lib/theme";
-import { CustomTextField } from "@/src/shared/ui/custom-text-field";
+import { theme } from "@/shared/lib/theme";
+import { CustomTextField } from "@/shared/ui/custom-text-field";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
@@ -9,7 +9,7 @@ import {
   IconButton,
   Paper,
   Stack,
-  Typography
+  Typography,
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC, useMemo, useState } from "react";

@@ -1,7 +1,7 @@
 "use client";
 
-import Loading from "@/src/pages-src/loading";
-import { Layout } from "@/src/widgets/layout";
+import Loading from "@/pages-src/loading";
+import { Layout } from "@/widgets/layout";
 import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined";
 import {
   Box,
