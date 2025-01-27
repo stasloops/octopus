@@ -49,7 +49,7 @@ export const Page: FC<PageProps> = ({ idBlogger }) => {
           {scrollUp && (
             <Box sx={{ position: `fixed`, bottom: 0, right: 0, zIndex: 5 }}>
               <IconButton size="large" onClick={onClickUp}>
-                <ArrowCircleUpOutlinedIcon fontSize="large" />
+                <ArrowCircleUpOutlinedIcon fontSize="large" color="primary" />
               </IconButton>
             </Box>
           )}

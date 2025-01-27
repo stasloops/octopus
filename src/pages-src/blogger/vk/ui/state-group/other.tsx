@@ -45,7 +45,7 @@ export const Other: FC = () => {
 
   if (!blogger) return null;
   return (
-    <Paper sx={{ borderRadius: `20px`, pl: `24px` }}>
+    <Paper sx={{ borderRadius: `20px`, px: `24px` }}>
       <ButtonBase onClick={onChangeOpen} sx={{ width: `100%` }}>
         <Stack
           direction="row"

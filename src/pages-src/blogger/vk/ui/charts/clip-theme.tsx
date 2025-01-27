@@ -151,7 +151,7 @@ export const ClipTheme: FC = () => {
                           width: `100%`,
                           height: `100%`,
                           fontWeight: `400`,
-                          fontSize: `24px`,
+                          fontSize: `20px`,
                           color: `#222657`,
                         }}
                       >
