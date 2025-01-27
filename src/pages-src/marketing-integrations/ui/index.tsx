@@ -1,5 +1,6 @@
 "use client";
 
+import { ConteinerMonitorCenter } from "@/shared/ui/container-monitor-center";
 import { Layout } from "@/widgets/layout";
 import { Box, Typography } from "@mui/material";
 import { FC } from "react";
@@ -13,22 +14,24 @@ export const Page: FC<PageProps> = ({}) => {
     <>
       <Layout />
       <Box>
-        <Typography
-          variant="h6"
-          sx={{
-            px: {
-              xs: `18px`,
-              md: `38px`,
-              lg: `38px`,
-            },
-            pt: `40px`,
-            fontWeight: `600`,
-            fontSize: `20px`,
-            lineHeight: `25px`,
-          }}
-        >{`Поиск по маркетинговым интеграциям`}</Typography>
-        <FilterElement />
-        <ResultList />
+        <ConteinerMonitorCenter>
+          <Typography
+            variant="h6"
+            sx={{
+              px: {
+                xs: `18px`,
+                md: `38px`,
+                lg: `38px`,
+              },
+              pt: `40px`,
+              fontWeight: `600`,
+              fontSize: `20px`,
+              lineHeight: `25px`,
+            }}
+          >{`Поиск по маркетинговым интеграциям`}</Typography>
+          <FilterElement />
+          <ResultList />
+        </ConteinerMonitorCenter>
       </Box>
     </>
   );

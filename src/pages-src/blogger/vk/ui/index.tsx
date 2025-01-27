@@ -54,28 +54,29 @@ export const Page: FC<PageProps> = ({ idBlogger }) => {
             </Box>
           )}
           <Box>
-            <Stack
-              direction="row"
-              spacing={2}
-              sx={{
-                justifyContent: "start",
-                alignItems: "center",
-                px: { xs: `20px`, md: `38px`, lg: `38px` },
-                pt: `40px`,
-              }}
-            >
-              <Typography
-                variant="h6"
+            <ConteinerMonitorCenter>
+              <Stack
+                direction="row"
+                spacing={2}
                 sx={{
-                  fontWeight: `600`,
-                  fontSize: `20px`,
+                  justifyContent: "start",
+                  alignItems: "center",
+                  px: { xs: `20px`, md: `38px`, lg: `38px` },
+                  pt: `40px`,
                 }}
-              >{`Аналитика аккаунта`}</Typography>
-            </Stack>
-            <HeaderDetal />
-            <StateGroup />
-            <Charts />
-            <ConteinerMonitorCenter></ConteinerMonitorCenter>
+              >
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: `600`,
+                    fontSize: `20px`,
+                  }}
+                >{`Аналитика аккаунта`}</Typography>
+              </Stack>
+              <HeaderDetal />
+              <StateGroup />
+              <Charts />
+            </ConteinerMonitorCenter>
           </Box>
         </>
       )}
