@@ -1,7 +1,6 @@
 "use client";
 
-import DownloadIcon from "@mui/icons-material/Download";
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import { FC } from "react";
 import { useBloggerTableStore } from "../model/store";
@@ -45,7 +44,7 @@ export const TextResultElement: FC<TextResultElement> = ({}) => {
               } блогеров`}</Typography>
             </Box>
             <Box>
-              <Button endIcon={<DownloadIcon />}>Скачать</Button>
+              {/* <Button endIcon={<DownloadIcon />}>Скачать</Button> */}
             </Box>
           </Stack>
         </Box>
