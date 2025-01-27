@@ -90,7 +90,7 @@ export const Posts: FC = () => {
 
   if (!blogger) return null;
   return (
-    <Paper sx={{ borderRadius: `20px`, px: `24px` }}>
+    <Paper sx={{ borderRadius: `20px`, px: `24px` }} className="PaperGroup">
       <ButtonBase onClick={onChangeOpen} sx={{ width: `100%` }}>
         <Stack
           direction="row"

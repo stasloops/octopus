@@ -25,6 +25,7 @@ export const StatElement: FC<StatElementProps> = ({
     <>
       <Grid2 xs={12} md={4} lg={3}>
         <Paper
+          className="PaperContent"
           sx={{
             borderRadius: `20px`,
             position: `relative`,
