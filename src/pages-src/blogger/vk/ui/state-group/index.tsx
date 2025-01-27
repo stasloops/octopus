@@ -38,6 +38,13 @@ export const StateGroup: FC = () => {
               color: `#222657`,
             },
           }),
+          ...(pathname.includes(`/vk3/`) && {
+            "& .PaperGroup": {
+              background: `#B5CDEF`,
+              color: `#fff`,
+            },
+            "& .PaperContent": {},
+          }),
         }}
       >
         <Stack
