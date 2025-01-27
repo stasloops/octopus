@@ -1,7 +1,6 @@
 "use client";
 
 import Loading from "@/pages-src/loading";
-import { ConteinerMonitorCenter } from "@/shared/ui/container-monitor-center";
 import { Layout } from "@/widgets/layout";
 import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
@@ -54,29 +53,27 @@ export const Page: FC<PageProps> = ({ idBlogger }) => {
             </Box>
           )}
           <Box>
-            <ConteinerMonitorCenter>
-              <Stack
-                direction="row"
-                spacing={2}
+            <Stack
+              direction="row"
+              spacing={2}
+              sx={{
+                justifyContent: "start",
+                alignItems: "center",
+                px: { xs: `20px`, md: `38px`, lg: `38px` },
+                pt: `40px`,
+              }}
+            >
+              <Typography
+                variant="h6"
                 sx={{
-                  justifyContent: "start",
-                  alignItems: "center",
-                  px: { xs: `20px`, md: `38px`, lg: `38px` },
-                  pt: `40px`,
+                  fontWeight: `600`,
+                  fontSize: `20px`,
                 }}
-              >
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: `600`,
-                    fontSize: `20px`,
-                  }}
-                >{`Аналитика аккаунта`}</Typography>
-              </Stack>
-              <HeaderDetal />
-              <StateGroup />
-              <Charts />
-            </ConteinerMonitorCenter>
+              >{`Аналитика аккаунта`}</Typography>
+            </Stack>
+            <HeaderDetal />
+            <StateGroup />
+            <Charts />
           </Box>
         </>
       )}

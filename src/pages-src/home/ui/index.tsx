@@ -2,7 +2,6 @@
 
 import { HeaderHome } from "@/features/header-home";
 import Loading from "@/pages-src/loading";
-import { ConteinerMonitorCenter } from "@/shared/ui/container-monitor-center";
 import { Layout } from "@/widgets/layout";
 import { Box, Typography } from "@mui/material";
 import { FC, useCallback, useEffect } from "react";
@@ -34,22 +33,20 @@ export const Page: FC<PageProps> = ({ search }) => {
         <>
           <Layout headerChildren={<HeaderHome />} />
           <Box>
-            <ConteinerMonitorCenter>
-              <Typography
-                sx={{
-                  px: {
-                    xs: `18px`,
-                    md: `38px`,
-                    lg: `38px`,
-                  },
-                  pt: `40px`,
-                  fontWeight: `600`,
-                  fontSize: `20px`,
-                }}
-              >{`Поиск по блогерам`}</Typography>
-              <TextResultElement />
-              <TableElement />
-            </ConteinerMonitorCenter>
+            <Typography
+              sx={{
+                px: {
+                  xs: `18px`,
+                  md: `38px`,
+                  lg: `38px`,
+                },
+                pt: `40px`,
+                fontWeight: `600`,
+                fontSize: `20px`,
+              }}
+            >{`Поиск по блогерам`}</Typography>
+            <TextResultElement />
+            <TableElement />
           </Box>
         </>
       )}
