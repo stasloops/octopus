@@ -37,6 +37,12 @@ export const StateGroup: FC = () => {
               background: `#fff`,
               color: `#222657`,
             },
+            "& .MoreVertIcon": {
+              color: `#222657`,
+            },
+            "& .KeyboardArrowIcon": {
+              color: `#fff`,
+            },
           }),
           ...(pathname.includes(`/vk3/`) && {
             "& .PaperGroup": {
@@ -44,6 +50,7 @@ export const StateGroup: FC = () => {
               color: `#fff`,
             },
             "& .PaperContent": {},
+            "& .MuiSvgIcon-root": {},
           }),
         }}
       >

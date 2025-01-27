@@ -60,8 +60,12 @@ export const Other: FC = () => {
           <Typography sx={{ fontWeight: 400, fontSize: `24px` }}>
             ПРОЧЕЕ
           </Typography>
-          {!open && <KeyboardArrowDownRoundedIcon />}
-          {!!open && <KeyboardArrowUpRoundedIcon />}
+          {!open && (
+            <KeyboardArrowDownRoundedIcon className="KeyboardArrowIcon" />
+          )}
+          {!!open && (
+            <KeyboardArrowUpRoundedIcon className="KeyboardArrowIcon" />
+          )}
         </Stack>
       </ButtonBase>
       <Collapse in={open}>

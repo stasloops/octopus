@@ -93,8 +93,12 @@ export const ShortVideos: FC = () => {
           <Typography sx={{ fontWeight: 400, fontSize: `24px` }}>
             КОРОТКИЕ ВИДЕО
           </Typography>
-          {!open && <KeyboardArrowDownRoundedIcon />}
-          {!!open && <KeyboardArrowUpRoundedIcon />}
+          {!open && (
+            <KeyboardArrowDownRoundedIcon className="KeyboardArrowIcon" />
+          )}
+          {!!open && (
+            <KeyboardArrowUpRoundedIcon className="KeyboardArrowIcon" />
+          )}
         </Stack>
       </ButtonBase>
       <Collapse in={open}>

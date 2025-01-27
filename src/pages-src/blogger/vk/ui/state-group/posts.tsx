@@ -105,8 +105,12 @@ export const Posts: FC = () => {
           <Typography sx={{ fontWeight: 400, fontSize: `24px` }}>
             ПОСТЫ
           </Typography>
-          {!open && <KeyboardArrowDownRoundedIcon />}
-          {!!open && <KeyboardArrowUpRoundedIcon />}
+          {!open && (
+            <KeyboardArrowDownRoundedIcon className="KeyboardArrowIcon" />
+          )}
+          {!!open && (
+            <KeyboardArrowUpRoundedIcon className="KeyboardArrowIcon" />
+          )}
         </Stack>
       </ButtonBase>
       <Collapse in={open}>

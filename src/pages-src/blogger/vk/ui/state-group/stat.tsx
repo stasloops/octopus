@@ -41,7 +41,7 @@ export const StatElement: FC<StatElementProps> = ({
           }}
         >
           <IconButton sx={{ position: `absolute`, top: `10px`, right: `0px` }}>
-            <MoreVertIcon color="white" />
+            <MoreVertIcon color="white" className="MoreVertIcon" />
           </IconButton>
           <Stack
             direction="row"
