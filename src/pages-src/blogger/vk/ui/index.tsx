@@ -3,12 +3,7 @@
 import Loading from "@/pages-src/loading";
 import { Layout } from "@/widgets/layout";
 import ArrowCircleUpOutlinedIcon from "@mui/icons-material/ArrowCircleUpOutlined";
-import {
-  Box,
-  IconButton,
-  Stack,
-  Typography
-} from "@mui/material";
+import { Box, IconButton, Stack, Typography } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { useGetBloggerMutateStats } from "../api/use-blogger-stats";
 import { Charts } from "./charts";
@@ -53,7 +48,7 @@ export const Page: FC<PageProps> = ({ idBlogger }) => {
           {scrollUp && (
             <Box sx={{ position: `fixed`, bottom: 0, right: 0, zIndex: 5 }}>
               <IconButton size="large" onClick={onClickUp}>
-                <ArrowCircleUpOutlinedIcon fontSize="large" />
+                <ArrowCircleUpOutlinedIcon fontSize="large" color="primary" />
               </IconButton>
             </Box>
           )}

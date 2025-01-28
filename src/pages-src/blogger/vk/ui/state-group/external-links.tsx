@@ -26,18 +26,20 @@ export const ExternalLinks: FC = () => {
   return (
     <>
       {!!externalLinks?.length && (
-        <Grid2 xs="auto">
+        <Grid2 xs={12} md={4} lg={3}>
           <Paper
             sx={{
               position: `relative`,
-              width: `290px`,
-              minHeight: `110px`,
-              padding: 1,
+              width: `100%`,
+              padding: `17px 9px`,
               color: theme.palette.white.main,
               background: `linear-gradient(to bottom right, #3d84de, #62bcf1)`,
+              borderRadius: `20px`,
             }}
           >
-            <IconButton sx={{ position: `absolute`, top: `0px`, right: `0px` }}>
+            <IconButton
+              sx={{ position: `absolute`, top: `10px`, right: `0px` }}
+            >
               <MoreVertIcon color="white" />
             </IconButton>
             <Stack spacing={1}>

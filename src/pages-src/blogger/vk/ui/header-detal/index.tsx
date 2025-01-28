@@ -61,7 +61,12 @@ export const HeaderDetal: FC = () => {
   if (!blogger) return null;
   return (
     <>
-      <Box sx={{ px: { xs: `20px`, md: `38px`, lg: `38px` }, pt: `28px` }}>
+      <Box
+        sx={{
+          px: { xs: `20px`, md: `38px`, lg: `38px` },
+          pt: `28px`,
+        }}
+      >
         <Paper
           sx={{
             position: `relative`,

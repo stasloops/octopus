@@ -4,13 +4,13 @@ import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRound
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import {
-    Box,
-    ButtonBase,
-    Collapse,
-    Paper,
-    Stack,
-    Tooltip,
-    Typography,
+  Box,
+  ButtonBase,
+  Collapse,
+  Paper,
+  Stack,
+  Tooltip,
+  Typography,
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC, useMemo } from "react";
@@ -78,7 +78,7 @@ export const ShortVideos: FC = () => {
 
   if (!blogger) return null;
   return (
-    <Paper sx={{ borderRadius: `20px`, pl: `24px` }}>
+    <Paper sx={{ borderRadius: `20px`, px: `24px` }} className="PaperGroup">
       <ButtonBase onClick={onChangeOpen} sx={{ width: `100%` }}>
         <Stack
           direction="row"
@@ -93,8 +93,12 @@ export const ShortVideos: FC = () => {
           <Typography sx={{ fontWeight: 400, fontSize: `24px` }}>
             КОРОТКИЕ ВИДЕО
           </Typography>
-          {!open && <KeyboardArrowDownRoundedIcon />}
-          {!!open && <KeyboardArrowUpRoundedIcon />}
+          {!open && (
+            <KeyboardArrowDownRoundedIcon className="KeyboardArrowIcon" />
+          )}
+          {!!open && (
+            <KeyboardArrowUpRoundedIcon className="KeyboardArrowIcon" />
+          )}
         </Stack>
       </ButtonBase>
       <Collapse in={open}>

@@ -1,4 +1,5 @@
 import { Button, Stack } from "@mui/material";
+import { usePathname } from "next/navigation";
 import { FC } from "react";
 import { useCloseAll } from "../../model/store";
 import { Other } from "./other";
@@ -7,6 +8,7 @@ import { ShortVideos } from "./short-videos";
 import { VideoClips } from "./video-clips";
 
 export const StateGroup: FC = () => {
+  const pathname = usePathname();
   const closeIsOpen = useCloseAll(
     (state) =>
       state.group1Open ||
@@ -22,7 +24,25 @@ export const StateGroup: FC = () => {
     <>
       <Stack
         spacing="12px"
-        sx={{ px: `38px`, pt: `54px`, position: `relative` }}
+        sx={{
+          px: `38px`,
+          pt: `54px`,
+          position: `relative`,
+          "& .PaperGroup": {
+            background: `linear-gradient(to bottom right, #3d84de, #62bcf1)`,
+            color: `#fff`,
+          },
+          "& .PaperContent": {
+            background: `#fff`,
+            color: `#222657`,
+          },
+          "& .MoreVertIcon": {
+            color: `#222657`,
+          },
+          "& .KeyboardArrowIcon": {
+            color: `#fff`,
+          },
+        }}
       >
         <Stack
           direction="row"

@@ -25,6 +25,7 @@ export const StatElement: FC<StatElementProps> = ({
     <>
       <Grid2 xs={12} md={4} lg={3}>
         <Paper
+          className="PaperContent"
           sx={{
             borderRadius: `20px`,
             position: `relative`,
@@ -40,7 +41,7 @@ export const StatElement: FC<StatElementProps> = ({
           }}
         >
           <IconButton sx={{ position: `absolute`, top: `10px`, right: `0px` }}>
-            <MoreVertIcon color="white" />
+            <MoreVertIcon color="white" className="MoreVertIcon" />
           </IconButton>
           <Stack
             direction="row"

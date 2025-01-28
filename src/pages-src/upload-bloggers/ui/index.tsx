@@ -1,10 +1,9 @@
 "use client";
 
 import { Layout } from "@/widgets/layout";
-import React from "react";
-import { UploadCsv } from "./upload-csv";
 import { Box, Link, Typography } from "@mui/material";
 import { useSave } from "../lib/hooks/use-save";
+import { UploadCsv } from "./upload-csv";
 
 export const Page = () => {
   const handleSaveBloggerPlatform = useSave();

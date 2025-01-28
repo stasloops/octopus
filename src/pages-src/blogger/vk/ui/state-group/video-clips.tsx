@@ -78,7 +78,7 @@ export const VideoClips: FC = () => {
 
   if (!blogger) return null;
   return (
-    <Paper sx={{ borderRadius: `20px`, px: `24px` }}>
+    <Paper sx={{ borderRadius: `20px`, px: `24px` }} className="PaperGroup">
       <ButtonBase onClick={onChangeOpen} sx={{ width: `100%` }}>
         <Stack
           direction="row"
@@ -93,8 +93,12 @@ export const VideoClips: FC = () => {
           <Typography sx={{ fontWeight: 400, fontSize: `24px` }}>
             ВИДЕОКЛИПЫ
           </Typography>
-          {!open && <KeyboardArrowDownRoundedIcon />}
-          {!!open && <KeyboardArrowUpRoundedIcon />}
+          {!open && (
+            <KeyboardArrowDownRoundedIcon className="KeyboardArrowIcon" />
+          )}
+          {!!open && (
+            <KeyboardArrowUpRoundedIcon className="KeyboardArrowIcon" />
+          )}
         </Stack>
       </ButtonBase>
       <Collapse in={open}>
