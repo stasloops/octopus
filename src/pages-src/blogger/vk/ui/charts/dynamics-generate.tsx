@@ -6,8 +6,8 @@ import Grid2 from "@mui/material/Unstable_Grid2";
 import { BarChart, PieValueType } from "@mui/x-charts";
 import { MakeOptional } from "@mui/x-charts/internals";
 import { FC, useMemo, useState } from "react";
-import { useGetBloggerMutate } from "../../api/use-blogger";
 import { useGetBloggerMutateStats } from "../../api/use-blogger-stats";
+import { useBlogers } from "@/entities/bloger";
 
 type TTag = { [tag: string]: number };
 
@@ -28,7 +28,7 @@ interface IDataChart {
 }
 
 export const DemoDynamics: FC = () => {
-  const { data: dataBlogger } = useGetBloggerMutate();
+  const { data: dataBlogger } = useBlogers();
   const { data: bloggerStats } = useGetBloggerMutateStats();
 
   const [fakerData] = useState(genFakeData());

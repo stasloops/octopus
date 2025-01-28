@@ -4,11 +4,11 @@ import { Box } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import { FC, useCallback, useMemo } from "react";
 import { TableVirtuoso } from "react-virtuoso";
-import { useGetBloggerMutate } from "../../api/use-blogger";
 import { useBloggerTableStore } from "../../model/store";
 import { fixedHeaderContent } from "./header";
 import { rowContent } from "./row-content";
 import { VirtuosoTableComponents } from "./virtuoso-table";
+import { useBlogers } from "@/entities/bloger";
 
 interface TableElementProps {}
 
@@ -19,7 +19,7 @@ export const TableElement: FC<TableElementProps> = ({}) => {
   const bloggerTable = useBloggerTableStore((state) => state.value);
   const setBloggerTable = useBloggerTableStore((state) => state.setValue);
 
-  const { mutateAsync } = useGetBloggerMutate();
+  const { mutateAsync } = useBlogers();
 
   const hasMore = useMemo(() => {
     if (!bloggerTable) return false;
