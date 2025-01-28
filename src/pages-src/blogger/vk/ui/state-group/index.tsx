@@ -29,7 +29,7 @@ export const StateGroup: FC = () => {
           pt: `54px`,
           position: `relative`,
           "& .PaperGroup": {
-            background: `linear-gradient(to bottom right, #3d84de, #62bcf1)`,
+            background: `linear-gradient(90.36deg, #2B69D5 3.14%, #5BB1ED 36.46%, #70D2F8 99.72%)`,
             color: `#fff`,
           },
           "& .PaperContent": {

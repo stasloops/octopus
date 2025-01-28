@@ -1,5 +1,4 @@
 import { numberShortenCharacrer } from "@/shared/lib/number-shorten-character";
-import { theme } from "@/shared/lib/theme";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import ChromeReaderModeOutlinedIcon from "@mui/icons-material/ChromeReaderModeOutlined";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
@@ -73,6 +72,7 @@ export const HeaderDetal: FC = () => {
             padding: `23.5px`,
             borderRadius: `20px`,
             height: { xs: null, md: null, lg: `232px` },
+            background: `linear-gradient(90.14deg, #2B3ABB 2.96%, #70D2F8 171.19%)`,
           }}
         >
           <Box sx={{ width: `100%`, height: `100%` }}>
@@ -147,13 +147,13 @@ export const HeaderDetal: FC = () => {
                             {blogger.title && (
                               <Tooltip title={blogger.title}>
                                 <Typography
-                                  color={theme.palette.primary.dark}
                                   sx={{
                                     textOverflow: `ellipsis`,
                                     overflow: `hidden`,
                                     whiteSpace: `nowrap`,
                                     fontWeight: `600`,
                                     fontSize: `20px`,
+                                    color: `#FFFFFF`,
                                   }}
                                 >{`${blogger.title}`}</Typography>
                               </Tooltip>
@@ -239,10 +239,11 @@ export const HeaderDetal: FC = () => {
                         <Typography
                           sx={{
                             "& span": {
-                              color: `#2B69D5`,
+                              color: `#fff`,
                               fontWeight: 800,
                             },
                             fontWeight: 600,
+                            color: `#B5CDEF`,
                           }}
                         >
                           <span>{`Тематика сообщества: `}</span>
@@ -253,22 +254,24 @@ export const HeaderDetal: FC = () => {
                     <Typography
                       sx={{
                         "& span": {
-                          color: `#2B69D5`,
+                          color: `#fff`,
                           fontWeight: 500,
                         },
                         fontWeight: 600,
+                        color: `#B5CDEF`,
                       }}
                     >
                       <span>{`Подтверждённый аккаунт: `}</span>
-                      {!!blogger.is_confirmed ? `ДА` : `НЕТ`}
+                      {!!blogger.is_confirmed ? `да` : `нет`}
                     </Typography>
                     <Typography
                       sx={{
                         "& span": {
-                          color: `#2B69D5`,
+                          color: `#fff`,
                           fontWeight: 500,
                         },
                         fontWeight: 600,
+                        color: `#B5CDEF`,
                       }}
                     >
                       <span>{`Местоположение: `}</span>
@@ -294,7 +297,7 @@ export const HeaderDetal: FC = () => {
                             sx={{
                               height: `70px`,
                               width: `77px`,
-                              color: `#B5CDEF`,
+                              color: `#EFFCFC`,
                             }}
                           />
                         }
@@ -308,7 +311,7 @@ export const HeaderDetal: FC = () => {
                               sx={{
                                 fontWeight: `500`,
                                 fontSize: `16px`,
-                                color: `#2B69D5`,
+                                color: `#FFFFFF`,
                               }}
                             >
                               {subscribers.value}
@@ -324,7 +327,7 @@ export const HeaderDetal: FC = () => {
                             sx={{
                               height: `70px`,
                               width: `77px`,
-                              color: `#B5CDEF`,
+                              color: `#EFFCFC`,
                             }}
                           />
                         }
@@ -337,7 +340,7 @@ export const HeaderDetal: FC = () => {
                               sx={{
                                 fontWeight: `500`,
                                 fontSize: `16px`,
-                                color: `#2B69D5`,
+                                color: `#FFFFFF`,
                               }}
                             >
                               {countPost.value}
@@ -353,7 +356,7 @@ export const HeaderDetal: FC = () => {
                             sx={{
                               height: `70px`,
                               width: `77px`,
-                              color: `#B5CDEF`,
+                              color: `#EFFCFC`,
                             }}
                           />
                         }
@@ -363,7 +366,7 @@ export const HeaderDetal: FC = () => {
                             sx={{
                               fontWeight: `500`,
                               fontSize: `16px`,
-                              color: `#2B69D5`,
+                              color: `#FFFFFF`,
                             }}
                           >
                             {er.value}%
@@ -378,7 +381,7 @@ export const HeaderDetal: FC = () => {
                             sx={{
                               height: `70px`,
                               width: `77px`,
-                              color: `#B5CDEF`,
+                              color: `#EFFCFC`,
                             }}
                           />
                         }
@@ -388,7 +391,7 @@ export const HeaderDetal: FC = () => {
                             sx={{
                               fontWeight: `500`,
                               fontSize: `16px`,
-                              color: `#2B69D5`,
+                              color: `#FFFFFF`,
                             }}
                           >
                             {precentUnsubscribe.value}%
