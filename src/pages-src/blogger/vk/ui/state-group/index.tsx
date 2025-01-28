@@ -28,30 +28,20 @@ export const StateGroup: FC = () => {
           px: `38px`,
           pt: `54px`,
           position: `relative`,
-          ...(pathname.includes(`/vk2/`) && {
-            "& .PaperGroup": {
-              background: `linear-gradient(to bottom right, #3d84de, #62bcf1)`,
-              color: `#fff`,
-            },
-            "& .PaperContent": {
-              background: `#fff`,
-              color: `#222657`,
-            },
-            "& .MoreVertIcon": {
-              color: `#222657`,
-            },
-            "& .KeyboardArrowIcon": {
-              color: `#fff`,
-            },
-          }),
-          ...(pathname.includes(`/vk3/`) && {
-            "& .PaperGroup": {
-              background: `#B5CDEF`,
-              color: `#fff`,
-            },
-            "& .PaperContent": {},
-            "& .MuiSvgIcon-root": {},
-          }),
+          "& .PaperGroup": {
+            background: `linear-gradient(to bottom right, #3d84de, #62bcf1)`,
+            color: `#fff`,
+          },
+          "& .PaperContent": {
+            background: `#fff`,
+            color: `#222657`,
+          },
+          "& .MoreVertIcon": {
+            color: `#222657`,
+          },
+          "& .KeyboardArrowIcon": {
+            color: `#fff`,
+          },
         }}
       >
         <Stack
