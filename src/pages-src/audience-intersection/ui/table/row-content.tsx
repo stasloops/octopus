@@ -12,6 +12,7 @@ import {
 import { Theme } from "@mui/system";
 import Link from "next/link";
 import { platformList } from "../../model/const";
+import { CheckElement } from "./check-element";
 import { RowNumberElement } from "./row-number-element";
 import { SubscribersElement } from "./subscribers-number";
 
@@ -37,6 +38,18 @@ export function rowContent(_index: number, row: IBlogger) {
 
   return (
     <>
+      <TableCell
+        sx={{
+          height: `74px`,
+          display: {
+            xs: `none`,
+            md: `table-cell`,
+            lg: `table-cell`,
+          },
+        }}
+      >
+        <CheckElement row={row} />
+      </TableCell>
       <TableCell
         sx={{
           height: `74px`,
@@ -218,6 +231,17 @@ export function rowContent(_index: number, row: IBlogger) {
         }}
       >
         {/* Качество аудитории */}
+      </TableCell>
+      <TableCell
+        sx={{
+          display: {
+            xs: `table-cell`,
+            md: `none`,
+            lg: `none`,
+          },
+        }}
+      >
+        <CheckElement row={row} />
       </TableCell>
       <TableCell
         sx={{

@@ -16,6 +16,7 @@ export function fixedHeaderContent() {
           },
         }}
       >
+        <TableCell sx={{ width: `60px` }}></TableCell>
         <TableCell sx={{ width: `70px` }}>Аватар</TableCell>
         <TableCell sx={{}}>Имя / Кол-во подписчиков</TableCell>
         <TableCell sx={{}}>Логин / ID</TableCell>
@@ -35,6 +36,7 @@ export function fixedHeaderContent() {
           },
         }}
       >
+        <TableCell sx={{ width: `60px` }}></TableCell>
         <TableCell sx={{ width: `140px` }}>Имя / Кол-во подписчиков</TableCell>
         <TableCell sx={{}}></TableCell>
         <TableCell sx={{}}>ER, %</TableCell>

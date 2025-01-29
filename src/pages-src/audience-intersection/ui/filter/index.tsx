@@ -8,7 +8,7 @@ import {
   FormFilterSchema,
   IFormFilter,
 } from "../../model/form";
-import { AdvertisersInput } from "./names-input";
+import { NamesInput } from "./names-input";
 import { SubmitButton } from "./submit-button";
 
 export const FilterElement: FC = () => {
@@ -38,7 +38,7 @@ export const FilterElement: FC = () => {
                   <Box width="100%">
                     <Grid2 container spacing={`18px`}>
                       <Grid2 xs={12} md={4} lg={4}>
-                        <AdvertisersInput />
+                        <NamesInput />
                       </Grid2>
                     </Grid2>
                   </Box>

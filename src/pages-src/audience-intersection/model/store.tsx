@@ -10,3 +10,13 @@ export const useBloggerTableStore = create<IBloggerTableStore>()((set) => ({
   value: null,
   setValue: (value) => set(() => ({ value })),
 }));
+
+interface ICheckListStore {
+  value: number[];
+  setValue: (value: number[]) => void;
+}
+
+export const useCheckListStore = create<ICheckListStore>()((set) => ({
+  value: [],
+  setValue: (value) => set(() => ({ value })),
+}));

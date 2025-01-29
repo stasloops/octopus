@@ -1,17 +1,16 @@
 import { CustomTextField } from "@/shared/ui/custom-text-field";
-import { Chip, Stack } from "@mui/material";
-import Grid2 from "@mui/material/Unstable_Grid2";
+import { Stack } from "@mui/material";
 import { FC } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { IFormFilter } from "../../model/form";
+import { IFormModalFilter } from "../../model/form";
 
-export const NamesInput: FC = () => {
-  const { control, watch, setValue } = useFormContext<IFormFilter>();
+export const NameInput: FC = () => {
+  const { control, watch, setValue } = useFormContext<IFormModalFilter>();
 
   return (
     <>
       <Controller
-        name={"names"}
+        name={"name"}
         control={control}
         render={({
           field: { onChange, value },
@@ -22,7 +21,7 @@ export const NamesInput: FC = () => {
             <Stack spacing={1}>
               <CustomTextField
                 fullWidth
-                label="Наименование сообществ *"
+                label="Наименование файла *"
                 variant="outlined"
                 size="small"
                 error={Boolean(error)}
@@ -30,14 +29,6 @@ export const NamesInput: FC = () => {
                 onChange={onChange}
                 value={value}
               />
-              <Grid2 container spacing={`5px`}>
-                {value.length > 0 &&
-                  value.split(/[\s,]+/).map((el, index) => (
-                    <Grid2 key={index} xs="auto">
-                      <Chip label={el} />
-                    </Grid2>
-                  ))}
-              </Grid2>
             </Stack>
           </>
         )}

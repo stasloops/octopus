@@ -26,3 +26,21 @@ export const FormFilterSchema = z
     message: "Сообществ должно быть не более 5",
     path: ["names"],
   });
+
+export interface IFormModalFilter {
+  name: string;
+}
+
+export const defaultFormModalFilter: IFormModalFilter = {
+  name: ``,
+};
+
+export const FormFilterModalSchema = z.object({
+  name: z
+    .string()
+    .max(5000, {
+      message: `Длина не более 5000 символов`,
+    })
+    .min(1, { message: "Обязательное поле" })
+    .max(50, { message: "Длина не более 50 символов" }),
+});

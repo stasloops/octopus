@@ -3,6 +3,7 @@
 import { Layout } from "@/widgets/layout";
 import { Box, Typography } from "@mui/material";
 import { FC } from "react";
+import { DownloadReport } from "./download-report";
 import { FilterElement } from "./filter";
 import { TableElement } from "./table";
 
@@ -28,6 +29,7 @@ export const Page: FC<PageProps> = ({}) => {
           }}
         >{`Пересечение аудиторий`}</Typography>
         <FilterElement />
+        <DownloadReport />
         <TableElement />
       </Box>
     </>
