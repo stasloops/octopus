@@ -1,5 +1,5 @@
 import { IconButton, Collapse } from "@mui/material";
-import { Box, Button, Chip, Stack, Tooltip, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -15,7 +15,32 @@ import { IPayloadParams, useBlogers } from "@/entities/bloger";
 import { useBloggerTableStore } from "@/pages-src/home/model/store";
 import { FilterTags } from "./filter-tags";
 
-const locationDefaultValue = "Все";
+const getDefaultValues = () => ({
+  subscribers: "",
+  geography: "",
+  brandMentions: "",
+  erRate: "",
+  otherSocialAccount: "",
+  advertisers: "",
+  subscriptions: "",
+  postsCount: "",
+  verifiedAccount: "",
+  location: "",
+  postTags: "",
+  vkVideoViews: "",
+  communityTheme: "",
+  clipsViews: "",
+  averageReach: "",
+});
+
+const FILTER_CONSTANTS = {
+  LOCATION_DEFAULT: "Все",
+  STORAGE_KEY: "app_filter_form_values",
+  LABELS: {
+    FILTER: "Фильтр",
+    ADDITIONAL_FILTERS: "Дополнительные фильтры",
+  },
+};
 
 interface IFilterElementProps {
   onClose: () => void;
@@ -23,114 +48,24 @@ interface IFilterElementProps {
 
 export const FilterElement: FC<IFilterElementProps> = ({ onClose }) => {
   const [showAdditionalFilters, setShowAdditionalFilters] = useState(false);
-  const {
-    bloggersLocations,
-    subscribersLocations,
-    postTags,
-    isLoading,
-    isError,
-  } = useFilterDataQuery();
   const setBloggerTable = useBloggerTableStore((state) => state.setValue);
+  const { bloggersLocations, subscribersLocations } = useFilterDataQuery();
 
-  const loadSavedValues = () => {
-    const savedValues = localStorage.getItem("filterFormValues");
-    if (savedValues) {
-      return JSON.parse(savedValues);
-    }
-    return {
-      subscribers: "",
-      geography: "",
-      brandMentions: "",
-      erRate: "",
-      otherSocialAccount: "",
-      advertisers: "",
-      subscriptions: "",
-      postsCount: "",
-      verifiedAccount: "",
-      location: "",
-      postTags: "",
-      vkVideoViews: "",
-      communityTheme: "",
-      clipsViews: "",
-      averageReach: "",
-    };
-  };
+  const { methods } = useHandleForm();
+  const { onSubmit } = useFilterForm();
 
-  const methods = useForm<FilterFormData>({
-    resolver: zodResolver(filterFormSchema),
-    mode: "onChange",
-    defaultValues: loadSavedValues(),
-  });
-
-  useEffect(() => {
-    const subscription = methods.watch((formValues) => {
-      localStorage.setItem("filterFormValues", JSON.stringify(formValues));
-    });
-    return () => subscription.unsubscribe();
-  }, [methods.watch]);
-
-  const { mutateAsync } = useBlogers();
-
-  const onSubmit = async ({
-    erRate,
-    subscribers,
-    postsCount,
-    geography,
-    location,
-    advertisers,
-    verifiedAccount,
-    communityTheme,
-    postTags,
-    vkVideoViews,
-    clipsViews,
-    averageReach,
-  }: FilterFormData) => {
+  const handleOnSubmit = async (args: FilterFormData) => {
     try {
-      const handleFilter = <T,>(filter: T) => {
-        if (filter !== "" && filter !== 0 && filter !== locationDefaultValue) {
-          return filter;
-        }
-        return undefined;
-      };
-
-      const is_confirmed = verifiedAccount === "Да" ? true : false;
-
-      const newFilters: IPayloadParams = {
-        er__lte: handleFilter(Number(erRate)),
-        posts__lte: handleFilter(Number(postsCount)),
-        subscribers__lte: handleFilter(Number(subscribers)),
-
-        theme_in: handleFilter(communityTheme),
-        is_confirmed,
-
-        location__in: handleFilter(location),
-        stat__subscribers_locations__in: handleFilter(geography),
-        stat__posts_tags__in: handleFilter(postTags),
-
-        stat__clips_counters__views__lte: handleFilter(Number(clipsViews)),
-
-        stat__videos_counters__views__lte: handleFilter(Number(vkVideoViews)),
-        stat__posts_counters__views_12_avg__lte: handleFilter(
-          Number(averageReach)
-        ),
-
-        search: "",
-      };
-      console.log(vkVideoViews);
-
-      console.log(newFilters);
-      const res = await mutateAsync(newFilters);
+      const res = await onSubmit(args);
       setBloggerTable(res);
       onClose();
     } catch (error) {
-      console.log(error);
+      console.error("Failed to submit filter:", error);
     }
   };
 
   const transformData = (data: { id: null; content: string }[]) => {
-    return data.map((el) => {
-      return el.content;
-    });
+    return data.map((el) => el.content);
   };
 
   return (
@@ -138,7 +73,7 @@ export const FilterElement: FC<IFilterElementProps> = ({ onClose }) => {
       sx={{ padding: { xs: `56px 20px`, md: `47px 38px`, lg: `47px 38px` } }}
     >
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <form onSubmit={methods.handleSubmit(handleOnSubmit)}>
           <Stack spacing={2}>
             <Box>
               <Stack
@@ -150,16 +85,8 @@ export const FilterElement: FC<IFilterElementProps> = ({ onClose }) => {
                 }}
               >
                 <Typography sx={{ fontWeight: `600`, fontSize: `20px` }}>
-                  Фильтр
+                  {FILTER_CONSTANTS.LABELS.FILTER}
                 </Typography>
-                <Tooltip title={`В разработке`}>
-                  <Chip
-                    color="error"
-                    size="small"
-                    label="В разработке"
-                    variant="outlined"
-                  />
-                </Tooltip>
               </Stack>
             </Box>
 
@@ -197,7 +124,7 @@ export const FilterElement: FC<IFilterElementProps> = ({ onClose }) => {
                   name="location"
                   label="Местоположение"
                   data={transformData(bloggersLocations.data || [])}
-                  defaultValue={locationDefaultValue}
+                  defaultValue={FILTER_CONSTANTS.LOCATION_DEFAULT}
                 />
               </Grid2>
             </Box>
@@ -217,7 +144,7 @@ export const FilterElement: FC<IFilterElementProps> = ({ onClose }) => {
                   </IconButton>
                 }
               >
-                Дополнительные фильтры
+                {FILTER_CONSTANTS.LABELS.ADDITIONAL_FILTERS}
               </Button>
 
               <Collapse in={showAdditionalFilters}>
@@ -254,16 +181,10 @@ export const FilterElement: FC<IFilterElementProps> = ({ onClose }) => {
                     name="geography"
                     label="География аудитории"
                     data={transformData(subscribersLocations.data || [])}
-                    defaultValue={locationDefaultValue}
+                    defaultValue={FILTER_CONSTANTS.LOCATION_DEFAULT}
                   />
 
                   <FilterTags name="postTags" label="Теги постов" />
-
-                  {/* <FilterAutocomplete
-                    name="postTags"
-                    label="Теги постов"
-                    data={transformData(postTags.data || [])}
-                  /> */}
 
                   <FilterField
                     name="vkVideoViews"
@@ -307,4 +228,88 @@ export const FilterElement: FC<IFilterElementProps> = ({ onClose }) => {
       </FormProvider>
     </Box>
   );
+};
+
+const useHandleForm = () => {
+  const loadSavedValues = () => {
+    try {
+      const savedValues = localStorage.getItem(FILTER_CONSTANTS.STORAGE_KEY);
+      return savedValues ? JSON.parse(savedValues) : getDefaultValues();
+    } catch {
+      return getDefaultValues();
+    }
+  };
+
+  const methods = useForm<FilterFormData>({
+    resolver: zodResolver(filterFormSchema),
+    mode: "onChange",
+    defaultValues: loadSavedValues(),
+  });
+
+  useEffect(() => {
+    const subscription = methods.watch((formValues) => {
+      localStorage.setItem(
+        FILTER_CONSTANTS.STORAGE_KEY,
+        JSON.stringify(formValues)
+      );
+    });
+    return () => subscription.unsubscribe();
+  }, [methods.watch]);
+
+  return { methods };
+};
+
+const useFilterForm = () => {
+  const { mutateAsync } = useBlogers();
+
+  const onSubmit = async ({
+    erRate,
+    subscribers,
+    postsCount,
+    geography,
+    location,
+    verifiedAccount,
+    communityTheme,
+    postTags,
+    vkVideoViews,
+    clipsViews,
+    averageReach,
+  }: FilterFormData) => {
+    try {
+      const handleFilter = <T,>(filter: T) => {
+        if (
+          filter !== "" &&
+          filter !== 0 &&
+          filter !== FILTER_CONSTANTS.LOCATION_DEFAULT
+        ) {
+          return filter;
+        }
+        return undefined;
+      };
+
+      const newFilters: IPayloadParams = {
+        er__lte: handleFilter(Number(erRate)),
+        posts__lte: handleFilter(Number(postsCount)),
+        subscribers__lte: handleFilter(Number(subscribers)),
+        theme_in: handleFilter(communityTheme),
+        is_confirmed: verifiedAccount === "true" ? true : false,
+        location__in: handleFilter(location),
+        stat__subscribers_locations__in: handleFilter(geography),
+        stat__posts_tags__in: handleFilter(postTags?.replace(/\s+/g, '|')),
+        stat__clips_counters__views__lte: handleFilter(Number(clipsViews)),
+        stat__videos_counters__views__lte: handleFilter(Number(vkVideoViews)),
+        stat__posts_counters__views_12_avg__lte: handleFilter(
+          Number(averageReach)
+        ),
+
+        search: "",
+      };
+      const res = await mutateAsync(newFilters);
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  return { onSubmit };
 };

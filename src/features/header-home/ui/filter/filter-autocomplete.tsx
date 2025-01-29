@@ -15,7 +15,7 @@ export const FilterAutocomplete: FC<FilterAutocompleteProps> = ({
   name,
   label,
   data,
-  defaultValue
+  defaultValue,
 }) => {
   const { control } = useFormContext<FilterFormData>();
 
@@ -26,12 +26,13 @@ export const FilterAutocomplete: FC<FilterAutocompleteProps> = ({
         control={control}
         render={({ field: { onChange, value, ...field } }) => (
           <Autocomplete
-            {...field}    
+            {...field}
             value={value || null}
             onChange={(_, newValue) => onChange(newValue)}
             options={[defaultValue, ...data]}
             disablePortal
-            sx={{ ...sx(value || ''), height: "40px" }}
+            sx={{ ...sx(value || ""), height: "40px" }}
+            clearIcon={<div style={{ pointerEvents: "none" }}></div>}
             renderInput={(params) => <TextField {...params} label={label} />}
           />
         )}
