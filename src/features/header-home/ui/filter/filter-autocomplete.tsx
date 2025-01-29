@@ -8,12 +8,14 @@ interface FilterAutocompleteProps {
   name: keyof FilterFormData;
   label: string;
   data: string[];
+  defaultValue: string;
 }
 
 export const FilterAutocomplete: FC<FilterAutocompleteProps> = ({
   name,
   label,
   data,
+  defaultValue
 }) => {
   const { control } = useFormContext<FilterFormData>();
 
@@ -24,10 +26,10 @@ export const FilterAutocomplete: FC<FilterAutocompleteProps> = ({
         control={control}
         render={({ field: { onChange, value, ...field } }) => (
           <Autocomplete
-            {...field}
+            {...field}    
             value={value || null}
             onChange={(_, newValue) => onChange(newValue)}
-            options={data}
+            options={[defaultValue, ...data]}
             disablePortal
             sx={{ ...sx(value || ''), height: "40px" }}
             renderInput={(params) => <TextField {...params} label={label} />}
@@ -39,8 +41,6 @@ export const FilterAutocomplete: FC<FilterAutocompleteProps> = ({
 };
 
 const sx = (value: string): SxProps<Theme> | any => {
-  console.log(value);
-
   return {
     "& .MuiOutlinedInput-root": {
       p: `0px 14px`,

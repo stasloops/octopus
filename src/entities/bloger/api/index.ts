@@ -1,13 +1,21 @@
 import { IBlogger } from "@/shared/api/blogger/model";
 import { http } from "@/shared/api/instance";
 
-interface IPayloadParams {
-  er__lte?: number;
-  posts__lte?: number;
+export interface IPayloadParams {
   subscribers__lte?: number;
+  er__lte?: number;
+  location__in?: string;
+  theme_in?: string;
+  stat__subscribers_locations__in?: string;
+  posts__lte?: number;
+  stat__posts_tags__in?: string;
+  stat__clips_counters__views__lte?: number;
+  is_confirmed?: boolean;
+  stat__videos_counters__views__lte?: number;
+  stat__posts_counters__views_12_avg__lte?: number;
+  
   search?: string;
 }
-
 
 interface IPayload extends IPayloadParams {
   limit?: number;
@@ -31,6 +39,8 @@ export interface IGetBlogerSchema {
 }
 
 export const getBlogers = async (payload: IGetBlogerSchema["payload"]) => {
+  console.log(payload);
+
   const response = await http.get<IGetBlogerSchema["response"]>(
     `/blogger/platform`,
     {
@@ -39,4 +49,3 @@ export const getBlogers = async (payload: IGetBlogerSchema["payload"]) => {
   );
   return response.data;
 };
-
