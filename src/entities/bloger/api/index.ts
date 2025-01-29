@@ -39,8 +39,6 @@ export interface IGetBlogerSchema {
 }
 
 export const getBlogers = async (payload: IGetBlogerSchema["payload"]) => {
-  console.log(payload);
-
   const response = await http.get<IGetBlogerSchema["response"]>(
     `/blogger/platform`,
     {
