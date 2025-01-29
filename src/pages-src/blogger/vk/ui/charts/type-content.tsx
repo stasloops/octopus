@@ -200,7 +200,7 @@ const ChartElement: FC<{
                   }}
                 >
                   {data.seriesToDisplay.map((el, index) => (
-                    <Grid2 xs="auto">
+                    <Grid2 key={index} xs="auto">
                       <Stack
                         direction="row"
                         justifyContent="start"

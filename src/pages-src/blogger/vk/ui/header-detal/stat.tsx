@@ -1,4 +1,3 @@
-import { theme } from "@/shared/lib/theme";
 import { Stack, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { FC, ReactNode } from "react";
@@ -30,11 +29,11 @@ export const StatElement: FC<StatElementProps> = ({
           {icon}
           {value}
           <Typography
-            color={!!error ? theme.palette.error.main : undefined}
             align="center"
             sx={{
               fontWeight: `400`,
               fontSize: `12px`,
+              color: `#FFFFFF`,
             }}
           >
             {label}
