@@ -6,7 +6,7 @@ import { IFormFilter } from "../../model/form";
 import { useCheckListStore } from "../../model/store";
 
 interface SubmitButtonProps {
-  type: `csv` | `pdf`;
+  type: `xlsx` | `pdf`;
 }
 
 export const SubmitButton: FC<SubmitButtonProps> = ({ type }) => {

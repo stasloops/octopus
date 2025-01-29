@@ -1,12 +1,12 @@
 import {
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-    MenuItem,
-    Stack,
-    Typography,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  MenuItem,
+  Stack,
+  Typography,
 } from "@mui/material";
 import { FC, useState } from "react";
 import { useBloggerTableStore, useCheckListStore } from "../../model/store";
@@ -14,7 +14,7 @@ import { NameInput } from "./names-input";
 import { SubmitButton } from "./submit-button";
 
 interface ButtonModalProps {
-  type: `csv` | `pdf`;
+  type: `xlsx` | `pdf`;
   label: string;
 }
 

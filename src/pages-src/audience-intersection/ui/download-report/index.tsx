@@ -74,7 +74,7 @@ export const DownloadReport: FC = () => {
             vertical: `top`,
           }}
         >
-          <ButtonModal label="Скачать CSV" type="csv" />
+          <ButtonModal label="Скачать XLSX" type="xlsx" />
           <ButtonModal label="Скачать PDF" type="pdf" />
         </Menu>
       </FormProvider>
