@@ -1,7 +1,7 @@
 import { IconButton, Collapse } from "@mui/material";
-import { Box, Button, Chip, Stack, Tooltip, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SearchInput } from "./search-input";
@@ -11,45 +11,61 @@ import { KeyboardArrowUp, KeyboardArrowDown } from "@mui/icons-material";
 import { FilterSelect } from "./filter-select";
 import { useFilterDataQuery } from "../../lib/hooks/useFilterDataQuery";
 import { FilterAutocomplete } from "./filter-autocomplete";
-import { useBlogers } from "@/entities/bloger";
+import { IPayloadParams, useBlogers } from "@/entities/bloger";
+import { useBloggerTableStore } from "@/pages-src/home/model/store";
+import { FilterTags } from "./filter-tags";
 
-export const FilterElement: FC = () => {
+const getDefaultValues = () => ({
+  subscribers: "",
+  geography: "",
+  brandMentions: "",
+  erRate: "",
+  otherSocialAccount: "",
+  advertisers: "",
+  subscriptions: "",
+  postsCount: "",
+  verifiedAccount: "",
+  location: "",
+  postTags: "",
+  vkVideoViews: "",
+  communityTheme: "",
+  clipsViews: "",
+  averageReach: "",
+});
+
+const FILTER_CONSTANTS = {
+  LOCATION_DEFAULT: "Все",
+  STORAGE_KEY: "app_filter_form_values",
+  LABELS: {
+    FILTER: "Фильтр",
+    ADDITIONAL_FILTERS: "Дополнительные фильтры",
+  },
+};
+
+interface IFilterElementProps {
+  onClose: () => void;
+}
+
+export const FilterElement: FC<IFilterElementProps> = ({ onClose }) => {
   const [showAdditionalFilters, setShowAdditionalFilters] = useState(false);
-  const {
-    bloggersLocations,
-    subscribersLocations,
-    postTags,
-    isLoading,
-    isError,
-  } = useFilterDataQuery();
+  const setBloggerTable = useBloggerTableStore((state) => state.setValue);
+  const { bloggersLocations, subscribersLocations } = useFilterDataQuery();
 
-  const methods = useForm<FilterFormData>({
-    resolver: zodResolver(filterFormSchema),
-    mode: "onChange",
-    defaultValues: {
-      subscribers: "",
-      geography: "",
-      brandMentions: "",
-      erRate: "",
-      otherSocialAccount: "",
-      advertisers: "",
-      subscriptions: "",
-      postsCount: "",
-      verifiedAccount: "",
-      location: "",
-      postTags: "",
-      vkVideoViews: "",
-      communityTheme: "",
-      clipsViews: "",
-      averageReach: "",
-    },
-  });
+  const { methods } = useHandleForm();
+  const { onSubmit } = useFilterForm();
 
-  const { mutateAsync } = useBlogers();
+  const handleOnSubmit = async (args: FilterFormData) => {
+    try {
+      const res = await onSubmit(args);
+      setBloggerTable(res);
+      onClose();
+    } catch (error) {
+      console.error("Failed to submit filter:", error);
+    }
+  };
 
-  const onSubmit = (data: FilterFormData) => {
-    console.log("data: ", data);
-    // Здесь обработка данных формы
+  const transformData = (data: { id: null; content: string }[]) => {
+    return data.map((el) => el.content);
   };
 
   return (
@@ -57,7 +73,7 @@ export const FilterElement: FC = () => {
       sx={{ padding: { xs: `56px 20px`, md: `47px 38px`, lg: `47px 38px` } }}
     >
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <form onSubmit={methods.handleSubmit(handleOnSubmit)}>
           <Stack spacing={2}>
             <Box>
               <Stack
@@ -69,16 +85,8 @@ export const FilterElement: FC = () => {
                 }}
               >
                 <Typography sx={{ fontWeight: `600`, fontSize: `20px` }}>
-                  Фильтр
+                  {FILTER_CONSTANTS.LABELS.FILTER}
                 </Typography>
-                <Tooltip title={`В разработке`}>
-                  <Chip
-                    color="error"
-                    size="small"
-                    label="В разработке"
-                    variant="outlined"
-                  />
-                </Tooltip>
               </Stack>
             </Box>
 
@@ -113,9 +121,10 @@ export const FilterElement: FC = () => {
                   label="Тематика сообщества"
                 />
                 <FilterAutocomplete
-                  name="geography"
+                  name="location"
                   label="Местоположение"
-                  data={["Москва", "Воронеж", "Сантрапе"]}
+                  data={transformData(bloggersLocations.data || [])}
+                  defaultValue={FILTER_CONSTANTS.LOCATION_DEFAULT}
                 />
               </Grid2>
             </Box>
@@ -135,7 +144,7 @@ export const FilterElement: FC = () => {
                   </IconButton>
                 }
               >
-                Дополнительные фильтры
+                {FILTER_CONSTANTS.LABELS.ADDITIONAL_FILTERS}
               </Button>
 
               <Collapse in={showAdditionalFilters}>
@@ -156,11 +165,7 @@ export const FilterElement: FC = () => {
                     label="Аккаунт в другой социальной сети"
                   />
                   <FilterField name="advertisers" label="Рекламодатели" />
-                  <FilterField
-                    name="subscriptions"
-                    label="Кол-во подписок"
-                    type="number"
-                  />
+
                   <FilterField
                     name="postsCount"
                     label="Кол-во постов (в блоге за весь период)"
@@ -173,15 +178,13 @@ export const FilterElement: FC = () => {
                   />
 
                   <FilterAutocomplete
-                    name="location"
-                    label="Местоположение"
-                    data={[]}
+                    name="geography"
+                    label="География аудитории"
+                    data={transformData(subscribersLocations.data || [])}
+                    defaultValue={FILTER_CONSTANTS.LOCATION_DEFAULT}
                   />
-                  <FilterAutocomplete
-                    name="postTags"
-                    label="Теги постов"
-                    data={[]}
-                  />
+
+                  <FilterTags name="postTags" label="Теги постов" />
 
                   <FilterField
                     name="vkVideoViews"
@@ -225,4 +228,88 @@ export const FilterElement: FC = () => {
       </FormProvider>
     </Box>
   );
+};
+
+const useHandleForm = () => {
+  const loadSavedValues = () => {
+    try {
+      const savedValues = localStorage.getItem(FILTER_CONSTANTS.STORAGE_KEY);
+      return savedValues ? JSON.parse(savedValues) : getDefaultValues();
+    } catch {
+      return getDefaultValues();
+    }
+  };
+
+  const methods = useForm<FilterFormData>({
+    resolver: zodResolver(filterFormSchema),
+    mode: "onChange",
+    defaultValues: loadSavedValues(),
+  });
+
+  useEffect(() => {
+    const subscription = methods.watch((formValues) => {
+      localStorage.setItem(
+        FILTER_CONSTANTS.STORAGE_KEY,
+        JSON.stringify(formValues)
+      );
+    });
+    return () => subscription.unsubscribe();
+  }, [methods.watch]);
+
+  return { methods };
+};
+
+const useFilterForm = () => {
+  const { mutateAsync } = useBlogers();
+
+  const onSubmit = async ({
+    erRate,
+    subscribers,
+    postsCount,
+    geography,
+    location,
+    verifiedAccount,
+    communityTheme,
+    postTags,
+    vkVideoViews,
+    clipsViews,
+    averageReach,
+  }: FilterFormData) => {
+    try {
+      const handleFilter = <T,>(filter: T) => {
+        if (
+          filter !== "" &&
+          filter !== 0 &&
+          filter !== FILTER_CONSTANTS.LOCATION_DEFAULT
+        ) {
+          return filter;
+        }
+        return undefined;
+      };
+
+      const newFilters: IPayloadParams = {
+        er__lte: handleFilter(Number(erRate)),
+        posts__lte: handleFilter(Number(postsCount)),
+        subscribers__lte: handleFilter(Number(subscribers)),
+        theme_in: handleFilter(communityTheme),
+        is_confirmed: verifiedAccount === "true" ? true : false,
+        location__in: handleFilter(location),
+        stat__subscribers_locations__in: handleFilter(geography),
+        stat__posts_tags__in: handleFilter(postTags?.replace(/\s+/g, '|')),
+        stat__clips_counters__views__lte: handleFilter(Number(clipsViews)),
+        stat__videos_counters__views__lte: handleFilter(Number(vkVideoViews)),
+        stat__posts_counters__views_12_avg__lte: handleFilter(
+          Number(averageReach)
+        ),
+
+        search: "",
+      };
+      const res = await mutateAsync(newFilters);
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  return { onSubmit };
 };
