@@ -49,8 +49,6 @@ export const TableElement: FC<TableElementProps> = ({}) => {
   }, [bloggerTable, setBloggerTable, mutateAsync, search, hasMore]);
 
   useEffect(() => {
-    console.log("data, bloggerTable: ", data, bloggerTable);
-
     if (data) {
       if (data.meta.offset === 0) {
         return setBloggerTable(data);
