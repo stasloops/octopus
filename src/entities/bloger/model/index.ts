@@ -1,11 +1,26 @@
 import { enqueueSnackbar } from "notistack";
 import { useMutation, useQueryClient, useQuery } from "react-query";
-import { getBlogers, IGetBlogerSchema } from "../api";
+import { getBlogers, IPayload } from "../api";
 import { limitCount } from "../config";
+import { create } from "zustand";
 
 const BLOGERS_QUERY_KEY = "blogers";
 
+interface BlogersFiltersStore {
+  filters: IPayload;
+  setFilters: (filters: IPayload | ((prev: IPayload) => IPayload)) => void;
+}
+
+export const useFiltersStore = create<BlogersFiltersStore>((set) => ({
+  filters: {},
+  setFilters: (filters) =>
+    set((state) => ({
+      filters: typeof filters === "function" ? filters(state.filters) : filters,
+    })),
+}));
+
 export const useBlogers = () => {
+  const { filters, setFilters } = useFiltersStore();
   const queryClient = useQueryClient();
 
   const query = useQuery(
@@ -17,8 +32,18 @@ export const useBlogers = () => {
   );
 
   const mutation = useMutation({
-    mutationFn: (value: IGetBlogerSchema[`payload`]) =>
-      getBlogers({ limit: limitCount, ...value, sort: `-subscribers` }),
+    mutationFn: async () => {
+      const res = await getBlogers({
+        limit: limitCount,
+        ...filters,
+        sort: `-subscribers`,
+      });
+      setFilters((prev) => ({
+        ...prev,
+        ...res.meta,
+      }));
+      return res;
+    },
     onSuccess: (data) => {
       if (!data) return;
       if (data.data.length < limitCount) data.meta.end = true;
@@ -29,8 +54,15 @@ export const useBlogers = () => {
     },
   });
 
+  const mutateAsync = async () => {
+    setTimeout(() => {
+      mutation.mutateAsync();
+    });
+  };
+
   return {
     ...query,
-    mutateAsync: mutation.mutateAsync,
+    setFilters,
+    mutateAsync,
   };
 };

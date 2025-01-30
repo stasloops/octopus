@@ -17,12 +17,10 @@ export interface IPayloadParams {
   search?: string;
 }
 
-interface IPayload extends IPayloadParams {
+export interface IPayload extends IPayloadParams {
   limit?: number;
   offset?: number;
   sort?: string;
-  populate?: string;
-  id__in?: string;
 }
 
 export interface IGetBlogerSchema {

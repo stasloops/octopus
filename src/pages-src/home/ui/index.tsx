@@ -15,12 +15,12 @@ interface PageProps {
 }
 
 export const Page: FC<PageProps> = ({ search }) => {
-  const { mutateAsync, isLoading, data } = useBlogers();
+  const { mutateAsync, setFilters, isLoading, data } = useBlogers();
   const setBloggerTable = useBloggerTableStore((state) => state.setValue);
 
   const startMutate = useCallback(async () => {
-    const res = await mutateAsync({ search: search });
-    setBloggerTable(res);
+    setFilters((prev) => ({ ...prev, search: search }));
+    await mutateAsync();
   }, [setBloggerTable, mutateAsync, search]);
 
   useEffect(() => {

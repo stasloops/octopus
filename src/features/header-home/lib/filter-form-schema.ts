@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const filterFormSchema = z.object({
+  search: z.string().optional(),
   subscribers: z.string().optional(),
   geography: z.string().optional(),
   brandMentions: z.string().optional(),
