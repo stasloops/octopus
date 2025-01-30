@@ -1,68 +1,28 @@
 "use client";
 
+import { FC } from "react";
+import { Controller, useFormContext } from "react-hook-form";
 import { CustomTextField } from "@/shared/ui/custom-text-field";
-import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
-import SearchIcon from "@mui/icons-material/Search";
-import { IconButton, InputAdornment } from "@mui/material";
-import { FC, useRef } from "react";
-import { useSearchStore } from "../../model/store";
+import { FilterFormData } from "../../lib/filter-form-schema";
 
-interface SearchInputProps {}
-
-export const SearchInput: FC<SearchInputProps> = () => {
-  const text = useSearchStore((state) => state.value);
-  const setText = useSearchStore((state) => state.setValue);
-
-  const onChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setText(event.target.value);
-  };
-
-  const inputRef = useRef<HTMLInputElement>();
-
-  const handleClear = () => {
-    setText(``);
-    const input = inputRef.current;
-    if (!!input) {
-      input.focus();
-    }
-  };
+export const SearchInput: FC = () => {
+  const { control } = useFormContext<FilterFormData>();
 
   return (
-    <>
-      <CustomTextField
-        // label="Поиск"
-        placeholder="Поиск"
-        variant="outlined"
-        onChange={onChangeText}
-        value={text}
-        size="small"
-        inputRef={inputRef}
-        sx={{
-          "& .MuiOutlinedInput-notchedOutline ": {
-            background: `#EFFCFC`,
-            zIndex: -1,
-          },
-          "& ::placeholder": {
-            color: `#B5CDEF`,
-          },
-        }}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon sx={{ color: `#B5CDEF` }} />
-            </InputAdornment>
-          ),
-          endAdornment: (
-            <InputAdornment position="end">
-              {text.length > 0 && (
-                <IconButton onClick={handleClear}>
-                  <ClearOutlinedIcon />
-                </IconButton>
-              )}
-            </InputAdornment>
-          ),
-        }}
-      />
-    </>
+    <Controller
+      name="search"
+      control={control}
+      render={({ field, fieldState: { error } }) => (
+        <CustomTextField
+          {...field}
+          fullWidth
+          label="Поиск"
+          variant="outlined"
+          size="small"
+          error={!!error}
+          helperText={error?.message}
+        />
+      )}
+    />
   );
 };

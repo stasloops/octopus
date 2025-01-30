@@ -2,7 +2,7 @@
 
 import { Box } from "@mui/material";
 import { useSearchParams } from "next/navigation";
-import { FC, useCallback, useMemo } from "react";
+import { FC, useCallback, useEffect, useMemo } from "react";
 import { TableVirtuoso } from "react-virtuoso";
 import { useBloggerTableStore } from "../../model/store";
 import { fixedHeaderContent } from "./header";
@@ -19,21 +19,26 @@ export const TableElement: FC<TableElementProps> = ({}) => {
   const bloggerTable = useBloggerTableStore((state) => state.value);
   const setBloggerTable = useBloggerTableStore((state) => state.setValue);
 
-  const { mutateAsync } = useBlogers();
+  const { mutateAsync, setFilters, data } = useBlogers();
 
   const hasMore = useMemo(() => {
-    if (!bloggerTable) return false;
-    return !!bloggerTable.meta.end ? false : true;
-  }, [bloggerTable]);
+    if (!data) return false;
+    return !!data.meta.end ? false : true;
+  }, [data]);
 
   const loadMore = useCallback(async () => {
     if (!bloggerTable) return;
     if (!hasMore) return;
-
-    const res = await mutateAsync({
-      search: search || undefined,
-      offset: bloggerTable.data.length,
+    setFilters((prev) => {
+      console.log(prev);
+      
+      return {
+        ...prev,
+        search: search || undefined,
+        offset: bloggerTable.data.length,
+      };
     });
+    await mutateAsync();
 
     const box = document.getElementById("Scroller") as HTMLElement | null;
     if (box) {
@@ -41,11 +46,28 @@ export const TableElement: FC<TableElementProps> = ({}) => {
     }
 
     // window.scroll(500, 0);
-    setBloggerTable({
-      data: [...bloggerTable.data, ...res.data],
-      meta: res.meta,
-    });
   }, [bloggerTable, setBloggerTable, mutateAsync, search, hasMore]);
+
+  useEffect(() => {
+    console.log("data, bloggerTable: ", data, bloggerTable);
+
+    if (data) {
+      if (data.meta.offset === 0) {
+        return setBloggerTable(data);
+      }
+      if (!bloggerTable) return;
+
+      const existingIds = new Set(bloggerTable.data.map((item) => item.id));
+      const hasDuplicates = data.data.some((item) => existingIds.has(item.id));
+
+      if (!hasDuplicates) {
+        setBloggerTable({
+          data: [...bloggerTable.data, ...data.data],
+          meta: data.meta,
+        });
+      }
+    }
+  }, [JSON.stringify(data)]);
 
   return (
     <>

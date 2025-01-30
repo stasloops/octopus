@@ -12,7 +12,6 @@ import { FilterSelect } from "./filter-select";
 import { useFilterDataQuery } from "../../lib/hooks/useFilterDataQuery";
 import { FilterAutocomplete } from "./filter-autocomplete";
 import { IPayloadParams, useBlogers } from "@/entities/bloger";
-import { useBloggerTableStore } from "@/pages-src/home/model/store";
 import { FilterTags } from "./filter-tags";
 
 const getDefaultValues = () => ({
@@ -48,7 +47,6 @@ interface IFilterElementProps {
 
 export const FilterElement: FC<IFilterElementProps> = ({ onClose }) => {
   const [showAdditionalFilters, setShowAdditionalFilters] = useState(false);
-  const setBloggerTable = useBloggerTableStore((state) => state.setValue);
   const { bloggersLocations, subscribersLocations } = useFilterDataQuery();
 
   const { methods } = useHandleForm();
@@ -56,8 +54,7 @@ export const FilterElement: FC<IFilterElementProps> = ({ onClose }) => {
 
   const handleOnSubmit = async (args: FilterFormData) => {
     try {
-      const res = await onSubmit(args);
-      setBloggerTable(res);
+      await onSubmit(args);
       onClose();
     } catch (error) {
       console.error("Failed to submit filter:", error);
@@ -260,7 +257,7 @@ const useHandleForm = () => {
 };
 
 const useFilterForm = () => {
-  const { mutateAsync } = useBlogers();
+  const { mutateAsync, setFilters } = useBlogers();
 
   const onSubmit = async ({
     erRate,
@@ -274,6 +271,7 @@ const useFilterForm = () => {
     vkVideoViews,
     clipsViews,
     averageReach,
+    search,
   }: FilterFormData) => {
     try {
       const handleFilter = <T,>(filter: T) => {
@@ -295,17 +293,18 @@ const useFilterForm = () => {
         is_confirmed: verifiedAccount === "true" ? true : false,
         location__in: handleFilter(location),
         stat__subscribers_locations__in: handleFilter(geography),
-        stat__posts_tags__in: handleFilter(postTags?.replace(/\s+/g, '|')),
+        stat__posts_tags__in: handleFilter(postTags?.replace(/\s+/g, "|")),
         stat__clips_counters__views__lte: handleFilter(Number(clipsViews)),
         stat__videos_counters__views__lte: handleFilter(Number(vkVideoViews)),
         stat__posts_counters__views_12_avg__lte: handleFilter(
           Number(averageReach)
         ),
 
-        search: "",
+        search: handleFilter(search),
       };
-      const res = await mutateAsync(newFilters);
-      return res;
+      setFilters((prev) => ({ ...prev, ...newFilters, offset: 0 }));
+
+      mutateAsync();
     } catch (error) {
       throw error;
     }
