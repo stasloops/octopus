@@ -49,7 +49,7 @@ export const FilterButton: FC = () => {
             >
               <ClearOutlinedIcon sx={{ color: `#B5CDEF` }} />
             </IconButton>
-            <FilterElement />
+            <FilterElement onClose={toggleDrawer(false)} />
           </Box>
         </Drawer>
       </Box>
