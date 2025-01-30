@@ -51,7 +51,11 @@ export const ButtonModal: FC<ButtonModalProps> = ({ label, type }) => {
                   (elData) => elData.id === el
                 );
                 if (!row) return;
-                return <Typography>{`${index + 1}. ${row.title}`}</Typography>;
+                return (
+                  <Typography key={index}>{`${index + 1}. ${
+                    row.title
+                  }`}</Typography>
+                );
               })}
             </Stack>
           </Stack>

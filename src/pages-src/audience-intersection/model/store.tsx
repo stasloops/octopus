@@ -20,3 +20,13 @@ export const useCheckListStore = create<ICheckListStore>()((set) => ({
   value: [],
   setValue: (value) => set(() => ({ value })),
 }));
+
+interface ITagListStore {
+  value: string[];
+  setValue: (value: string[]) => void;
+}
+
+export const useTagListStore = create<ITagListStore>()((set) => ({
+  value: [],
+  setValue: (value) => set(() => ({ value })),
+}));

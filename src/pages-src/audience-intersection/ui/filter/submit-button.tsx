@@ -5,7 +5,11 @@ import { useFormContext } from "react-hook-form";
 import { useGetBloggerMutate } from "../../api/use-blogger";
 import { limitCount } from "../../model/const";
 import { IFormFilter } from "../../model/form";
-import { useBloggerTableStore, useCheckListStore } from "../../model/store";
+import {
+  useBloggerTableStore,
+  useCheckListStore,
+  useTagListStore,
+} from "../../model/store";
 
 export const SubmitButton: FC = () => {
   const { handleSubmit } = useFormContext<IFormFilter>();
@@ -14,17 +18,20 @@ export const SubmitButton: FC = () => {
 
   const setBloggerTable = useBloggerTableStore((state) => state.setValue);
   const setCheckListStore = useCheckListStore((state) => state.setValue);
+  const setTagListStore = useTagListStore((state) => state.setValue);
 
   const onSubmit = async ({ names }: IFormFilter) => {
     const res = await mutateAsync({
       offset: 0,
       limit: limitCount,
-      search: names,
+      // search: names.split(/[\s,]+/).join(`|`),
+      search: names
       // sort: `-subscribers`,
     });
     if (!res) return;
     setBloggerTable(res);
     setCheckListStore([]);
+    setTagListStore(names.split(/[\s,]+/));
   };
 
   return (
