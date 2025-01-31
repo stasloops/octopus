@@ -9,11 +9,7 @@ interface IPayload {
 
 export interface IGetIntersectionsSchema {
   payload?: IPayload;
-  response: {
-    body: string;
-    mimetype: string;
-    name: string;
-  };
+  response: any;
 }
 
 export const httpGetIntersections = async (
@@ -21,7 +17,10 @@ export const httpGetIntersections = async (
 ) => {
   const response = await http.post<IGetIntersectionsSchema["response"]>(
     `/reports/intersections`,
-    payload
+    payload,
+    {
+      responseType: `blob`,
+    }
   );
   // const response = await httpLocal.get<IGetBloggerSchema["response"]>(
   //   `/blogger`,
@@ -29,5 +28,5 @@ export const httpGetIntersections = async (
   //     params: payload,
   //   }
   // );
-  return response.data;
+  return response;
 };
