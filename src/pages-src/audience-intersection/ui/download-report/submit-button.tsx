@@ -27,9 +27,6 @@ export const SubmitButton: FC<SubmitButtonProps> = ({ type }) => {
       communities: tagListStore,
     });
     if (!res) return;
-    console.log(res);
-    console.log(res.headers["content-disposition"]);
-
     downloadFile(name, res.data);
   };
 
