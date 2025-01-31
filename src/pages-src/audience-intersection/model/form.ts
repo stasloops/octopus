@@ -38,9 +38,6 @@ export const defaultFormModalFilter: IFormModalFilter = {
 export const FormFilterModalSchema = z.object({
   name: z
     .string()
-    .max(5000, {
-      message: `Длина не более 5000 символов`,
-    })
-    .min(1, { message: "Обязательное поле" })
+    // .min(1, { message: "Обязательное поле" })
     .max(50, { message: "Длина не более 50 символов" }),
 });
