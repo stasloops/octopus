@@ -7,8 +7,8 @@ interface IPayloadParams {
   posts__lte?: number;
   subscribers__lte?: number;
   search?: string;
+  title__contain_in?: string;
 }
-
 
 interface IPayload extends IPayloadParams {
   limit?: number;

@@ -24,8 +24,8 @@ export const SubmitButton: FC = () => {
     const res = await mutateAsync({
       offset: 0,
       limit: limitCount,
-      // search: names.split(/[\s,]+/).join(`|`),
-      search: names
+      title__contain_in: names.split(/\s*,\s*/).join(`|`),
+      // search: names
       // sort: `-subscribers`,
     });
     if (!res) return;

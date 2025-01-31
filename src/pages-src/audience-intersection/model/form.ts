@@ -14,14 +14,14 @@ export const FormFilterSchema = z
       message: `Длина не более 5000 символов`,
     }),
   })
-  // .refine((data) => !(data.names.length == 0), {
-  //   message: "Введите наименования сообществ",
-  //   path: ["names"],
-  // })
-  // .refine((data) => !(data.names.split(/[\s,]+/).length < 2), {
-  //   message: "Сообществ должно быть не менее 2",
-  //   path: ["names"],
-  // })
+  .refine((data) => !(data.names.length == 0), {
+    message: "Введите наименования сообществ",
+    path: ["names"],
+  })
+  .refine((data) => !(data.names.split(/[\s,]+/).length < 2), {
+    message: "Сообществ должно быть не менее 2",
+    path: ["names"],
+  })
   .refine((data) => !(data.names.split(/[\s,]+/).length > 5), {
     message: "Сообществ должно быть не более 5",
     path: ["names"],
