@@ -39,11 +39,14 @@ export const FilterTags: FC<FilterTagsProps> = ({ name, label }) => {
               />
               <Grid2 container spacing={`5px`}>
                 {(value || "").length > 0 &&
-                  (value || "").split(/[\s,]+/).map((el, index) => (
-                    <Grid2 key={index} xs="auto">
-                      <Chip label={el} />
-                    </Grid2>
-                  ))}
+                  (value || "").split(",")
+                    .map(el => el.trim())
+                    .filter(el => el.length > 0)
+                    .map((el, index) => (
+                      <Grid2 key={index} xs="auto">
+                        <Chip label={el} />
+                      </Grid2>
+                    ))}
               </Grid2>
             </Stack>
           </>

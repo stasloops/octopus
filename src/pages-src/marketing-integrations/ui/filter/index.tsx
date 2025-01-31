@@ -47,13 +47,10 @@ export const FilterElement: FC = () => {
                         <HashtagsInput />
                       </Grid2>
                       <Grid2 xs={12} md={4} lg={4}>
-                        <UrlInput />
+                        <DataRangeInput />
                       </Grid2>
                     </Grid2>
                   </Box>
-                </Grid2>
-                <Grid2 xs={12} md={12} lg="auto">
-                  <DataRangeInput />
                 </Grid2>
               </Grid2>
             </Box>
