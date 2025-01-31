@@ -30,6 +30,7 @@ const getDefaultValues = () => ({
   communityTheme: "",
   clipsViews: "",
   averageReach: "",
+  search: "",
 });
 
 const FILTER_CONSTANTS = {
@@ -49,7 +50,7 @@ export const FilterElement: FC<IFilterElementProps> = ({ onClose }) => {
   const [showAdditionalFilters, setShowAdditionalFilters] = useState(false);
   const { bloggersLocations, subscribersLocations } = useFilterDataQuery();
 
-  const { methods } = useHandleForm();
+  const { methods, resetForm } = useHandleForm();
   const { onSubmit } = useFilterForm();
 
   const handleOnSubmit = async (args: FilterFormData) => {
@@ -88,7 +89,18 @@ export const FilterElement: FC<IFilterElementProps> = ({ onClose }) => {
             </Box>
 
             <Box>
-              <SearchInput />
+              <Stack direction="row" spacing={2} alignItems="center">
+                <Box sx={{ flexGrow: 1 }}>
+                  <SearchInput />
+                </Box>
+                <Button
+                  variant="outlined"
+                  onClick={resetForm}
+                  sx={{ height: '40px' }}
+                >
+                  Сбросить
+                </Button>
+              </Stack>
             </Box>
 
             <Box sx={{ width: `100%` }}>
@@ -160,6 +172,7 @@ export const FilterElement: FC<IFilterElementProps> = ({ onClose }) => {
                   <FilterField
                     name="otherSocialAccount"
                     label="Аккаунт в другой социальной сети"
+                    disabled={true}
                   />
                   <FilterField name="advertisers" label="Рекламодатели" />
 
@@ -243,6 +256,11 @@ const useHandleForm = () => {
     defaultValues: loadSavedValues(),
   });
 
+  const resetForm = () => {
+    methods.reset(getDefaultValues());
+    localStorage.removeItem(FILTER_CONSTANTS.STORAGE_KEY);
+  };
+
   useEffect(() => {
     const subscription = methods.watch((formValues) => {
       localStorage.setItem(
@@ -253,7 +271,7 @@ const useHandleForm = () => {
     return () => subscription.unsubscribe();
   }, [methods.watch]);
 
-  return { methods };
+  return { methods, resetForm };
 };
 
 const useFilterForm = () => {
@@ -293,7 +311,7 @@ const useFilterForm = () => {
         is_confirmed: verifiedAccount === "true" ? true : false,
         location__in: handleFilter(location),
         stat__subscribers_locations__in: handleFilter(geography),
-        stat__posts_tags__in: handleFilter(postTags?.replace(/\s+/g, "|")),
+        stat__posts_tags__in: handleFilter(postTags?.replace(/\s*,\s*/g, "|")),
         stat__clips_counters__views__lte: handleFilter(Number(clipsViews)),
         stat__videos_counters__views__lte: handleFilter(Number(vkVideoViews)),
         stat__posts_counters__views_12_avg__lte: handleFilter(

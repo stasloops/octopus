@@ -8,9 +8,10 @@ interface FilterFieldProps {
   name: keyof FilterFormData;
   label: string;
   type?: "number";
+  disabled?: boolean;
 }
 
-export const FilterField: FC<FilterFieldProps> = ({ name, label, type }) => {
+export const FilterField: FC<FilterFieldProps> = ({ name, label, type, disabled }) => {
   const { control } = useFormContext<FilterFormData>();
 
   return (
@@ -28,6 +29,7 @@ export const FilterField: FC<FilterFieldProps> = ({ name, label, type }) => {
             type={type || "text"}
             error={!!error}
             helperText={error?.message}
+            disabled={disabled}
             inputProps={{
               ...(name === 'erRate' && {
                 min: 0,
