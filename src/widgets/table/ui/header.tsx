@@ -1,6 +1,6 @@
 import {LayoutHeight} from "@/widgets/layout/model/const";
 import {Button, TableCell, TableRow} from "@mui/material";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useBloggerTableStore} from "@/entities/bloger/model/store";
 import {TableModal} from "@/widgets/table/ui/modal";
 import {SelectedBlogger, useSelectedBloggers} from "@/widgets/table/model/selected-bloggers-store";
@@ -8,8 +8,25 @@ import {SelectedBlogger, useSelectedBloggers} from "@/widgets/table/model/select
 
 export function FixedHeaderContent() {
   const {bloggerTable, selectable} = useBloggerTableStore();
-  const { setSelectedBloggers, toggleSelectAll, isAllSelected, selectedBloggers } = useSelectedBloggers();
+  const { setSelectedBloggers, selectedBloggers } = useSelectedBloggers();
   const [modalOpen, setModalOpen] = useState(false);
+  const isAllBloggersSelected = selectedBloggers.length === bloggerTable?.data.length;
+
+  useEffect(()=>{
+    console.log("selectedBloggers", selectedBloggers)
+  }, [selectedBloggers])
+
+  const toggleSelectAllBloggers = () => {
+    if (isAllBloggersSelected) {
+      setSelectedBloggers([]);
+      return
+    }
+    const bloggers = bloggerTable?.data.map((blogger) => ({
+      id: blogger.id,
+      name: blogger.title,
+    })) as unknown as SelectedBlogger[];
+    setSelectedBloggers(bloggers);
+  }
 
   const handleSelectAllClick = () => {
     const bloggers = bloggerTable?.data.map((blogger) => ({
@@ -17,7 +34,7 @@ export function FixedHeaderContent() {
       name: blogger.title,
     })) as unknown as SelectedBlogger[];
     setSelectedBloggers(bloggers)
-    toggleSelectAll();
+    toggleSelectAllBloggers();
   }
 
   const handleModalClick = () => {
@@ -47,7 +64,7 @@ export function FixedHeaderContent() {
             }}
             onClick={handleSelectAllClick}
             >
-              {isAllSelected ? 'Снять всё' : 'Выбрать всё'}
+              {isAllBloggersSelected ? 'Снять всё' : 'Выбрать всё'}
             </TableCell>
         }
         <TableCell sx={{ width: `70px` }}>Аватар</TableCell>

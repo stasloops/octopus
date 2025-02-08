@@ -7,53 +7,35 @@ export type SelectedBlogger = {
 
 interface SelectedBloggersStore {
   selectedBloggers: SelectedBlogger[]
-  isAllSelected: boolean
-  toggleSelection: (blogger: SelectedBlogger) => void
-  isBloggerSelected: (id: SelectedBlogger['id']) => boolean
   setSelectedBloggers: (bloggers: SelectedBlogger[]) => void
-  toggleSelectAll: () => void
+
+  isBloggerSelected: (id: SelectedBlogger['id']) => boolean
+  toggleBloggerSelected: (blogger: SelectedBlogger) => void
 }
 
 export const useSelectedBloggers = create<SelectedBloggersStore>((set, get) => ({
   selectedBloggers: [],
-  isAllSelected: false,
 
   setSelectedBloggers: (bloggers: SelectedBlogger[]) => set((state)=>({
     selectedBloggers: bloggers,
-    isAllSelected: state.isAllSelected,
   })),
 
-  toggleSelection: (blogger: SelectedBlogger) => set((state) => {
-    const bloggerExists = state.selectedBloggers.find(b => b.id === blogger.id);
+  toggleBloggerSelected: (blogger: SelectedBlogger) => set((state) => {
+    const bloggerExists = state.selectedBloggers.find(item => item.id === blogger.id);
 
     if (bloggerExists) {
-      const newBloggers = state.selectedBloggers.filter(item => item.id !== blogger.id);
       return {
-        selectedBloggers: newBloggers,
-        isAllSelected: false
+        selectedBloggers: state.selectedBloggers.filter(item => item.id !== blogger.id),
       };
     }
 
     return {
       selectedBloggers: [...state.selectedBloggers, blogger],
-      isAllSelected: state.isAllSelected
     };
   }),
 
   isBloggerSelected: (id: SelectedBlogger['id']) => {
     const state = get();
-    return state.isAllSelected || state.selectedBloggers.find((blogger) => blogger.id === id) !== undefined;
+    return state.selectedBloggers.find((blogger) => blogger.id === id) !== undefined;
   },
-
-  toggleSelectAll: () => {
-    const state = get();
-    if (state.isAllSelected) {
-      return set({
-        selectedBloggers: [],
-        isAllSelected: false
-      });
-    }
-    return set({
-      isAllSelected: true
-    });
-  }}))
+}))

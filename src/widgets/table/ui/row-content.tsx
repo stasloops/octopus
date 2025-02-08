@@ -19,7 +19,7 @@ const Text1SX: SxProps<Theme> = {
 };
 
 export function RowContentComponent({ row }: { row: IBlogger }) {
-  const { toggleSelection, isBloggerSelected } = useSelectedBloggers();
+  const { isBloggerSelected, toggleBloggerSelected } = useSelectedBloggers();
   const { selectable } = useBloggerTableStore();
 
   const isSelected = isBloggerSelected(row.id);
@@ -45,7 +45,7 @@ export function RowContentComponent({ row }: { row: IBlogger }) {
           <Checkbox
             checked={isSelected}
             onChange={() => {
-              toggleSelection({id: row.id, name: row.title});
+              toggleBloggerSelected({id: row.id, name: row.title});
             }}
           />
         </TableCell>

@@ -30,10 +30,6 @@ export const TableElement: FC<TableElementProps> = ({selectable = false}) => {
     return !data.meta.end;
   }, [data]);
 
-  useEffect(()=>{
-    console.log(bloggerTable?.data);
-  }, [bloggerTable])
-
   const loadMore = useCallback(async () => {
     if (!bloggerTable) return;
     if (!hasMore) return;
@@ -70,7 +66,7 @@ export const TableElement: FC<TableElementProps> = ({selectable = false}) => {
         });
       }
     }
-  }, [JSON.stringify(data)]);
+  }, [data]);
 
   return (
     <>

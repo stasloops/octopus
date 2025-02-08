@@ -1,6 +1,5 @@
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle} from "@mui/material";
 import {useDeleteSelectedBloggers} from "@/widgets/table/api/use-delete-selected-bloggers";
-import {useTableStore} from "@/widgets/table/model/use-table-store";
 import {useBloggerTableStore} from "@/entities/bloger/model/store";
 import {useSelectedBloggers} from "@/widgets/table/model/selected-bloggers-store";
 
@@ -10,8 +9,7 @@ type TableModalProps = {
 }
 
 export const TableModal = ({open, handleModalClick}: TableModalProps) => {
-  const { selectable } = useTableStore();
-  const { removeBlogger } = useBloggerTableStore();
+  const { removeBlogger, selectable } = useBloggerTableStore();
   const { selectedBloggers, setSelectedBloggers } = useSelectedBloggers();
   const { mutateAsync } = useDeleteSelectedBloggers();
 
