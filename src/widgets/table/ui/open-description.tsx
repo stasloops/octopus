@@ -1,16 +1,7 @@
-import { IBlogger } from "@/shared/api/blogger/model";
+import {IBlogger} from "@/shared/api/blogger/model";
 import TouchAppOutlinedIcon from "@mui/icons-material/TouchAppOutlined";
-import {
-  Button,
-  ButtonBase,
-  Chip,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Typography,
-} from "@mui/material";
-import { FC, useState } from "react";
+import {Button, ButtonBase, Chip, Dialog, DialogActions, DialogContent, DialogTitle, Typography,} from "@mui/material";
+import {FC, useState} from "react";
 
 interface OpenRowProps {
   row: IBlogger;
@@ -18,17 +9,14 @@ interface OpenRowProps {
 
 export const OpenDescription: FC<OpenRowProps> = ({ row }) => {
   const [open, setOpen] = useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
+  const toggleDescription = () => {
+    setOpen(prev => !prev);
   };
 
   return (
     <>
       {row.description && (
-        <ButtonBase onClick={handleClickOpen}>
+        <ButtonBase onClick={toggleDescription}>
           <Chip
             sx={{
               background: `#EFFCFC`,
@@ -45,8 +33,8 @@ export const OpenDescription: FC<OpenRowProps> = ({ row }) => {
         </ButtonBase>
       )}
 
-      {!!open && (
-        <Dialog open={open} onClose={handleClose}>
+      {open && (
+        <Dialog open={open} onClose={toggleDescription}>
           <DialogTitle>{"Описание"}</DialogTitle>
           <DialogContent>
             <Typography sx={{ whiteSpace: `pre-wrap` }}>
@@ -54,7 +42,7 @@ export const OpenDescription: FC<OpenRowProps> = ({ row }) => {
             </Typography>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Закрыть</Button>
+            <Button onClick={toggleDescription}>Закрыть</Button>
           </DialogActions>
         </Dialog>
       )}

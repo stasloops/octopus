@@ -1,22 +1,23 @@
 "use client";
 
-import { HeaderHome } from "@/features/header-home";
+import {HeaderHome} from "@/features/header-home";
 import Loading from "@/pages-src/loading";
-import { Layout } from "@/widgets/layout";
-import { Box, Typography } from "@mui/material";
-import { FC, useCallback, useEffect } from "react";
-import { useBloggerTableStore } from "../model/store";
-import { TableElement } from "./table";
-import { TextResultElement } from "./text-result";
-import { useBlogers } from "@/entities/bloger";
+import {Layout} from "@/widgets/layout";
+import {Box, Typography} from "@mui/material";
+import {FC, useCallback, useEffect} from "react";
+import {TextResultElement} from "./text-result";
+import {useBlogers} from "@/entities/bloger";
+import {useBloggerTableStore} from "@/entities/bloger/model/store";
+import {TableElement} from "@/widgets/table";
 
 interface PageProps {
   search: string;
 }
 
+
 export const Page: FC<PageProps> = ({ search }) => {
   const { mutateAsync, setFilters, isLoading, data } = useBlogers();
-  const setBloggerTable = useBloggerTableStore((state) => state.setValue);
+  const {setBloggerTable} = useBloggerTableStore();
 
   const startMutate = useCallback(async () => {
     setFilters((prev) => ({ ...prev, search: search }));
@@ -46,11 +47,11 @@ export const Page: FC<PageProps> = ({ search }) => {
               }}
             >{`Поиск по блогерам`}</Typography>
             <TextResultElement />
-            <TableElement />
+            <TableElement selectable={false}/>
           </Box>
         </>
       )}
-      {(!data || !!isLoading) && <Loading />}
+      {(!data || isLoading) && <Loading />}
     </>
   );
 };

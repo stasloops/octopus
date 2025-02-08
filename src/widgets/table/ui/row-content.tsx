@@ -1,21 +1,14 @@
-import { IBlogger } from "@/shared/api/blogger/model";
+import {IBlogger} from "@/shared/api/blogger/model";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
-import {
-  Avatar,
-  Box,
-  Button,
-  Stack,
-  SxProps,
-  TableCell,
-  Tooltip,
-  Typography,
-} from "@mui/material";
-import { Theme } from "@mui/system";
+import {Avatar, Box, Button, Checkbox, Stack, SxProps, TableCell, Tooltip, Typography,} from "@mui/material";
+import {Theme} from "@mui/system";
 import Link from "next/link";
-import { platformList } from "../../model/const";
-import { OpenDescription } from "./open-description";
-import { SubscribersElement } from "./subscribers-number";
+import {OpenDescription} from "./open-description";
+import {SubscribersElement} from "./subscribers-number";
+import {platformList} from "@/entities/bloger/model/const";
+import {useSelectedBloggers} from "@/widgets/table/model/selected-bloggers-store";
+import {useBloggerTableStore} from "@/entities/bloger/model/store";
 
 const Text1SX: SxProps<Theme> = {
   fontWeight: 600,
@@ -24,20 +17,39 @@ const Text1SX: SxProps<Theme> = {
   overflow: `hidden`,
   whiteSpace: `nowrap`,
 };
-const Text2SX: SxProps<Theme> = {
-  fontWeight: 400,
-  fontSize: `13px`,
-  color: `#333333`,
-};
 
-export function rowContent(_index: number, row: IBlogger) {
+export function RowContentComponent({ row }: { row: IBlogger }) {
+  const { toggleSelection, isBloggerSelected } = useSelectedBloggers();
+  const { selectable } = useBloggerTableStore();
+
+  const isSelected = isBloggerSelected(row.id);
+
   if (!row) return null;
 
   const platform = platformList.find(
     (elList) => elList.key == row.platform_code
   );
+
   return (
     <>
+      {selectable && (
+        <TableCell padding="checkbox"
+                   sx={{
+                     height: `74px`,
+                     display: {
+                       xs: `none`,
+                       md: `table-cell`,
+                       lg: `table-cell`,
+                     },
+                   }}>
+          <Checkbox
+            checked={isSelected}
+            onChange={() => {
+              toggleSelection({id: row.id, name: row.title});
+            }}
+          />
+        </TableCell>
+      )}
       <TableCell
         sx={{
           height: `74px`,
@@ -206,26 +218,24 @@ export function rowContent(_index: number, row: IBlogger) {
           fontWeight: 600,
         }}
       >{`${row.er.toFixed(1)}%`}</TableCell>
+
+
       <TableCell
-        sx={{
-          display: {
-            xs: `none`,
-            md: `table-cell`,
-            lg: `table-cell`,
-          },
-        }}
-        align="right"
+          sx={{}}
+          align="right"
       >
+        {!selectable &&
         <Link href={`/blogger/vk/${row.id}`}>
-          <Button
-            variant="contained"
-            color="primary"
-            endIcon={<ArrowForwardIcon />}
-            sx={{ borderRadius: `20px` }}
-          >
-            Отчет
-          </Button>
+            <Button
+                variant="contained"
+                color="primary"
+                endIcon={<ArrowForwardIcon />}
+                sx={{ borderRadius: `20px` }}
+            >
+                Отчет
+            </Button>
         </Link>
+        }
       </TableCell>
       <TableCell
         sx={{
@@ -372,23 +382,27 @@ export function rowContent(_index: number, row: IBlogger) {
             </Box>
           </Box>
         </Stack>
+
         <Box sx={{ position: `absolute`, bottom: `13px`, right: 0, left: 0 }}>
           <Stack spacing={2}>
-            <Box>
-              <Link href={`/blogger/vk/${row.id}`}>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  endIcon={<ArrowForwardIcon />}
-                  sx={{ borderRadius: `20px` }}
-                >
-                  Отчет
-                </Button>
-              </Link>
-            </Box>
+              <Box>
+                {!selectable &&
+                  <Link href={`/blogger/vk/${row.id}`}>
+                      <Button
+                          fullWidth
+                          variant="contained"
+                          color="primary"
+                          endIcon={<ArrowForwardIcon />}
+                          sx={{ borderRadius: `20px` }}
+                      >
+                          Отчет
+                      </Button>
+                  </Link>
+                }
+              </Box>
           </Stack>
-        </Box>
+      </Box>
+
       </TableCell>
       <TableCell
         sx={{
@@ -435,6 +449,11 @@ export function rowContent(_index: number, row: IBlogger) {
       >
         <OpenDescription row={row} />
       </TableCell>
+      <TableCell sx={{}}></TableCell>
     </>
   );
+}
+
+export function RowContent(_: number, row: IBlogger) {
+  return <RowContentComponent key={row.id_} row={row} />;
 }

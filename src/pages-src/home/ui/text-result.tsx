@@ -1,21 +1,21 @@
 "use client";
 
-import { Box, Stack, Typography } from "@mui/material";
-import { useSearchParams } from "next/navigation";
-import { FC } from "react";
-import { useBloggerTableStore } from "../model/store";
+import {Box, Stack, Typography} from "@mui/material";
+import {useSearchParams} from "next/navigation";
+import {FC} from "react";
+import {useBloggerTableStore} from "@/entities/bloger/model/store";
 
 interface TextResultElement {}
 
 export const TextResultElement: FC<TextResultElement> = ({}) => {
-  const bloggerTable = useBloggerTableStore((state) => state.value);
+  const {bloggerTable} = useBloggerTableStore();
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
-  const serchSize = searchParams.size;
+  const searchSize = searchParams.size;
 
   return (
     <>
-      {!!serchSize && (
+      {!!searchSize && (
         <Box
           sx={{
             pt: `15px`,

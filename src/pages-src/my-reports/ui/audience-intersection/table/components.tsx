@@ -1,14 +1,7 @@
-import React, { forwardRef } from "react";
-import { TableComponents } from "react-virtuoso";
-import {
-  Table,
-  TableBody,
-  TableHead,
-  TableRow,
-  TableContainer,
-  Paper,
-} from "@mui/material";
-import { IReport } from "../../../api/audience-intersection";
+import React, {forwardRef} from "react";
+import {TableComponents} from "react-virtuoso";
+import {Paper, Table, TableBody, TableContainer, TableHead, TableRow,} from "@mui/material";
+import {IReport} from "../../../api/audience-intersection";
 
 const VirtuosoScroller = forwardRef<HTMLDivElement>((props, ref) => (
   <TableContainer

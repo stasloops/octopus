@@ -1,4 +1,4 @@
-import { numberShortenCharacrer } from "@/shared/lib/number-shorten-character";
+import { numberShortenCharacter } from "@/shared/lib/number-shorten-character";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import ChromeReaderModeOutlinedIcon from "@mui/icons-material/ChromeReaderModeOutlined";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
@@ -16,7 +16,7 @@ export const HeaderDetal: FC = () => {
   const subscribers = useMemo(
     () =>
       blogger?.subscribers !== undefined && blogger?.subscribers !== null
-        ? numberShortenCharacrer(blogger.subscribers)
+        ? numberShortenCharacter(blogger.subscribers)
         : null,
     [blogger]
   );
@@ -30,7 +30,7 @@ export const HeaderDetal: FC = () => {
   const countPost = useMemo(
     () =>
       blogger?.posts !== undefined && blogger?.posts !== null
-        ? numberShortenCharacrer(blogger.posts)
+        ? numberShortenCharacter(blogger.posts)
         : null,
     [blogger]
   );

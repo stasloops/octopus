@@ -1,7 +1,7 @@
 "use server";
 
-import { redirect } from "next/navigation";
+import {redirect} from "next/navigation";
 
-export const refreshCurrentPage = (url: string) => {
+export const refreshCurrentPage = async (url: string) => {
   redirect(url);
 };

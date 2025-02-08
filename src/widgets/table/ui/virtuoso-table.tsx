@@ -1,15 +1,7 @@
-import { IBlogger } from "@/shared/api/blogger/model";
-import {
-  CircularProgress,
-  Stack,
-  Table,
-  TableBody,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
-import { forwardRef } from "react";
-import { TableComponents } from "react-virtuoso";
+import {IBlogger} from "@/shared/api/blogger/model";
+import {CircularProgress, Stack, Table, TableBody, TableContainer, TableHead, TableRow,} from "@mui/material";
+import {forwardRef} from "react";
+import {TableComponents} from "react-virtuoso";
 
 const VirtuosoScroller = forwardRef<HTMLDivElement>((props, ref) => (
   <TableContainer id="Scroller" {...props} ref={ref} sx={{ height: `100%`, overflowX: "initial" }} />
@@ -17,7 +9,7 @@ const VirtuosoScroller = forwardRef<HTMLDivElement>((props, ref) => (
 VirtuosoScroller.displayName = 'VirtuosoScroller';
 
 const VirtuosoTableHead = forwardRef<HTMLTableSectionElement>((props, ref) => (
-  <TableHead {...props} ref={ref} />
+  <TableHead  {...props} sx={{boxShadow: 'none'}} ref={ref} />
 ));
 VirtuosoTableHead.displayName = 'VirtuosoTableHead';
 
@@ -54,6 +46,9 @@ export const VirtuosoTableComponents: TableComponents<IBlogger> = {
                 md: `14px`,
                 lg: `14px`,
               },
+            },
+            "& .deleteSelectedBloggerTableCell": {
+              opacity: 1,
             },
             "& .MuiTableCell-root": { px: 0 },
           }}

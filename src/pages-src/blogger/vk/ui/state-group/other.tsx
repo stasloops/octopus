@@ -1,4 +1,4 @@
-import { numberShortenCharacrer } from "@/shared/lib/number-shorten-character";
+import { numberShortenCharacter } from "@/shared/lib/number-shorten-character";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
@@ -30,7 +30,7 @@ export const Other: FC = () => {
 
   const param1 = useMemo(() => {
     if (blogger?.audience_in_numbers === undefined) return null;
-    return numberShortenCharacrer(blogger.audience_in_numbers || 0);
+    return numberShortenCharacter(blogger.audience_in_numbers || 0);
   }, [blogger?.audience_in_numbers]);
 
   const param2 = useMemo(() => {

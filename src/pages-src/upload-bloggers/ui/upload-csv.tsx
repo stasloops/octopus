@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import styled from "@emotion/styled";
 import { FormData, uploadCsvSchema } from "../lib/upload-csv-schema";
 import { useDrag } from "../lib/hooks/use-drag";
@@ -9,6 +9,31 @@ import { useDrag } from "../lib/hooks/use-drag";
 interface UploadCsvProps {
   fallback: (file: File) => void;
 }
+
+interface DropZoneProps {
+  isDragActive: boolean;
+  onDragEnter: (e: React.DragEvent) => void;
+  onDragLeave: (e: React.DragEvent) => void;
+  onDragOver: (e: React.DragEvent) => void;
+  onDrop: (e: React.DragEvent) => void;
+  children: React.ReactNode;
+}
+
+const DropZoneComponent: FC<DropZoneProps> = ({
+  isDragActive,
+  children,
+  ...dragHandlers
+}) => (
+  <DropZone
+    isDragActive={isDragActive}
+    {...dragHandlers}
+    component="label"
+    role={undefined}
+    tabIndex={-1}
+  >
+    {children}
+  </DropZone>
+);
 
 export const UploadCsv: FC<UploadCsvProps> = ({ fallback }) => {
   const { isDragActive, handleDrag, handleDrop } = useDrag();
@@ -20,50 +45,50 @@ export const UploadCsv: FC<UploadCsvProps> = ({ fallback }) => {
     watch,
   } = useForm<FormData>({
     resolver: zodResolver(uploadCsvSchema),
+    mode: 'onChange',
   });
 
-  const fileList = watch("file");
-  const hasFile = fileList && fileList.length > 0;
-  const fileName = hasFile ? fileList[0].name : "";
+  const fileList = watch('file');
+  const hasFile = fileList?.[0];
+  const fileName = hasFile?.name ?? '';
 
   const onSubmit = (data: FormData) => {
     const file = data.file[0];
-    if (file) {
-      fallback(file);
-    }
+    if (file) fallback(file);
   };
 
   return (
     <Box component="form" onSubmit={handleSubmit(onSubmit)}>
-      {errors.file && <div style={{ color: "red" }}>{errors.file.message}</div>}
+      {errors.file && (
+        <Typography color="error" mb={2}>
+          {errors.file.message}
+        </Typography>
+      )}
 
-      <DropZone
+      <DropZoneComponent
         isDragActive={isDragActive}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
         onDragOver={handleDrag}
         onDrop={(e) => handleDrop(e, setValue)}
-        component="label"
-        role={undefined}
-        tabIndex={-1}
       >
         <Button
           component="span"
-          role={undefined}
           variant="contained"
           tabIndex={-1}
         >
-          {fileName || "Загрузить CSV файл"}
+          {fileName || 'Загрузить CSV файл'}
           <VisuallyHiddenInput
-            {...register("file")}
+            {...register('file')}
             accept=".csv"
             type="file"
           />
         </Button>
-      </DropZone>
+      </DropZoneComponent>
 
       <Button
-        sx={{ mt: "12px", py: '12px', width: '100%' }}
+        fullWidth
+        sx={{ mt: 2, py: 1.5 }}
         type="submit"
         variant="contained"
         disabled={!hasFile}

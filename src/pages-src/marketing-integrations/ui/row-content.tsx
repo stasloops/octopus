@@ -1,4 +1,4 @@
-import { numberShortenCharacrer } from "@/shared/lib/number-shorten-character";
+import { numberShortenCharacter } from "@/shared/lib/number-shorten-character";
 import {
   Avatar,
   Paper,
@@ -15,9 +15,9 @@ interface RowContentProps {
 }
 
 export const RowContent: FC<RowContentProps> = ({ _index, row }) => {
-  const likes = useMemo(() => numberShortenCharacrer(row.metrics.likes), [row.metrics.likes]);
+  const likes = useMemo(() => numberShortenCharacter(row.metrics.likes), [row.metrics.likes]);
   const comments = useMemo(
-    () => numberShortenCharacrer(row.metrics.comments),
+    () => numberShortenCharacter(row.metrics.comments),
     [row.metrics.comments]
   );
   return (

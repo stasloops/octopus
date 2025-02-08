@@ -1,4 +1,4 @@
-import { numberShortenCharacrer } from "@/shared/lib/number-shorten-character";
+import {numberShortenCharacter} from "@/shared/lib/number-shorten-character";
 import {
   Button,
   Dialog,
@@ -10,8 +10,8 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { FC, useMemo, useState } from "react";
-import { IMarketingIntegrations } from "../api/http-get-marketing-integrations";
+import {FC, useMemo, useState} from "react";
+import {IMarketingIntegrations} from "../api/http-get-marketing-integrations";
 
 interface OpenRowProps {
   row: IMarketingIntegrations;
@@ -29,7 +29,7 @@ export const OpenRow: FC<OpenRowProps> = ({ row }) => {
   // const param1 = useMemo(() => {
   //   if (row?.subscribers === undefined || row.subscribers === null) return null;
   //   const value = row.subscribers || 0;
-  //   const shorten = numberShortenCharacrer(value);
+  //   const shorten = numberShortenCharacter(value);
   //   return shorten;
   // }, [row]);
 
@@ -37,14 +37,14 @@ export const OpenRow: FC<OpenRowProps> = ({ row }) => {
     if (row.metrics.likes === undefined || row.metrics.likes === null)
       return null;
     const value = row.metrics.likes || 0;
-    const shorten = numberShortenCharacrer(value);
+    const shorten = numberShortenCharacter(value);
     return shorten;
   }, [row]);
   const param3 = useMemo(() => {
     if (row.metrics.comments === undefined || row.metrics.comments === null)
       return null;
     const value = row.metrics.comments || 0;
-    const shorten = numberShortenCharacrer(value);
+    const shorten = numberShortenCharacter(value);
     return shorten;
   }, [row]);
 

@@ -1,11 +1,11 @@
 "use client";
 
-import { Layout } from "@/widgets/layout";
-import { Box, Typography } from "@mui/material";
-import { FC } from "react";
-import { DownloadReport } from "./download-report";
-import { FilterElement } from "./filter";
-import { TableElement } from "./table";
+import {Layout} from "@/widgets/layout";
+import {Box, Typography} from "@mui/material";
+import {FC} from "react";
+import {DownloadReport} from "./download-report";
+import {FilterElement} from "./filter";
+import {TableElement} from "@/widgets/table";
 
 interface PageProps {}
 
@@ -30,7 +30,7 @@ export const Page: FC<PageProps> = ({}) => {
         >{`Пересечение аудиторий`}</Typography>
         <FilterElement />
         <DownloadReport />
-        <TableElement />
+        <TableElement/>
       </Box>
     </>
   );

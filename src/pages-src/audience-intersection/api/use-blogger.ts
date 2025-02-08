@@ -1,10 +1,10 @@
-import { enqueueSnackbar } from "notistack";
-import { useMutation } from "react-query";
-import { limitCount } from "../model/const";
-import { httpGetBlogger, IGetBloggerSchema } from "./http-get-blogger";
+import {enqueueSnackbar} from "notistack";
+import {useMutation} from "react-query";
+import {limitCount} from "../model/const";
+import {httpGetBlogger, IGetBloggerSchema} from "./http-get-blogger";
 
 export const useGetBloggerMutate = () => {
-  const props = useMutation({
+  return useMutation({
     mutationFn: (value: IGetBloggerSchema[`payload`]) =>
       httpGetBlogger({ limit: limitCount, ...value, sort: `-subscribers` }),
     onSuccess: (data, variables) => {
@@ -15,5 +15,4 @@ export const useGetBloggerMutate = () => {
       enqueueSnackbar("Ошибка сервера", { variant: "error" });
     },
   });
-  return props;
 };

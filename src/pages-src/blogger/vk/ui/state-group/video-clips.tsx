@@ -1,4 +1,4 @@
-import { numberShortenCharacrer } from "@/shared/lib/number-shorten-character";
+import { numberShortenCharacter } from "@/shared/lib/number-shorten-character";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
@@ -30,49 +30,49 @@ export const VideoClips: FC = () => {
   const param1 = useMemo(() => {
     if (!blogger?.videos_counters) return null;
     const value = blogger.videos_counters.views || 0;
-    const shorten = numberShortenCharacrer(value);
+    const shorten = numberShortenCharacter(value);
     return shorten;
   }, [blogger]);
   const param2 = useMemo(() => {
     if (!blogger?.videos_counters) return null;
     const value = blogger.videos_counters.likes || 0;
-    const shorten = numberShortenCharacrer(value);
+    const shorten = numberShortenCharacter(value);
     return shorten;
   }, [blogger]);
   const param3 = useMemo(() => {
     if (!blogger?.videos_counters) return null;
     const value = blogger.videos_counters.comments || 0;
-    const shorten = numberShortenCharacrer(value);
+    const shorten = numberShortenCharacter(value);
     return shorten;
   }, [blogger]);
   const param4 = useMemo(() => {
     if (!blogger?.videos_counters) return null;
     const value = blogger.videos_counters.comments_replies || 0;
-    const shorten = numberShortenCharacrer(value);
+    const shorten = numberShortenCharacter(value);
     return shorten;
   }, [blogger]);
   const param5 = useMemo(() => {
     if (!blogger?.videos_counters) return null;
     const value = blogger.videos_counters.likes_12_avg || 0;
-    const shorten = numberShortenCharacrer(value);
+    const shorten = numberShortenCharacter(value);
     return shorten;
   }, [blogger]);
   const param6 = useMemo(() => {
     if (!blogger?.videos_counters) return null;
     const value = blogger.videos_counters.comments_12_avg || 0;
-    const shorten = numberShortenCharacrer(value);
+    const shorten = numberShortenCharacter(value);
     return shorten;
   }, [blogger]);
   const param7 = useMemo(() => {
     if (!blogger?.videos_counters) return null;
     const value = blogger.videos_counters.comments_replies_12_avg || 0;
-    const shorten = numberShortenCharacrer(value);
+    const shorten = numberShortenCharacter(value);
     return shorten;
   }, [blogger]);
   const param8 = useMemo(() => {
     if (!blogger?.videos_counters) return null;
     const value = blogger.videos_counters.views_12_avg || 0;
-    const shorten = numberShortenCharacrer(value);
+    const shorten = numberShortenCharacter(value);
     return shorten;
   }, [blogger]);
 

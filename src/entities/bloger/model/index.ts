@@ -1,10 +1,10 @@
-import { enqueueSnackbar } from "notistack";
-import { useMutation, useQueryClient, useQuery } from "react-query";
-import { getBlogers, IPayload } from "../api";
-import { limitCount } from "../config";
-import { create } from "zustand";
+import {enqueueSnackbar} from "notistack";
+import {useMutation, useQuery, useQueryClient} from "react-query";
+import {getBlogers, IPayload} from "../api";
+import {limitCount} from "../config";
+import {create} from "zustand";
 
-const BLOGERS_QUERY_KEY = "blogers";
+export const BLOGERS_QUERY_KEY = "blogers";
 
 interface BlogersFiltersStore {
   filters: IPayload;
