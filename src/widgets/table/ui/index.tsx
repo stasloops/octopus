@@ -66,7 +66,7 @@ export const TableElement: FC<TableElementProps> = ({selectable = false}) => {
         });
       }
     }
-  }, [data]);
+  }, [JSON.stringify(data)]);
 
   return (
     <>
